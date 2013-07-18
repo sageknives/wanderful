@@ -5,31 +5,32 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class BaseActivity extends FragmentActivity{
 
 	public static final String SETTINGS_PREFS = "SETTINGS PREFS";
 	
 	// initializes nav buttons
-	Button homeBtn;
-	Button mainScheduleBtn;
-	Button myScheduleBtn;
-	Button hashFeedBtn;
-	Button mapBtn;
+	ImageButton homeBtn;
+	ImageButton mainScheduleBtn;
+	ImageButton myScheduleBtn;
+	ImageButton hashFeedBtn;
+	ImageButton mapBtn;
 	Activity curActivity;
 
 	public void createNav(Activity activity, View view)
 	{
 		this.curActivity = activity;
-		homeBtn = (Button) findViewById(R.id.home_btn);
+		homeBtn = (ImageButton) findViewById(R.id.home_btn);
 		homeBtn.setOnClickListener(new navClickListeners());
-		mainScheduleBtn = (Button) findViewById(R.id.main_schedule_btn);
+		mainScheduleBtn = (ImageButton) findViewById(R.id.main_schedule_btn);
 		mainScheduleBtn.setOnClickListener(new navClickListeners());
-		myScheduleBtn = (Button) findViewById(R.id.my_schedule_btn);
+		myScheduleBtn = (ImageButton) findViewById(R.id.my_schedule_btn);
 		myScheduleBtn.setOnClickListener(new navClickListeners());
-		hashFeedBtn = (Button) findViewById(R.id.hash_feed_btn);
+		hashFeedBtn = (ImageButton) findViewById(R.id.hash_feed_btn);
 		hashFeedBtn.setOnClickListener(new navClickListeners());
-		mapBtn = (Button) findViewById(R.id.map_btn);
+		mapBtn = (ImageButton) findViewById(R.id.map_btn);
 		mapBtn.setOnClickListener(new navClickListeners());
 	}
 	private class navClickListeners implements View.OnClickListener {
