@@ -31,7 +31,7 @@ public class MainSchedule extends BaseActivity implements TabListener {
 		setContentView(R.layout.activity_main_schedule);
 
 		// gets all buttons and sets them to nav click listeners
-		createNav(MainSchedule.this,this.findViewById(R.layout.activity_hash_feed));
+		createNav(MainSchedule.this,this.findViewById(R.layout.activity_main_schedule));
 		
 		// Set up the action bar.
 				final ActionBar actionBar = getActionBar();
