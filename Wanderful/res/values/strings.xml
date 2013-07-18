@@ -14,21 +14,26 @@
     <string name="title_activity_my_schedule">MySchedule</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_hash_feed">HashFeed</string>
+    <string name="search">Search</string>
     <string name="addButton">Add</string>
-    
-     <string-array name="time">
+
+    <string-array name="time">
         <item>9:00</item>
-         <item>10:00</item>
-         <item>11:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
     </string-array>
-    
-     <string-array name="names">
+    <string-array name="names">
         <item>Band A</item>
-         <item>Band B</item>
-         <item>Band C</item>
+        <item>Band B</item>
+        <item>Band C</item>
+    </string-array>
+    <string-array name="day_names">
+        <item>Friday</item>
+        <item>Saturday</item>
     </string-array>
 
-     <string name="Friday">Friday</string>
+    <string name="Friday">Friday</string>
     <string name="Saturday">Saturday</string>
     <string name="Sunday">Sunday</string>
+
 </resources>
