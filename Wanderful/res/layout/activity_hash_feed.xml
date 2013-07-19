@@ -39,48 +39,53 @@
         android:background="@color/black"
         android:orientation="horizontal" >
 
-        <Button
+        <ImageButton
             android:id="@+id/home_btn"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:src="@drawable/home"
             android:text="@string/home"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />
 
-        <Button
+        <ImageButton
             android:id="@+id/main_schedule_btn"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:src="@drawable/lists"
             android:text="@string/main_schedule"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />
 
-        <Button
+        <ImageButton
             android:id="@+id/my_schedule_btn"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:src="@drawable/mylist"
             android:text="@string/my_schedule"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />
 
-        <Button
+        <ImageButton
             android:id="@+id/hash_feed_btn"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@color/black"
+            android:src="@drawable/hashtag"
             android:text="@string/hash_feed"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />
 
-        <Button
+        <ImageButton
             android:id="@+id/map_btn"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:src="@drawable/map"
             android:text="@string/map"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />

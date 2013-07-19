@@ -1,6 +1,5 @@
 package com.appliance.wanderful;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -16,12 +15,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
-=======
-import android.os.Bundle;
->>>>>>> parent of a5c9a58... Merge branch 'master' of https://github.com/sageknives/wanderful
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
 
-public class MainSchedule extends BaseActivity {
+public class MainSchedule extends BaseActivity implements TabListener {
+	SectionsPagerAdapter mSectionsPagerAdapter;
+
+	ViewPager mViewPager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +31,7 @@ public class MainSchedule extends BaseActivity {
 		setContentView(R.layout.activity_main_schedule);
 
 		// gets all buttons and sets them to nav click listeners
-<<<<<<< HEAD
-
 		createNav(MainSchedule.this,this.findViewById(R.layout.activity_main_schedule));
-<<<<<<< HEAD
-		if(isNetworkAvailable())
-		{
-			JSONGetClient oclient = new JSONGetClient(this, ol);
-			String ourl = "http://54.218.117.137/scoutservices/jsonobjectcommand.php?user=scoutreader&pass=readscout";
-			oclient.execute(ourl);
-			System.out.print("network is available!");
-		}
-		createNav(MainSchedule.this,this.findViewById(R.layout.activity_main_schedule));
-
-=======
->>>>>>> parent of 1943fbf... Changed launcher Icon, made the lists dynamic with Json, Made a search
 		
 		// Set up the action bar.
 				final ActionBar actionBar = getActionBar();
@@ -79,10 +67,6 @@ public class MainSchedule extends BaseActivity {
 			}
 
 	
-=======
-		createNav(MainSchedule.this,this.findViewById(R.layout.activity_hash_feed));
-	}
->>>>>>> parent of a5c9a58... Merge branch 'master' of https://github.com/sageknives/wanderful
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,7 +74,6 @@ public class MainSchedule extends BaseActivity {
 		getMenuInflater().inflate(R.menu.main_schedule, menu);
 		return true;
 	}
-<<<<<<< HEAD
 	
 	
 
@@ -248,48 +231,4 @@ public class MainSchedule extends BaseActivity {
 			Log.i("FragmentList", "Item clicked: " + id);
 		}
 	}
-<<<<<<< HEAD
-	JSONClientListener ol = new JSONClientListener() {
-
-		public void onRemoteCallComplete(JSONObject jsonObjectFromNet)throws JSONException 
-		{	
-			System.out.print(jsonObjectFromNet.getJSONArray("Day1").getJSONObject(0).getString("SubEventName"));
-			// Set up the action bar.
-			final ActionBar actionBar = getActionBar();
-			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-			// Create the adapter that will return a fragment for each of the three days
-			
-			mSectionsPagerAdapter = new SectionsPagerAdapter(
-					getSupportFragmentManager(),jsonObjectFromNet);
-
-			// Set up the ViewPager with the sections adapter.
-			mViewPager = (ViewPager) findViewById(R.id.pager);
-			mViewPager.setAdapter(mSectionsPagerAdapter);
-
-			// When swiping between different sections, select the corresponding
-	
-			mViewPager
-					.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-						@Override
-						public void onPageSelected(int position) {
-							actionBar.setSelectedNavigationItem(position);
-						}
-					});
-
-			// For each day of the schedule, add a tab to the action bar.
-			for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-				// Create a tab with text corresponding to the page title defined by
-				
-				actionBar.addTab(actionBar.newTab()
-						.setText(mSectionsPagerAdapter.getPageTitle(i))
-						.setTabListener(MainSchedule.this));
-			}
-            
-        }
-	};
-=======
->>>>>>> parent of a5c9a58... Merge branch 'master' of https://github.com/sageknives/wanderful
-=======
->>>>>>> parent of 1943fbf... Changed launcher Icon, made the lists dynamic with Json, Made a search
 }
