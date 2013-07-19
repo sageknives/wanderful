@@ -15,7 +15,9 @@
     <string name="title_activity_map">Map</string>
     <string name="title_activity_hash_feed">HashFeed</string>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <string name="search">Search</string>
+>>>>>>> parent of 1943fbf... Changed launcher Icon, made the lists dynamic with Json, Made a search
     <string name="addButton">Add</string>
 
     <string-array name="time">
@@ -25,15 +27,9 @@
     </string-array>
     <string-array name="names">
         <item>Band A</item>
-        <item>Band B</item>
-        <item>Band C</item>
     </string-array>
-    <string-array name="day_names">
-        <item>Friday</item>
-        <item>Saturday</item>
     </string-array>
 
-    <string name="Friday">Friday</string>
     <string name="Saturday">Saturday</string>
     <string name="Sunday">Sunday</string>
 
