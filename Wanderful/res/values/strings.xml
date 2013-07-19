@@ -17,24 +17,32 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
     <string name="search">Search</string>
+=======
 >>>>>>> parent of 1943fbf... Changed launcher Icon, made the lists dynamic with Json, Made a search
     <string name="addButton">Add</string>
-
-    <string-array name="time">
+    
+     <string-array name="time">
         <item>9:00</item>
-        <item>10:00</item>
-        <item>11:00</item>
+         <item>10:00</item>
+         <item>11:00</item>
     </string-array>
-    <string-array name="names">
+    
+     <string-array name="names">
         <item>Band A</item>
-    </string-array>
+         <item>Band B</item>
+         <item>Band C</item>
     </string-array>
 
+     <string name="Friday">Friday</string>
     <string name="Saturday">Saturday</string>
     <string name="Sunday">Sunday</string>
+<<<<<<< HEAD
 
 </resources>
 =======
 
 </resources>
 >>>>>>> parent of a5c9a58... Merge branch 'master' of https://github.com/sageknives/wanderful
+=======
+</resources>
+>>>>>>> parent of 1943fbf... Changed launcher Icon, made the lists dynamic with Json, Made a search
