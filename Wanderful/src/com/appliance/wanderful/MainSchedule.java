@@ -1,5 +1,6 @@
 package com.appliance.wanderful;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -19,15 +20,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+=======
+import android.os.Bundle;
+>>>>>>> parent of a5c9a58... Merge branch 'master' of https://github.com/sageknives/wanderful
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
 
-public class MainSchedule extends BaseActivity implements TabListener {
-	SectionsPagerAdapter mSectionsPagerAdapter;
-
-	ViewPager mViewPager;
+public class MainSchedule extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +33,7 @@ public class MainSchedule extends BaseActivity implements TabListener {
 		setContentView(R.layout.activity_main_schedule);
 
 		// gets all buttons and sets them to nav click listeners
+<<<<<<< HEAD
 
 		createNav(MainSchedule.this,this.findViewById(R.layout.activity_main_schedule));
 		if(isNetworkAvailable())
@@ -50,6 +49,10 @@ public class MainSchedule extends BaseActivity implements TabListener {
 	}
 
 	
+=======
+		createNav(MainSchedule.this,this.findViewById(R.layout.activity_hash_feed));
+	}
+>>>>>>> parent of a5c9a58... Merge branch 'master' of https://github.com/sageknives/wanderful
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,6 +60,7 @@ public class MainSchedule extends BaseActivity implements TabListener {
 		getMenuInflater().inflate(R.menu.main_schedule, menu);
 		return true;
 	}
+<<<<<<< HEAD
 	
 	
 
@@ -290,4 +294,6 @@ public class MainSchedule extends BaseActivity implements TabListener {
             
         }
 	};
+=======
+>>>>>>> parent of a5c9a58... Merge branch 'master' of https://github.com/sageknives/wanderful
 }
