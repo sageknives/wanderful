@@ -36,6 +36,7 @@ public class MainSchedule extends BaseActivity implements TabListener {
 
 		// gets all buttons and sets them to nav click listeners
 <<<<<<< HEAD
+<<<<<<< HEAD
 		createNav(MainSchedule.this,this.findViewById(R.layout.activity_main_schedule));
 		if(isNetworkAvailable())
 		{
@@ -44,6 +45,9 @@ public class MainSchedule extends BaseActivity implements TabListener {
 			oclient.execute(ourl);
 			System.out.print("network is available!");
 		}
+=======
+		createNav(MainSchedule.this,this.findViewById(R.layout.activity_hash_feed));
+>>>>>>> parent of 37b2a3a... added images to the bottom nav bar
 =======
 		createNav(MainSchedule.this,this.findViewById(R.layout.activity_hash_feed));
 >>>>>>> parent of 37b2a3a... added images to the bottom nav bar
