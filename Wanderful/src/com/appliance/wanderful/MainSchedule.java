@@ -15,6 +15,7 @@ import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,12 +39,7 @@ public class MainSchedule extends BaseActivity implements TabListener {
 				this.findViewById(R.layout.activity_main_schedule));
 		
 		// sends a get request for festival information
-		if(!isNetworkAvailable())
-		{
-			JSONGetClient client = new JSONGetClient(this, jsonGet);
-			String ourl = "http://54.218.117.137/scoutservices/jsonobjectcommand.php?user=scoutreader&pass=readscout";
-			client.execute(ourl);
-		}
+		
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
@@ -86,13 +82,20 @@ public class MainSchedule extends BaseActivity implements TabListener {
 		return true;
 	}
 
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+	public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 		final int NUM_TAB = 3;
 
 		public SectionsPagerAdapter(android.support.v4.app.FragmentManager fm) {
 			super(fm);
 		}
-
+		/** public void onBackPressed() {
+		        if (mSectionsPagerAdapter.getCurrentItem() == 0) {
+		            super.onBackPressed();
+		        } else {
+		        	mSectionsPagerAdapter.setCurrentItem(mSectionsPagerAdapter.getCurrentItem() - 1);
+		        }
+		    }
+		    **/
 		@Override
 		public Fragment getItem(int position) {
 			// getItem is called to instantiate the fragment for the given page.
@@ -132,6 +135,10 @@ public class MainSchedule extends BaseActivity implements TabListener {
 			}
 			return null;
 		}
+		 @Override
+		    public void destroyItem(ViewGroup container, int position, Object object) {
+		        super.destroyItem(container, position, object);
+		    }
 
 	}
 
@@ -228,11 +235,5 @@ public class MainSchedule extends BaseActivity implements TabListener {
 		}
 	}
 
-	JSONClientListener jsonGet = new JSONClientListener() {
-
-		@Override
-		public void onRemoteCallComplete(JSONObject jsonObjectFromNet)
-				throws JSONException {
-		}
-	};
+	
 }
