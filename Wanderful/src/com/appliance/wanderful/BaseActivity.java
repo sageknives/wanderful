@@ -1,5 +1,6 @@
 package com.appliance.wanderful;
 
+import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class BaseActivity extends FragmentActivity{
@@ -20,6 +22,8 @@ public class BaseActivity extends FragmentActivity{
 	ImageButton hashFeedBtn;
 	ImageButton mapBtn;
 	Activity curActivity;
+	public static ArrayList<Performance> performances= new ArrayList<Performance>();
+	public static ArrayList<Event> events= new ArrayList<Event>();
 
 	public void createNav(Activity activity, View view)
 	{
@@ -34,6 +38,7 @@ public class BaseActivity extends FragmentActivity{
 		hashFeedBtn.setOnClickListener(new navClickListeners());
 		mapBtn = (ImageButton) findViewById(R.id.map_btn);
 		mapBtn.setOnClickListener(new navClickListeners());
+
 	}
 	private class navClickListeners implements View.OnClickListener {
 		@Override

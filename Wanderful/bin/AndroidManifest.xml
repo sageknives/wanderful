@@ -7,7 +7,10 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="17" />
- 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     
     <application
         android:allowBackup="true"
@@ -38,6 +41,18 @@
         <activity
             android:name="com.appliance.wanderful.HashFeed"
             android:label="@string/title_activity_hash_feed" >
+        </activity>
+        <activity
+            android:name="com.appliance.wanderful.EventListActivity"
+            android:label="@string/title_event_list" >
+        </activity>
+        <activity
+            android:name="com.appliance.wanderful.EventDetailActivity"
+            android:label="@string/title_event_detail"
+            android:parentActivityName=".EventListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EventListActivity" />
         </activity>
     </application>
 
