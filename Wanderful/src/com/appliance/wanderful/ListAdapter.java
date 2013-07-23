@@ -5,10 +5,12 @@ import java.util.List;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ListAdapter extends ArrayAdapter<EventItem> {
    
@@ -28,7 +30,7 @@ public class ListAdapter extends ArrayAdapter<EventItem> {
     @Override public View getView(int position, View view, ViewGroup parent) {
     
     	 ViewHolder viewHolder = null;// to reference the child views for later actions
-    	 EventItem rowItem = getItem(position);
+    	 final EventItem rowItem = getItem(position);
     	 LayoutInflater inflater = 
     		     (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	 
@@ -54,7 +56,13 @@ public class ListAdapter extends ArrayAdapter<EventItem> {
 
         viewHolder.name.setText(rowItem.getItemName());
         viewHolder.time.setText(rowItem.getItemTime());
-    
+        viewHolder.addButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+            	Toast.makeText(context, rowItem.getItemName()+rowItem.getItemTime(), Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     } 
    
@@ -64,3 +72,4 @@ public class ListAdapter extends ArrayAdapter<EventItem> {
 		  Button addButton;
 		}
 }
+

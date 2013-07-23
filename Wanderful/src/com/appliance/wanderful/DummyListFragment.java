@@ -1,3 +1,4 @@
+
 package com.appliance.wanderful;
 
 import java.util.ArrayList;
@@ -13,13 +14,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public   class DummyListFragment extends ListFragment  {
-
+	Button add;
 	 
 	public DummyListFragment()
 	{
@@ -36,18 +39,8 @@ public   class DummyListFragment extends ListFragment  {
 		
 		 View v = inflater.inflate(R.layout.activity_listview_layout, container,
 				false);
-		/**Button add = (Button) v.findViewById(R.id.addbutton);  
-		  add.setOnClickListener(new OnClickListener() {
-	            @Override
-	            public void onClick(final View v) {
-	                // Pass the fragmentView through to the handler
-	                // so that findViewById can be used to get a handle on
-	                // the fragments own views.
-	            	 Toast.makeText(getActivity(), "asdasd", Toast.LENGTH_SHORT).show();
-	            }
-	        });
-		  
-		 **/
+		 
+		
 		return v;
 	}
 
@@ -76,15 +69,19 @@ public   class DummyListFragment extends ListFragment  {
 		setListAdapter(adapter);
 		
 		
+	  
+		
 
     }
 
 
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		
-		final String time = ((TextView) v.findViewById(R.id.eventtime)).getText().toString();
-		final String name = ((TextView) v.findViewById(R.id.eventname)).getText().toString();
+		 String time = ((TextView) v.findViewById(R.id.eventtime)).getText().toString();
+		 String name = ((TextView) v.findViewById(R.id.eventname)).getText().toString();
 		Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
+
+
 		
 		
         DetailFragment fragment = (DetailFragment) getFragmentManager()
@@ -96,7 +93,7 @@ public   class DummyListFragment extends ListFragment  {
     		   
     		   FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
     	          transaction.addToBackStack(null);
-    	          transaction.replace(R.id.headlines_fragment, fragment).commit();
+    	          transaction.replace(R.id.detail_fragment, fragment).commit();
                
 		  } else {
 		   Intent intent = new Intent(getActivity().getApplicationContext(),
@@ -109,6 +106,9 @@ public   class DummyListFragment extends ListFragment  {
     		  
     		  
 		  }
+
+    		  
+		  
 	
 		 
 	   
