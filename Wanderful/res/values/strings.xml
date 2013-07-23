@@ -15,6 +15,8 @@
     <string name="title_activity_map">Map</string>
     <string name="title_activity_hash_feed">HashFeed</string>
     <string name="addButton">Add</string>
+    
+    <string name="enter">Enter</string>
 
     <string-array name="time">
         <item>9:00</item>
