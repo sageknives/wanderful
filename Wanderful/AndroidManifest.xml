@@ -39,6 +39,10 @@
             android:name="com.appliance.wanderful.HashFeed"
             android:label="@string/title_activity_hash_feed" >
         </activity>
+        <activity
+            android:name="com.appliance.wanderful.DetailActivity"
+            android:label="@string/title_activity_detail" >
+        </activity>
     </application>
 
 </manifest>

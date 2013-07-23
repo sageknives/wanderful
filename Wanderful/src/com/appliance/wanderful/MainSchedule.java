@@ -11,14 +11,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.ListFragment;
+
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
+
 
 public class MainSchedule extends BaseActivity implements TabListener {
 	SectionsPagerAdapter mSectionsPagerAdapter;
@@ -62,8 +59,12 @@ public class MainSchedule extends BaseActivity implements TabListener {
 		fragManager = getSupportFragmentManager();
 		mSectionsPagerAdapter = new SectionsPagerAdapter(fragManager, tabs,
 				titles);
-
-		// Set up the ViewPager with the sections adapter.
+		/**DummyListFragment frag = new DummyListFragment();
+		android.support.v4.app.FragmentTransaction fragmentTransaction = fragManager.beginTransaction ();
+		// work here to change Activity fragments (add, remove, etc.).  Example here of adding.
+		fragmentTransaction.add (R.id.container, frag);
+		fragmentTransaction.commit ();
+		**/// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		mViewPager

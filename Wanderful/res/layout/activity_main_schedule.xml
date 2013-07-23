@@ -20,6 +20,7 @@
         android:layout_weight="1" >
     </android.support.v4.view.ViewPager>
 
+ 
     <LinearLayout
         style="@android:style/ButtonBar"
         android:layout_width="fill_parent"

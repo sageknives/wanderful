@@ -13,6 +13,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_my_schedule">MySchedule</string>
     <string name="title_activity_map">Map</string>
+    <string name="title_activity_detail">Details</string>
     <string name="title_activity_hash_feed">HashFeed</string>
     <string name="addButton">Add</string>
 
