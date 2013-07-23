@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class ListAdapter extends ArrayAdapter<EventItem> {
    
 	Context context;
-   
+   public long id;
     public ListAdapter(Context context,  int resourceId, List<EventItem> items) {
         super(context,resourceId,items);
         
@@ -28,7 +28,7 @@ public class ListAdapter extends ArrayAdapter<EventItem> {
      * Populate new items in the list.
      */
     @Override public View getView(int position, View view, ViewGroup parent) {
-    
+    	 
     	 ViewHolder viewHolder = null;// to reference the child views for later actions
     	 final EventItem rowItem = getItem(position);
     	 LayoutInflater inflater = 
@@ -45,7 +45,7 @@ public class ListAdapter extends ArrayAdapter<EventItem> {
             viewHolder = new ViewHolder();
             viewHolder.name=eventname;
             viewHolder.time=eventtime;
-            viewHolder.addButton=addButton;
+        viewHolder.addButton=addButton;
             
             // associate the holder with the view for later lookup
             view.setTag(viewHolder);
@@ -60,9 +60,16 @@ public class ListAdapter extends ArrayAdapter<EventItem> {
 
             @Override
             public void onClick(View v) {
-            	Toast.makeText(context, rowItem.getItemName()+rowItem.getItemTime(), Toast.LENGTH_SHORT).show();
+            	Toast.makeText(context,rowItem.getItemName()+rowItem.getItemTime(), Toast.LENGTH_SHORT).show();
+            	DBHelper db = new DBHelper(context);
+ 			   
+            	
+            	
+            	id = db.insertShow(new EventItem(rowItem.getItemName(),rowItem.getItemTime()));
+                
             }
         });
+      
         return view;
     } 
    

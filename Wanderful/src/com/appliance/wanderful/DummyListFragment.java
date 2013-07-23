@@ -1,12 +1,7 @@
-
 package com.appliance.wanderful;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,18 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public   class DummyListFragment extends ListFragment  {
+public class DummyListFragment extends ListFragment {
 	Button add;
-	 
-	public DummyListFragment()
-	{
-		
+
+	public DummyListFragment() {
+
 	}
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -36,11 +33,11 @@ public   class DummyListFragment extends ListFragment  {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		savedInstanceState = this.getArguments();
-		
-		 View v = inflater.inflate(R.layout.activity_listview_layout, container,
+
+		View v = inflater.inflate(R.layout.activity_listview_layout, container,
 				false);
-		 
-		
+		// add = (Button) v.findViewById(R.id.addbutton);
+
 		return v;
 	}
 
@@ -67,51 +64,46 @@ public   class DummyListFragment extends ListFragment  {
 		ListAdapter adapter = new ListAdapter(getActivity(),
 				R.layout.activity_listview_layout, eventItems);
 		setListAdapter(adapter);
-		
-		
-	  
-		
 
-    }
+	
 
+	}
 
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		
-		 String time = ((TextView) v.findViewById(R.id.eventtime)).getText().toString();
-		 String name = ((TextView) v.findViewById(R.id.eventname)).getText().toString();
+
+		String time = ((TextView) v.findViewById(R.id.eventtime)).getText()
+				.toString();
+		String name = ((TextView) v.findViewById(R.id.eventname)).getText()
+				.toString();
 		Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
 
+		/**
+		 * add.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { Toast.makeText(getActivity(),
+		 *           "balala", Toast.LENGTH_SHORT).show(); } });
+		 **/
+		DetailFragment fragment = (DetailFragment) getFragmentManager()
+				.findFragmentById(R.id.detail_fragment);
 
-		
-		
-        DetailFragment fragment = (DetailFragment) getFragmentManager()
-    		    .findFragmentById(R.id.detail_fragment);
-        
-    		  if (fragment != null && fragment.isInLayout()) {
-    		   fragment.setText(time);
-    		   fragment.setText(name);
-    		   
-    		   FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-    	          transaction.addToBackStack(null);
-    	          transaction.replace(R.id.detail_fragment, fragment).commit();
-               
-		  } else {
-		   Intent intent = new Intent(getActivity().getApplicationContext(),
-		     DetailActivity.class);
-		   intent.putExtra("time", time);
-		   intent.putExtra("name", name);
-		   startActivity(intent);		                
+		if (fragment != null && fragment.isInLayout()) {
+			fragment.setText(time);
+			fragment.setText(name);
 
-        }
-    		  
-    		  
-		  }
+			FragmentTransaction transaction = getChildFragmentManager()
+					.beginTransaction();
+			transaction.addToBackStack(null);
+			transaction.replace(R.id.detail_fragment, fragment).commit();
 
-    		  
-		  
-	
-		 
-	   
-	
-	
+		} else {
+			Intent intent = new Intent(getActivity().getApplicationContext(),
+					DetailActivity.class);
+			intent.putExtra("time", time);
+			intent.putExtra("name", name);
+			startActivity(intent);
+
+		}
+
+	}
+
 }
