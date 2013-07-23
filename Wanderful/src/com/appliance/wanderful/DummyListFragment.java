@@ -9,17 +9,12 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,8 +85,11 @@ public   class DummyListFragment extends ListFragment  {
 		final String time = ((TextView) v.findViewById(R.id.eventtime)).getText().toString();
 		final String name = ((TextView) v.findViewById(R.id.eventname)).getText().toString();
 		Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
+		
+		
         DetailFragment fragment = (DetailFragment) getFragmentManager()
     		    .findFragmentById(R.id.detail_fragment);
+        
     		  if (fragment != null && fragment.isInLayout()) {
     		   fragment.setText(time);
     		   fragment.setText(name);
@@ -105,11 +103,7 @@ public   class DummyListFragment extends ListFragment  {
 		     DetailActivity.class);
 		   intent.putExtra("time", time);
 		   intent.putExtra("name", name);
-		   startActivity(intent);
-
-		
-		 
-                
+		   startActivity(intent);		                
 
         }
     		  
