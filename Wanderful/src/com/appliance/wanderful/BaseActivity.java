@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageButton;
-
+ 
 public class BaseActivity extends FragmentActivity{
 
 	public static final String SETTINGS_PREFS = "SETTINGS PREFS";

@@ -7,32 +7,33 @@
     android:orientation="horizontal" >
 
     <Button
-        android:id="@+id/addbutton"
+        android:id="@+id/deletebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:text="@string/addButton"
+        android:text="@string/deleteButton"
         android:focusable="false"
         />
 
     <TextView
-        android:id="@+id/eventtime"
+        android:id="@+id/resultname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp"
-        
+        android:layout_alignBaseline="@+id/resulttime"
+        android:layout_alignBottom="@+id/resulttime"
+        android:layout_marginLeft="80dp"
+        android:layout_toRightOf="@+id/resulttime"
+     
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/eventname"
+        android:id="@+id/resulttime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/eventtime"
-        android:layout_alignBottom="@id/eventtime"
-        android:layout_marginLeft="41dp"
-        android:layout_toRightOf="@id/eventtime"
-        
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/deletebutton"
+        android:layout_marginLeft="48dp"
+       
         android:textSize="16sp" />
 
 </RelativeLayout>
