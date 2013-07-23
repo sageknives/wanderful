@@ -28,12 +28,11 @@ public class HashFeed extends BaseActivity {
 		if(performances.size() == 0)
 		{
 			requestWebInfo();
-			System.out.println("size test: ");
 		}
 		else if(performances.get(1).getEventID() != currentEventID)
 		{
+			currentMapImage = null;
 			requestWebInfo();
-			System.out.println("event ID match test: ");
 		}
 		else{
 			setupPage();

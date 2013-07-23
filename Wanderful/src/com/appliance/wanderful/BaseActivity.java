@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -134,9 +135,12 @@ public class BaseActivity extends FragmentActivity{
 	}
 	public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 		  ImageView mapImage;
-
-		  public DownloadImageTask(ImageView bmImage) {
+		  ProgressDialog progressDialog;
+		  Context currentContext;
+		  
+		  public DownloadImageTask(Context context, ImageView bmImage) {
 		      this.mapImage = bmImage;
+		      this.currentContext = context;
 		  }
 
 		  protected Bitmap doInBackground(String... urls) {
@@ -151,9 +155,17 @@ public class BaseActivity extends FragmentActivity{
 		      }
 		      return mIcon11;
 		  }
-
+		  @Override
+			public void onPreExecute() {
+				progressDialog = new ProgressDialog(currentContext);
+				progressDialog.setMessage("Loading..");
+				progressDialog.setCancelable(false);
+				progressDialog.setIndeterminate(true);
+				progressDialog.show();
+			}
 		  protected void onPostExecute(Bitmap result) {
 			  mapImage.setImageBitmap(result);
+			  progressDialog.dismiss();
 			  currentMapImage = result;
 		  }
 		}

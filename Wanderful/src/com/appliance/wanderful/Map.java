@@ -13,7 +13,7 @@ public class Map extends BaseActivity {
 		
 		if(currentMapImage == null)
 		{
-			new DownloadImageTask((ImageView) findViewById(R.id.map_image))
+			new DownloadImageTask(this, (ImageView) findViewById(R.id.map_image))
 	        .execute(mapUrlLocation + events.get(currentEventID).getEventMap());
 		}else{
 			((ImageView) findViewById(R.id.map_image)).setImageBitmap(currentMapImage);

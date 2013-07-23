@@ -11,6 +11,7 @@ public class Performance {
 	private String performanceDescription;
 	private String performanceImage;
 	private String performanceMedia;
+	private boolean performanceAttending = false;
 
 	public Performance(int eventID,int performanceID,String performanceArtistName, String performanceTime,String performanceStage,
 			String performanceDay,String performanceDescription,String performanceImage,String performanceMedia) {
@@ -52,6 +53,14 @@ public class Performance {
 
 	public int getEventID() {
 		return eventID;
+	}
+
+	public boolean isPerformanceAttending() {
+		return performanceAttending;
+	}
+
+	public void setPerformanceAttending(boolean performanceAttending) {
+		this.performanceAttending = performanceAttending;
 	}
 
 

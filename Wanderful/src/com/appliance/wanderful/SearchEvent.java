@@ -27,7 +27,6 @@ public class SearchEvent extends BaseActivity {
 			
 			if (enterBtn.getId() == v.getId())
 				currentEventID = 1;
-				currentMapImage = null;
 				startActivity(new Intent(SearchEvent.this, MainSchedule.class));
 		}
 	}
