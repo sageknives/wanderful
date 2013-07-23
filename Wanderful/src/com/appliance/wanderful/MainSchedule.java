@@ -3,6 +3,9 @@ package com.appliance.wanderful;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
@@ -29,14 +32,25 @@ public class MainSchedule extends BaseActivity implements TabListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_schedule);
-		init();
-
+		// gets all buttons and sets them to nav click listeners
+		createNav(MainSchedule.this, this.findViewById(R.layout.activity_main_schedule));
+		//checks to see if base activity has a list of performances and if it is the performances for this event
+		if(performances.size() == 0)
+		{
+			requestWebInfo();
+		}
+		else if(performances.get(1).getEventID() != currentEventID)
+		{
+			currentMapImage = null;
+			requestWebInfo();
+		}
+		else{
+			init();
+		}	
 	}
 
 	private void init() {
-		// gets all buttons and sets them to nav click listeners
-		createNav(MainSchedule.this,
-				this.findViewById(R.layout.activity_main_schedule));
+		
 
 		// sends a get request for festival information
 
@@ -149,5 +163,21 @@ public class MainSchedule extends BaseActivity implements TabListener {
 		}
 
 	}
+	public void requestWebInfo()
+	{
+		JSONGetClient client = new JSONGetClient(this, jsonGet);
+		String ourl = "http://54.218.117.137/scoutservices/jsonobjectcommand.php?user=scoutreader&pass=readscout";
+		client.execute(ourl);
+	}
+	JSONClientListener jsonGet = new JSONClientListener() {
 
+		@Override
+		public void onRemoteCallComplete(JSONObject jsonObjectFromNet)throws JSONException 
+		{	
+			int eventID=1;
+			savePerformancesInfo(jsonObjectFromNet,eventID);
+			saveEventInfo(jsonObjectFromNet);
+			init();
+        }
+	};
 }
