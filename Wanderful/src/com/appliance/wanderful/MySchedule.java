@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 
-public class MySchedule extends FragmentActivity {
+public class MySchedule extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,9 @@ public class MySchedule extends FragmentActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.result_list_fragment, list).commit();
 		}
+		// gets all buttons and sets them to nav click listeners
+				createNav(MySchedule.this,
+						this.findViewById(R.layout.activity_my_schedule));
 	}
 
 	@Override

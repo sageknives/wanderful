@@ -17,6 +17,12 @@
     <string name="title_activity_hash_feed">HashFeed</string>
     <string name="addButton">Add</string>
     <string name="deleteButton">Delete</string>
+        <string name="enter">Enter</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
+    <string name="title_event_list">Events</string>
+    <string name="title_event_detail">Event Detail</string>
     <string-array name="time">
         <item>9:00</item>
         <item>10:00</item>

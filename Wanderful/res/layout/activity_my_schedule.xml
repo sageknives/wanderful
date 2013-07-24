@@ -14,14 +14,10 @@
         android:textSize="@dimen/header" />
 
     <fragment
-        android:name="com.appliance.wanderful.MyScheduleListFragment"
         android:id="@+id/result_list_fragment"
-        
+        android:name="com.appliance.wanderful.MyScheduleListFragment"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-
-    
-    
+        android:layout_height="wrap_content" />
 
     <FrameLayout
         android:id="@+id/detailFragments"
@@ -30,6 +26,63 @@
         android:layout_weight="2" >
     </FrameLayout>
 
-   
+    <LinearLayout
+        style="@android:style/ButtonBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/home_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/home"
+            android:text="@string/home"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text" />
+
+        <ImageButton
+            android:id="@+id/main_schedule_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/lists"
+            android:text="@string/main_schedule"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text" />
+
+        <ImageButton
+            android:id="@+id/my_schedule_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:src="@drawable/mylist"
+            android:text="@string/my_schedule"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text" />
+
+        <ImageButton
+            android:id="@+id/hash_feed_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/hashtag"
+            android:text="@string/hash_feed"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text" />
+
+        <ImageButton
+            android:id="@+id/map_btn"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/map"
+            android:text="@string/map"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text" />
+    </LinearLayout>
 
 </LinearLayout>

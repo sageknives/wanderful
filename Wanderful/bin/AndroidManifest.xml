@@ -43,6 +43,18 @@
             android:name="com.appliance.wanderful.DetailActivity"
             android:label="@string/title_activity_detail" >
         </activity>
+        <activity
+            android:name="com.appliance.wanderful.EventListActivity"
+            android:label="@string/title_event_list" >
+        </activity>
+        <activity
+            android:name="com.appliance.wanderful.EventDetailActivity"
+            android:label="@string/title_event_detail"
+            android:parentActivityName=".EventListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EventListActivity" />
+        </activity>
     </application>
 
 </manifest>

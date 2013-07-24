@@ -2,6 +2,7 @@ package com.appliance.wanderful;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ImageView;
 
 public class Map extends BaseActivity {
 
@@ -9,7 +10,14 @@ public class Map extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
-
+		
+		if(currentMapImage == null)
+		{
+			new DownloadImageTask(this, (ImageView) findViewById(R.id.map_image))
+	        .execute(mapUrlLocation + events.get(currentEventID).getEventMap());
+		}else{
+			((ImageView) findViewById(R.id.map_image)).setImageBitmap(currentMapImage);
+		}
 		// gets all buttons and sets them to nav click listeners
 		createNav(Map.this,this.findViewById(R.layout.activity_hash_feed));
 	}
