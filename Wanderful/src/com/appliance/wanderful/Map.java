@@ -13,10 +13,10 @@ public class Map extends BaseActivity {
 		
 		if(currentMapImage == null)
 		{
-			new DownloadImageTask(this, (ImageView) findViewById(R.id.map_image))
+			new DownloadImageTask(this, (ScaleImageView) findViewById(R.id.map_image))
 	        .execute(mapUrlLocation + events.get(currentEventID).getEventMap());
 		}else{
-			((ImageView) findViewById(R.id.map_image)).setImageBitmap(currentMapImage);
+			((ScaleImageView) findViewById(R.id.map_image)).setImageBitmap(currentMapImage);
 		}
 		// gets all buttons and sets them to nav click listeners
 		createNav(Map.this,this.findViewById(R.layout.activity_hash_feed));

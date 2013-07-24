@@ -131,11 +131,11 @@ public class BaseActivity extends FragmentActivity{
 	}
 	public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> 
 	{
-	    ImageView mapImage;
+	    ScaleImageView mapImage;
 	    ProgressDialog progressDialog;
 	    Context currentContext;
 	
-	    public DownloadImageTask(Context context, ImageView bmImage) {
+	    public DownloadImageTask(Context context, ScaleImageView bmImage) {
 	    	this.mapImage = bmImage;
 	    	this.currentContext = context;
 	    }
