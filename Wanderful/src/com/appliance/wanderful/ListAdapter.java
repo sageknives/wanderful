@@ -2,6 +2,8 @@ package com.appliance.wanderful;
 
 import java.util.List;
 
+import com.appliance.wanderful.DummyContent.DummyItem;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +14,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ListAdapter extends ArrayAdapter<EventItem> {
+public class ListAdapter extends ArrayAdapter<DummyItem> {
    
 	Context context;
    public long id;
-    public ListAdapter(Context context,  int resourceId, List<EventItem> items) {
-        super(context,resourceId,items);
-        
+   List<DummyItem> iTEMS;
+    public ListAdapter(Context context,  int resourceId, List<DummyItem> iTEMS) {
+        super(context,resourceId,iTEMS);
+        this.iTEMS=iTEMS;
         this.context = context;
         
     }
@@ -30,23 +33,26 @@ public class ListAdapter extends ArrayAdapter<EventItem> {
     @Override public View getView(int position, View view, ViewGroup parent) {
     	 
     	 ViewHolder viewHolder = null;// to reference the child views for later actions
-    	 final EventItem rowItem = getItem(position);
+    	 
+    	// DummyItem rowItem= (DummyItem)getItem(position);
+    	 final DummyItem rowItem= (iTEMS).get(position);
+    	 
     	 LayoutInflater inflater = 
     		     (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	 
         if (view == null) {
             view =  inflater.inflate(R.layout.activity_list_row, null);
             
-            TextView eventname= (TextView) view.findViewById(R.id.eventname);
-            TextView eventtime=(TextView) view.findViewById(R.id.eventtime);
-            Button addButton =(Button)view.findViewById(R.id.addbutton);
-            
+                    
          // cache view fields into the holder
             viewHolder = new ViewHolder();
-            viewHolder.name=eventname;
-            viewHolder.time=eventtime;
-        viewHolder.addButton=addButton;
             
+            viewHolder.performanceArtistName= (TextView) view.findViewById(R.id.artistname);
+            viewHolder.performanceTime=(TextView) view.findViewById(R.id.peformancetime);
+           // viewHolder.performanceStage=(TextView) view.findViewById(R.id.performancestage);
+            
+            viewHolder.addButton=(Button)view.findViewById(R.id.addbutton);
+           
             // associate the holder with the view for later lookup
             view.setTag(viewHolder);
             
@@ -54,18 +60,21 @@ public class ListAdapter extends ArrayAdapter<EventItem> {
         	// view already exists, get the holder instance from the view
             viewHolder = (ViewHolder)view.getTag();
 
-        viewHolder.name.setText(rowItem.getItemName());
-        viewHolder.time.setText(rowItem.getItemTime());
+        viewHolder.performanceArtistName.setText(rowItem.getContent());
+        viewHolder.performanceTime.setText(rowItem.getTime());
+        //viewHolder.performanceStage.setText(rowItem.getPerformanceStage());
+       // viewHolder.eventID.setText(rowItem.getEventID());
+        //viewHolder.performanceID.setText(rowItem.getPerformanceID());
         viewHolder.addButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-            	Toast.makeText(context,rowItem.getItemName()+rowItem.getItemTime(), Toast.LENGTH_SHORT).show();
-            	DBHelper db = new DBHelper(context);
+            	Toast.makeText(context,rowItem.getContent()+rowItem.getTime(), Toast.LENGTH_SHORT).show();
+            	//DBHelper db = new DBHelper(context);
  			   
             	
             	
-            	id = db.insertShow(new EventItem(rowItem.getItemName(),rowItem.getItemTime()));
+            	//id = db.insertShow(new EventItem(rowItem.getItemName(),rowItem.getItemTime()));
                 
             }
         });
@@ -74,9 +83,17 @@ public class ListAdapter extends ArrayAdapter<EventItem> {
     } 
    
     static class ViewHolder {
-		  TextView name;
-		  TextView time;
-		  Button addButton;
+	//testing DummyItem item class
+    	 String eventID;
+    	 String performanceID;
+  		TextView performanceArtistName;
+  		TextView performanceTime;
+  		TextView performanceStage;
+  	
+    	
+    	
+    	
+		 Button addButton;
 		}
 }
 

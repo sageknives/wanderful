@@ -16,23 +16,34 @@
         />
 
     <TextView
-        android:id="@+id/eventtime"
+        android:id="@+id/peformancetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp"
-        
+        android:layout_alignTop="@+id/addbutton"
+        android:layout_marginLeft="33dp"
+       
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/eventname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/eventtime"
-        android:layout_alignBottom="@id/eventtime"
-        android:layout_marginLeft="41dp"
-        android:layout_toRightOf="@id/eventtime"
+     <TextView
+         android:id="@+id/artistname"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/peformancetime"
+         android:layout_alignBottom="@+id/peformancetime"
+         android:layout_marginLeft="54dp"
+         android:layout_toRightOf="@+id/peformancetime"
         
-        android:textSize="16sp" />
+         android:textSize="16sp" />
+
+     <TextView
+         android:id="@+id/performancestage"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBottom="@+id/addbutton"
+         android:layout_centerHorizontal="true"
+      
+         android:textSize="16sp"
+         android:textStyle="bold" />
 
 </RelativeLayout>

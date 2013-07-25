@@ -72,8 +72,8 @@ public class MyScheduleListFragment extends ListFragment {
 				.findFragmentById(R.id.detailFragments);
 
 		if (fragment != null && fragment.isInLayout()) {
-			fragment.setText(time);
-			fragment.setText(name);
+			//fragment.setText(time);
+			//fragment.setText(name);
 
 			/**FragmentManager fragmentManager = getActivity().getSupportFragmentManager();  
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
