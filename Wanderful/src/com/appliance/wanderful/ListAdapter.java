@@ -49,7 +49,7 @@ public class ListAdapter extends ArrayAdapter<DummyItem> {
             
             viewHolder.performanceArtistName= (TextView) view.findViewById(R.id.artistname);
             viewHolder.performanceTime=(TextView) view.findViewById(R.id.peformancetime);
-           // viewHolder.performanceStage=(TextView) view.findViewById(R.id.performancestage);
+            viewHolder.performanceStage=(TextView) view.findViewById(R.id.performancestage);
             
             viewHolder.addButton=(Button)view.findViewById(R.id.addbutton);
            
@@ -62,19 +62,19 @@ public class ListAdapter extends ArrayAdapter<DummyItem> {
 
         viewHolder.performanceArtistName.setText(rowItem.getContent());
         viewHolder.performanceTime.setText(rowItem.getTime());
-        //viewHolder.performanceStage.setText(rowItem.getPerformanceStage());
+        viewHolder.performanceStage.setText(rowItem.getStage());
        // viewHolder.eventID.setText(rowItem.getEventID());
-        //viewHolder.performanceID.setText(rowItem.getPerformanceID());
+        viewHolder.performanceID=rowItem.getId();
         viewHolder.addButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-            	Toast.makeText(context,rowItem.getContent()+rowItem.getTime(), Toast.LENGTH_SHORT).show();
-            	//DBHelper db = new DBHelper(context);
+            	Toast.makeText(context,rowItem.getTime()+"time"+rowItem.getContent()+"artist"+rowItem.getStage()+"stage"+rowItem.getId(), Toast.LENGTH_LONG).show();
+            	DBHelper db = new DBHelper(context);
  			   
             	
             	
-            	//id = db.insertShow(new EventItem(rowItem.getItemName(),rowItem.getItemTime()));
+            id = db.insertShow(new DummyItem(rowItem.getContent(),rowItem.getStage(),rowItem.getTime()));
                 
             }
         });

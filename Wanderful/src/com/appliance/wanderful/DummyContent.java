@@ -24,8 +24,9 @@ public class DummyContent extends BaseActivity {
 
 	static {
 		for (int i = 0; i < performances.size(); i++) {
-			addItem(new DummyItem(i + "", performances.get(i)
+			addItem(new DummyItem( performances.get(i)
 					.getPerformanceArtistName(), performances.get(i)
+					.getPerformanceStage(),performances.get(i)
 					.getPerformanceTime()));
 			System.out.println("in dummy: "
 					+ performances.get(i).getPerformanceArtistName()
@@ -47,13 +48,16 @@ public class DummyContent extends BaseActivity {
 	 */
 	public static class DummyItem {
 		public String id;
+		public String stage;
+
 		public String content;
 		public String time;
 
-		public DummyItem(String id, String content, String time) {
+		public DummyItem(String content, String stage, String time) {
 			this.id = id;
 			this.content = content;
 			this.time = time;
+			this.stage = stage;
 		}
 
 		public String getTime() {
@@ -65,10 +69,25 @@ public class DummyContent extends BaseActivity {
 			return content;
 		}
 
+		public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
+
 		@Override
 		public String toString() {
 			return getContent();
 		}
 
+		public String getStage() {
+			return stage;
+		}
+
+		public void setStage(String stage) {
+			this.stage = stage;
+		}
 	}
 }

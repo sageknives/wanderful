@@ -1,6 +1,8 @@
 package com.appliance.wanderful;
 
 import java.util.ArrayList;
+
+import com.appliance.wanderful.DummyContent.DummyItem;
  
 
 import android.content.Intent;
@@ -40,7 +42,7 @@ public class MyScheduleListFragment extends ListFragment {
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		ArrayList<EventItem> resultsinfo;;
+		ArrayList<DummyItem> resultsinfo;;
 		DBHelper db = new DBHelper(getActivity());
 		   
 		 
