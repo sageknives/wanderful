@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:drawSelectorOnTop="false" 
         android:clickable="true"/>
-
-   
+    
 
 </LinearLayout>

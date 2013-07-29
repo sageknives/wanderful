@@ -1,14 +1,28 @@
 package com.appliance.wanderful;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
- 
+import android.widget.ImageView;
+
 public class BaseActivity extends FragmentActivity{
 
 	public static final String SETTINGS_PREFS = "SETTINGS PREFS";
@@ -20,7 +34,15 @@ public class BaseActivity extends FragmentActivity{
 	ImageButton hashFeedBtn;
 	ImageButton mapBtn;
 	Activity curActivity;
-
+	
+	public static ArrayList<Event> events= new ArrayList<Event>();
+	public static String mapUrlLocation = "http://sagegatzke.com/scout/maps/";
+	public static int currentEventID;
+	public static Bitmap currentMapImage;
+	public String[] dayNames = {"Friday","Saturday","Sunday"};
+	public String[] stageNames = {"Main Stage","Vera Stage","ChaCha Stage"};
+	public String[] searchNames = {"Search"};
+	
 	public void createNav(Activity activity, View view)
 	{
 		this.curActivity = activity;
@@ -35,7 +57,8 @@ public class BaseActivity extends FragmentActivity{
 		mapBtn = (ImageButton) findViewById(R.id.map_btn);
 		mapBtn.setOnClickListener(new navClickListeners());
 	}
-	private class navClickListeners implements View.OnClickListener {
+	
+	class navClickListeners implements View.OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// Gets the button Id and sends to new activity
@@ -51,10 +74,107 @@ public class BaseActivity extends FragmentActivity{
 				startActivity(new Intent(curActivity, Map.class));
 		}
 	}
+	
 	protected boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager 
 	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
+	
+	public void saveEventInfo(JSONObject jsonObject)
+	{
+		for(int i = 1; i<jsonObject.length() + 1;i++)
+		{
+			try 
+        	{
+	        	for (int j = 0; j < 1; j++) 
+	        	{
+	        		int eventID = 0;
+					String name = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("EventName");
+					String startDate = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("EventStartDate");
+	            	String length = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("EventNumDays");
+	            	String lastUpdated = "2013-10-23";
+	            	String logo = "logo";
+	            	String location = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("EventLocation");
+	            	String map = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("MapLink");
+					events.add(new Event(eventID,name,startDate,length,lastUpdated,logo,location,map));
+	        	}
+        	} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	}
+	
+	
+	
+	public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> 
+	{
+	    ImageView myImage;
+	    ProgressDialog progressDialog;
+	    Context currentContext;
+
+	    public DownloadImageTask(Context context, ImageView bmImage) {
+	    	this.myImage = bmImage;
+	    	this.currentContext = context;
+	    }
+
+	    protected Bitmap doInBackground(String... urls) {
+	    	String urldisplay = urls[0];
+	    	Bitmap mIcon11 = null;
+	    	try {
+	    		InputStream in = new java.net.URL(urldisplay).openStream();
+	    		mIcon11 = BitmapFactory.decodeStream(in);
+	    	} catch (Exception e) {
+	    		Log.e("Error", e.getMessage());
+	    		e.printStackTrace();
+	    	}
+	    	return mIcon11;
+	    }
+		@Override
+		public void onPreExecute() {
+			progressDialog = new ProgressDialog(currentContext);
+			progressDialog.setMessage("Loading..");
+			progressDialog.setCancelable(false);
+			progressDialog.setIndeterminate(true);
+			progressDialog.show();
+		}
+	    protected void onPostExecute(Bitmap result) {
+	    	myImage.setImageBitmap(result);
+	    	progressDialog.dismiss();
+	    	currentMapImage = result;
+		}
+	}
+
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.search_menu, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.sort_day:
+	            startActivity(new Intent(curActivity, MainSchedule.class).putExtra("sortby", 0));
+	            return true;
+	        case R.id.sort_stage:
+	            startActivity(new Intent(curActivity, MainSchedule.class).putExtra("sortby", 1));
+	            return true;
+	        case R.id.sort_search:
+	            startActivity(new Intent(curActivity, MainSchedule.class).putExtra("sortby", 2));
+	            return true;
+	        default:
+	        	return false;
+	    }
+	    
+	}
+	
+	
+			
 }

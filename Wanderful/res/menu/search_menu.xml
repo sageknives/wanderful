@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/action_search"
+          android:icon="@drawable/search"
+          android:title="@string/search"
+          android:showAsAction="always">
+        <menu>
+            <item android:id="@+id/sort_day" android:title="@string/sort_day"/>
+            <item android:id="@+id/sort_stage" android:title="@string/sort_stage"/>
+            <item android:id="@+id/sort_search" android:title="@string/search"/>
+        </menu>
+    </item>
+</menu>

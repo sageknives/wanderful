@@ -16,24 +16,34 @@
         />
 
     <TextView
-        android:id="@+id/resultname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/resulttime"
-        android:layout_alignBottom="@+id/resulttime"
-        android:layout_marginLeft="80dp"
-        android:layout_toRightOf="@+id/resulttime"
-     
-        android:textSize="16sp" />
-
-    <TextView
         android:id="@+id/resulttime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/deletebutton"
         android:layout_marginLeft="48dp"
-       
+       android:text="time"
         android:textSize="16sp" />
+
+      <TextView
+          android:id="@+id/resultname"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignBaseline="@+id/resulttime"
+          android:layout_alignBottom="@+id/resulttime"
+          android:layout_marginLeft="28dp"
+          android:layout_toRightOf="@+id/resulttime"
+          android:text="name"
+          android:textSize="16sp" />
+
+      <TextView
+          android:id="@+id/performancestage"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/deletebutton"
+          android:layout_alignLeft="@+id/resultname"
+          android:text="stage"
+          android:textSize="16sp"
+          android:textStyle="bold" />
 
 </RelativeLayout>

@@ -1,19 +1,14 @@
 package com.appliance.wanderful;
 
-import java.util.ArrayList;
- 
+import java.util.ArrayList; 
 
-import android.content.Intent;
+import com.appliance.wanderful.ScheduleContent.ScheduleItem;
+
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class MyScheduleListFragment extends ListFragment {
 	
@@ -40,7 +35,7 @@ public class MyScheduleListFragment extends ListFragment {
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		ArrayList<EventItem> resultsinfo;;
+		ArrayList<ScheduleItem> resultsinfo;;
 		DBHelper db = new DBHelper(getActivity());
 		   
 		 
@@ -54,7 +49,7 @@ public class MyScheduleListFragment extends ListFragment {
 
 	}
 
-	public void onListItemClick(ListView l, View v, int position, long id) {
+	/*public void onListItemClick(ListView l, View v, int position, long id) {
 
 		String time = ((TextView) v.findViewById(R.id.resulttime)).getText()
 				.toString();
@@ -68,19 +63,19 @@ public class MyScheduleListFragment extends ListFragment {
 		 * @Override public void onClick(View v) { Toast.makeText(getActivity(),
 		 *           "balala", Toast.LENGTH_SHORT).show(); } });
 		 **/
-		DetailFragment fragment = (DetailFragment) getFragmentManager()
+		/*DetailFragment fragment = (DetailFragment) getFragmentManager()
 				.findFragmentById(R.id.detailFragments);
 
 		if (fragment != null && fragment.isInLayout()) {
-			fragment.setText(time);
-			fragment.setText(name);
+			//fragment.setText(time);
+			//fragment.setText(name);
 
-			/**FragmentManager fragmentManager = getActivity().getSupportFragmentManager();  
+			/*FragmentManager fragmentManager = getActivity().getSupportFragmentManager();  
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.replace(R.id.result_list_fragment, fragment).commit();
-**/
-		} else {
+*/
+		/*} else {
 			Intent intent = new Intent(getActivity().getApplicationContext(),
 					DetailActivity.class);
 			intent.putExtra("time", time);
@@ -89,6 +84,6 @@ public class MyScheduleListFragment extends ListFragment {
 
 		}
 
-	}
+	}*/
 
 }
