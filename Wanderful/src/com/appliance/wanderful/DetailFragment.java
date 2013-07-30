@@ -1,11 +1,15 @@
 package com.appliance.wanderful;
 
 
+import com.appliance.wanderful.BaseActivity.navClickListeners;
+
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class DetailFragment extends Fragment {
@@ -33,7 +37,6 @@ public class DetailFragment extends Fragment {
 			// to load content from a content provider.
 			mItem = Schedule.performances.get(Integer.parseInt((String) getArguments().get(ARG_ITEM_ID)));
 		}
-
 	}
 
 	@Override
@@ -54,7 +57,6 @@ public class DetailFragment extends Fragment {
 					.getPerformanceArtistName());
 			
 		}
-
 		return v;
 	}
 

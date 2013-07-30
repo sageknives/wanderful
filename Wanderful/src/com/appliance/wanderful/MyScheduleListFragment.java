@@ -39,10 +39,10 @@ public class MyScheduleListFragment extends ListFragment {
 		DBHelper db = new DBHelper(getActivity());
 		   
 		 
-		    resultsinfo=db.getResults();
+		    //resultsinfo=db.getResults();
 		    db.close();
 		    MyScheduleAdapter adapter = new MyScheduleAdapter(getActivity(),
-				R.layout.activity_myschedule_row, resultsinfo);
+				R.layout.activity_myschedule_row, null/*resultsinfo*/);
 		setListAdapter(adapter);
 
 	

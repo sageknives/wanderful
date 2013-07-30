@@ -1,16 +1,28 @@
 package com.appliance.wanderful;
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+
 import com.appliance.wanderful.R;
+import com.appliance.wanderful.BaseActivity.navClickListeners;
 
 
 public class DetailActivity extends BaseActivity {
-	 @Override
-	 protected void onCreate(Bundle savedInstanceState) {
+	 Activity activity = this;
+ 
+	@Override
+	  protected void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  setContentView(R.layout.acitivity_mainschedule_detail);
 	// Show the Up button in the action bar.
 			getActionBar().setDisplayHomeAsUpEnabled(true);
-			
+
 			
 			
 			if (savedInstanceState == null) {
@@ -21,10 +33,13 @@ public class DetailActivity extends BaseActivity {
 						.getStringExtra(DetailFragment.ARG_ITEM_ID));
 				DetailFragment fragment = new DetailFragment();
 				fragment.setArguments(arguments);
+				
+
 				getSupportFragmentManager().beginTransaction()
 						.add(R.id.performance_detail_container, fragment).commit();
 			}
-				
+			// gets all buttons and sets them to nav click listeners
+			createNav(this, findViewById(R.layout.acitivity_mainschedule_detail));	
 			
 /**
 	  
@@ -39,6 +54,22 @@ public class DetailActivity extends BaseActivity {
 	   **/
 	  }
 	 
-	 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This ID represents the Home or Up button. In the case of this
+			// activity, the Up button is shown. Use NavUtils to allow users
+			// to navigate up one level in the application structure. For
+			// more details, see the Navigation pattern on Android Design:
+			//
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+			//
+			NavUtils.navigateUpTo(this, new Intent(this,
+					MainSchedule.class));
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 	 
 }

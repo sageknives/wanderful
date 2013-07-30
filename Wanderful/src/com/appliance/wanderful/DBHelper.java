@@ -14,10 +14,10 @@ import android.util.Log;
 public class DBHelper extends SQLiteOpenHelper {
 	// Contacts Table Columns names
 	public static final String KEY_ROWID = "id";
-	public static final String KEY_SHOWTIME = "time";
-	public static final String KEY_SHOWNAME = "name";
-	public static final String KEY_SHOWSTAGE = "stage";
-	public static final String KEY_SHOWID = "showid";
+	//public static final String KEY_SHOWTIME = "time";
+	//public static final String KEY_SHOWNAME = "name";
+	//public static final String KEY_SHOWSTAGE = "stage";
+	public static final String KEY_SHOWID = "performanceId";
 	//private static final String TAG = "DBAdapter";
 	 // Database Name
 	private static final String DATABASE_NAME = "Wanderful";
@@ -38,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		 String CREATE_CONTACTS_TABLE = "CREATE TABLE " + DATABASE_TABLE + "("
-	                + KEY_ROWID + " INTEGER PRIMARY KEY," + KEY_SHOWNAME + " TEXT,"+KEY_SHOWSTAGE + " TEXT,"+KEY_SHOWTIME + " TEXT,"+ KEY_SHOWID + " TEXT"+")";
+	                + KEY_ROWID + " INTEGER PRIMARY KEY,"+ KEY_SHOWID + " TEXT"+")";
 	        db.execSQL(CREATE_CONTACTS_TABLE);
 	}
 
@@ -52,9 +52,9 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 		ContentValues initialValues = new ContentValues();
 		
-		initialValues.put(KEY_SHOWNAME, scheduleItem.getContent());
-		initialValues.put(KEY_SHOWSTAGE, scheduleItem.getStage());
-		initialValues.put(KEY_SHOWTIME, scheduleItem.getTime());
+		//initialValues.put(KEY_SHOWNAME, scheduleItem.getContent());
+		//initialValues.put(KEY_SHOWSTAGE, scheduleItem.getStage());
+		//initialValues.put(KEY_SHOWTIME, scheduleItem.getTime());
 		initialValues.put(KEY_SHOWID, scheduleItem.getPerformanceId());
 		
 		//initialValues.put(KEY_SHOWID, dummyItem.getId());
@@ -78,7 +78,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
         
-	  public  ArrayList<ScheduleItem> getResults() {
+	 /* public  ArrayList<ScheduleItem> getResults() {
 		  
 		  ArrayList<ScheduleItem> showinfo = new ArrayList<ScheduleItem>();
 		  
@@ -91,7 +91,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		    // looping through all rows and adding to list
 		    if (cursor.moveToFirst()) {
 		        do {
-		        	ScheduleItem results = new ScheduleItem(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
+		        	ScheduleItem results = new ScheduleItem(cursor.getString(1));
 		        
 		            // Adding to list
 		        	showinfo.add(results);
@@ -101,7 +101,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		    // return  list
 			Log.d("MyTag", showinfo.toString() + "test");	
 			return showinfo;
-	  }
+	  }*/
 	  public  ArrayList<ScheduleItem> getPerformances() {
 		  
 		  ArrayList<ScheduleItem> showinfo = new ArrayList<ScheduleItem>();
@@ -115,7 +115,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		    // looping through all rows and adding to list
 		    if (cursor.moveToFirst()) {
 		        do {
-		        	ScheduleItem results = new ScheduleItem(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
+		        	ScheduleItem results = new ScheduleItem(cursor.getString(1));
 		        
 		            // Adding to list
 		        	showinfo.add(results);
@@ -123,7 +123,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		    }
 		 
 		    // return  list
-			Log.d("MyTag", showinfo.toString());	
+			//Log.d("MyTag", showinfo.toString());	
 			return showinfo;
 	  }
 }

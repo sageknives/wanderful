@@ -5,6 +5,7 @@ import java.util.List;
 import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -77,11 +78,12 @@ public class ListAdapter extends ArrayAdapter<Performance> {
             	
             	if(rowItem.isPerformanceAttending() == true)
             	{
-            		db.deleteEventt(new ScheduleItem(rowItem.getPerformanceArtistName(),rowItem.getPerformanceStage(),rowItem.getPerformanceTime(),rowItem.getPerformanceID() + ""));
+            		db.deleteEventt(new ScheduleItem(rowItem.getPerformanceID() + ""));
             		Schedule.performances.get(rowItem.getPerformanceID()).setPerformanceAttending(false);
                 	
             	}else{
-            id = db.insertShow(new ScheduleItem(rowItem.getPerformanceArtistName(),rowItem.getPerformanceStage(),rowItem.getPerformanceTime(),rowItem.getPerformanceID() + ""));
+            id = db.insertShow(new ScheduleItem(rowItem.getPerformanceID() + ""));
+            Log.d("MyTag", rowItem.getPerformanceID() + "test");
             db.close();
             	}  
             }

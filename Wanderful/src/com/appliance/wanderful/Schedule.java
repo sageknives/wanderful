@@ -18,12 +18,13 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.Toast;
 
 
 public class Schedule extends BaseActivity implements TabListener, DummyListFragment.ListFragmentItemClickListener{
 	public static ArrayList<Performance> performances= new ArrayList<Performance>();
 	public static int sortBy = 0;
-
+	private static final String TAG = "DBAdapter";
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
 	static ArrayList<DummyListFragment> tabs;
@@ -39,10 +40,12 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		 */
 		performances = null;
 		performances= new ArrayList<Performance>();
+		int performancesNum = 0;
 		for(int i = 1; i<jsonObject.length() + 1;i++)
 		{
 			try 
         	{
+				
 	        	for (int j = 0; j < jsonObject.getJSONArray("Day" + (i)).length(); j++) 
 	        	{
 					String name = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventName");
@@ -52,7 +55,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 	            	String description = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventDescription");
 	            	String image = "image";
 	            	String media = "media";
-					performances.add(new Performance(eventID,j,name,time,stage,day,description,image,media));
+					performances.add(new Performance(eventID,performancesNum++,name,time,stage,day,description,image,media));
 	        	}
         	} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -109,8 +112,9 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		{
 			for(int j = 0;j < performances.size();j++)
 			{
-				if(performances.get(j).getPerformanceID() + "" == savedSchedule.get(i).getPerformanceId())
+				if(performances.get(j).getPerformanceID() == Integer.parseInt(savedSchedule.get(i).getPerformanceId()))
 				{
+					Log.d("MyTag", "in update schedule" + performances.get(j).getPerformanceID());
 					performances.get(j).setPerformanceAttending(true);
 					break;
 				}
@@ -267,6 +271,12 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 			//rests the baseactivity attendence on redownload.
 			DBHelper db = new DBHelper(Schedule.this);
 			ArrayList<ScheduleItem> savedSchedule = db.getPerformances();
+			for(int i = 0; i<savedSchedule.size();i++)
+			{
+				Log.d("MyTag", "saved schedule results in remote call back" + savedSchedule.get(i).getPerformanceId());
+			}
+			Log.d("MyTag", "remote call back done");
+;
 			updateSchedule(savedSchedule);
 			db.close();
 			init();

@@ -24,10 +24,7 @@ public class ScheduleContent extends Schedule {
 
 	static {
 		for (int i = 0; i < performances.size(); i++) {
-			addItem(new ScheduleItem( performances.get(i)
-					.getPerformanceArtistName() + "shit", performances.get(i)
-					.getPerformanceStage(),performances.get(i)
-					.getPerformanceTime(),performances.get(i).getPerformanceID() + ""));
+			addItem(new ScheduleItem( performances.get(i).getPerformanceID() + ""));
 					
 			System.out.println("in dummy: "
 					+ performances.get(i).getPerformanceArtistName()
@@ -55,12 +52,12 @@ public class ScheduleContent extends Schedule {
 		public String content;
 		public String time;
 
-		public ScheduleItem(String content, String stage, String time, String performanceID) {
+		public ScheduleItem( String performanceID) {
 			//this.id = id;
 			this.performanceID = performanceID;
-			this.content = content;
-			this.time = time;
-			this.stage = stage;
+			//this.content = content;
+			//this.time = time;
+			//this.stage = stage;
 		}
 
 		public String getTime() {
