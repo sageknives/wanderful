@@ -70,17 +70,18 @@ public class ListAdapter extends ArrayAdapter<Performance> {
 
             @Override
             public void onClick(View v) {
-            	Toast.makeText(context,rowItem.getPerformanceTime()+"time"+rowItem.getPerformanceArtistName()+"artist"+rowItem.getPerformanceStage()+"stage"+rowItem.getPerformanceID(), Toast.LENGTH_LONG).show();
             	DBHelper db = new DBHelper(context);
             	/***sets the performance to attending in the base class.***/
  			   	//BaseActivity.performances.get(Integer.parseInt(rowItem.getId())).setPerformanceAttending(true);
             	
             	if(rowItem.isPerformanceAttending() == true)
             	{
+                	Toast.makeText(context,rowItem.getPerformanceArtistName()+" has been deleted from your bookmarks!", Toast.LENGTH_LONG).show();
             		db.deleteEventt(new ScheduleItem(rowItem.getPerformanceID() + ""));
             		Schedule.performances.get(rowItem.getPerformanceID()).setPerformanceAttending(false);
                 	
             	}else{
+                	Toast.makeText(context,rowItem.getPerformanceArtistName()+" has been added to your bookmarks!", Toast.LENGTH_LONG).show();
             id = db.insertShow(new ScheduleItem(rowItem.getPerformanceID() + ""));
             Log.d("MyTag", rowItem.getPerformanceID() + "test");
             db.close();

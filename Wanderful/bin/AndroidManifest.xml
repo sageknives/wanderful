@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.appliance.wanderful.SearchEvent"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,35 +26,43 @@
         </activity>
         <activity
             android:name="com.appliance.wanderful.MainSchedule"
-            android:label="@string/title_activity_main_schedule" >
+            android:label="@string/title_activity_main_schedule"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.appliance.wanderful.MySchedule"
-            android:label="@string/title_activity_my_schedule" >
+            android:label="@string/title_activity_my_schedule"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.appliance.wanderful.Map"
-            android:label="@string/title_activity_map" >
+            android:label="@string/title_activity_map" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.appliance.wanderful.HashFeed"
-            android:label="@string/title_activity_hash_feed" >
+            android:label="@string/title_activity_hash_feed" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.appliance.wanderful.DetailActivity"
-            android:label="@string/title_activity_detail" >
+            android:label="@string/title_activity_detail" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.appliance.wanderful.EventListActivity"
-            android:label="@string/title_event_list" >
+            android:label="@string/title_event_list"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.appliance.wanderful.EventDetailActivity"
             android:label="@string/title_event_detail"
-            android:parentActivityName=".EventListActivity" >
+            android:parentActivityName=".EventListActivity" 
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".EventListActivity" />
+                android:value=".EventListActivity"
+                android:screenOrientation="portrait" />
         </activity>
     </application>
 
