@@ -1,16 +1,10 @@
 package com.appliance.wanderful;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-
 import com.appliance.wanderful.R;
-import com.appliance.wanderful.BaseActivity.navClickListeners;
 
 
 public class DetailActivity extends BaseActivity {

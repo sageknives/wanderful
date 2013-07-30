@@ -26,6 +26,11 @@
     <string name="search">Search</string>
     <string name="sort_day">Sort by Day</string>
     <string name="sort_stage">Sort by Stage</string>
+    <string name="time">Time</string>
+    <string name="name">Name</string>
+    <string name="location">Location</string>
+    <string name="genre">Genre</string>
+    <string name="description">Description</string>
 
     <string-array name="time">
         <item>9:00</item>

@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 @SuppressLint("ValidFragment")
 public class DummyListFragment extends ListFragment {
@@ -139,7 +138,7 @@ public class DummyListFragment extends ListFragment {
 	public void onListItemClick(ListView l, View v, int position, long id) {
 
 		mCallbacks.onItemSelected(performanceList.get(position).getPerformanceID() + "");
-		Toast.makeText(getActivity(),performanceList.get(position).getPerformanceID()+"",Toast.LENGTH_LONG).show(); 
+		//Toast.makeText(getActivity(),performanceList.get(position).getPerformanceID()+"",Toast.LENGTH_LONG).show(); 
 		/**
 		 * String time = ((TextView) v.findViewById(R.id.eventtime)).getText()
 		 * .toString(); String name = ((TextView)

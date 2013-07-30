@@ -1,49 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-   
+    android:background="@color/white"
     android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/addbutton"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/performerimagesm"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:background="@color/white"
+        android:contentDescription="@string/map"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="@string/addButton"
-        android:focusable="false"
-        />
+        android:background="@color/white"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/peformancetime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/addbutton"
-        android:layout_marginLeft="33dp"
-       
-        android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
 
-     <TextView
-         android:id="@+id/artistname"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignBaseline="@+id/peformancetime"
-         android:layout_alignBottom="@+id/peformancetime"
-         android:layout_marginLeft="54dp"
-         android:layout_toRightOf="@+id/peformancetime"
-        
-         android:textSize="16sp" />
+            <TextView
+                android:id="@+id/artistname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-     <TextView
-         android:id="@+id/performancestage"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignBottom="@+id/addbutton"
-         android:layout_centerHorizontal="true"
-      
-         android:textSize="16sp"
-         android:textStyle="bold" />
+            <Button
+                android:id="@+id/addbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:focusable="false"
+                android:minHeight="0dp"
+                android:text="@string/addButton"
+                android:textSize="@dimen/detail_description" />
+        </LinearLayout>
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/peformancetime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/performancestage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

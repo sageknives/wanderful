@@ -18,13 +18,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.Toast;
 
 
 public class Schedule extends BaseActivity implements TabListener, DummyListFragment.ListFragmentItemClickListener{
 	public static ArrayList<Performance> performances= new ArrayList<Performance>();
 	public static int sortBy = 0;
-	private static final String TAG = "DBAdapter";
+	//private static final String TAG = "DBAdapter";
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
 	static ArrayList<DummyListFragment> tabs;
@@ -53,7 +52,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 	            	String stage = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventLocation");
 	            	String day = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventDay");
 	            	String description = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventDescription");
-	            	String image = "image";
+	            	String image = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventImage");
 	            	String media = "media";
 					performances.add(new Performance(eventID,performancesNum++,name,time,stage,day,description,image,media));
 	        	}
@@ -61,10 +60,10 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
 
 	}
+	
 	public List<Performance> FilteredPerformancesByDay(int tabNum)
 	{
 		List<Performance> performanceList = new ArrayList<Performance>();
@@ -77,6 +76,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		}
 		return performanceList;
 	}
+	
 	public List<Performance> FilteredPerformancesByStage(int tabNum)
 	{
 		List<Performance> performanceList = new ArrayList<Performance>();
@@ -89,6 +89,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		}
 		return performanceList;
 	}
+	
 	public List<Performance> FilteredPerformancesBySearch(int tabNum)
 	{
 		return performances;
@@ -106,6 +107,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		}
 		return performanceList;
 	}
+	
 	public void updateSchedule(ArrayList<ScheduleItem> savedSchedule)
 	{
 		for(int i = 0;i < savedSchedule.size();i++)
@@ -114,13 +116,14 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 			{
 				if(performances.get(j).getPerformanceID() == Integer.parseInt(savedSchedule.get(i).getPerformanceId()))
 				{
-					Log.d("MyTag", "in update schedule" + performances.get(j).getPerformanceID());
+					//Log.d("MyTag", "in update schedule" + performances.get(j).getPerformanceID());
 					performances.get(j).setPerformanceAttending(true);
 					break;
 				}
 			}
 		}
 	}
+	
 	protected void init() {
 		
 		// Set up the action bar.
@@ -186,6 +189,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 					.setTabListener(this));
 		}
 	}
+	
 	@Override
 	public void onItemSelected(String id) {
 		
@@ -206,13 +210,13 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		startActivity(detailIntent);
 		}
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 	    return super.onCreateOptionsMenu(menu);
 	}
 	
-
 	public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 		private ArrayList<DummyListFragment> mtabs;
 		private ArrayList<String> mtitles;
@@ -271,11 +275,6 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 			//rests the baseactivity attendence on redownload.
 			DBHelper db = new DBHelper(Schedule.this);
 			ArrayList<ScheduleItem> savedSchedule = db.getPerformances();
-			for(int i = 0; i<savedSchedule.size();i++)
-			{
-				Log.d("MyTag", "saved schedule results in remote call back" + savedSchedule.get(i).getPerformanceId());
-			}
-			Log.d("MyTag", "remote call back done");
 ;
 			updateSchedule(savedSchedule);
 			db.close();
