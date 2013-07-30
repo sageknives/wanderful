@@ -18,7 +18,7 @@ public class Map extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
-		
+		checkCacheRedirect(Map.this);
 		if(currentMapImage == null)
 		{
 			new DownloadMapImageTask(this, (ScaleImageView) findViewById(R.id.map_image))

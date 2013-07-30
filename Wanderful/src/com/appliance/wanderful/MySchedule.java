@@ -13,6 +13,8 @@ public class MySchedule extends Schedule implements TabListener, DummyListFragme
 		setContentView(R.layout.activity_my_schedule);
 		createNav(MySchedule.this,
 				this.findViewById(R.layout.activity_my_schedule));
+		checkCacheRedirect(MySchedule.this);
+
 		// checks to see if base activity has a list of performances and if it
 		// is the performances for this event
 		sortBy = 3;

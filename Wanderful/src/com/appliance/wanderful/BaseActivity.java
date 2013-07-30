@@ -103,7 +103,13 @@ public class BaseActivity extends FragmentActivity{
 	}
 	
 	
-	
+	public void checkCacheRedirect(Activity pastActivity)
+	{
+		if(events == null)
+		{
+			startActivity(new Intent(pastActivity, SearchEvent.class));
+		}
+	}
 	
 
 	
