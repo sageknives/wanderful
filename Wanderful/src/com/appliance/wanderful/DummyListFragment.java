@@ -7,9 +7,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 @SuppressLint("ValidFragment")
@@ -19,9 +24,14 @@ public class DummyListFragment extends ListFragment {
 	private static final String STATE_ACTIVATED_POSITION = "activated_position";
 	private int mActivatedPosition = ListView.INVALID_POSITION;
 	private ListFragmentItemClickListener mCallbacks = sDummyCallbacks;
-
-	public DummyListFragment(List<Performance> performanceList) {
+	int layout;
+	SearchAdapter adapter;
+	EditText filterText;
+	
+	private static final String TAG="layout";
+public DummyListFragment(List<Performance> performanceList) {
 		this.performanceList = performanceList;
+		
 
 	}
 
@@ -43,11 +53,15 @@ public class DummyListFragment extends ListFragment {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setListAdapter(new ListAdapter(getActivity(),
-				R.layout.activity_listview_layout, performanceList));
+		adapter=new SearchAdapter(getActivity(),R.layout.activity_listview_layout, performanceList);
+		setListAdapter(adapter);
+		
 
 	}
 
+	
+	
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Restore the previously serialized activated item position.
@@ -59,8 +73,7 @@ public class DummyListFragment extends ListFragment {
 
 		View v = inflater.inflate(R.layout.activity_listview_layout, container,
 				false);
-		// add = (Button) v.findViewById(R.id.addbutton);
-
+		
 		return v;
 	}
 
@@ -79,28 +92,40 @@ public class DummyListFragment extends ListFragment {
 		mCallbacks = (ListFragmentItemClickListener) activity;
 	}
 
-	/*public void onActivityCreated(Bundle savedInstanceState) {
+public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		
+	
+		ListView ls = getListView();
+		 ls.setTextFilterEnabled(true);
+		 filterText = (EditText)getActivity().findViewById(R.id.searchfiltertext);
+		 filterText.addTextChangedListener(new TextWatcher(){
 
-		List<EventItem> eventItems = new ArrayList<EventItem>();
+				@Override
+				public void afterTextChanged(Editable s) {
+					// TODO Auto-generated method stub
+					
+				}
 
-		String name = null;
-		String time = null;
+				@Override
+				public void beforeTextChanged(CharSequence s, int arg1,
+						int arg2, int arg3) {
+					// TODO Auto-generated method stub
+					
+				}
 
-		// populate the day/time of the list with static data that I
-		// created
-		// in string value folder
-		for (int i = 0; i < getResources().getStringArray(R.array.names).length; i++) {
+				@Override
+				public void onTextChanged(CharSequence s, int arg1, int arg2,
+						int arg3) {
+					
+					adapter.getFilter().filter(s.toString());
+					adapter.notifyDataSetChanged();
+					
+				}
+		    	
+		    });	
 
-			name = (getResources().getStringArray(R.array.names)[i]);
-			time = (getResources().getStringArray(R.array.time)[i]);
-			// create a temp list to hold the info and then add to our
-			// ultimate list that has all the events of the expand list
-			EventItem tempList = new EventItem(name, time);
-			eventItems.add(tempList);
-		}
-
-	}*/
+	}
 
 	public void setActivateOnItemClick(boolean activateOnItemClick) {
 		// When setting CHOICE_MODE_SINGLE, ListView will automatically

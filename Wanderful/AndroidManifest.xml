@@ -49,6 +49,11 @@
             android:label="@string/title_activity_detail" 
             android:screenOrientation="portrait">
         </activity>
+         <activity
+            android:name="com.appliance.wanderful.SearchPage"
+            android:label="@string/title_event_list"
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="com.appliance.wanderful.EventListActivity"
             android:label="@string/title_event_list"

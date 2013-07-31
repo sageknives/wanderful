@@ -63,5 +63,18 @@ public class Performance {
 		this.performanceAttending = performanceAttending;
 	}
 
+	@Override
+	public String toString() {
+		return "Performance [eventID=" + eventID + ", performanceID="
+				+ performanceID + ", performanceArtistName="
+				+ performanceArtistName + ", performanceTime="
+				+ performanceTime + ", performanceStage=" + performanceStage
+				+ ", performanceDay=" + performanceDay
+				+ ", performanceDescription=" + performanceDescription
+				+ ", performanceImage=" + performanceImage
+				+ ", performanceMedia=" + performanceMedia
+				+ ", performanceAttending=" + performanceAttending + "]";
+	}
+
 
 }
