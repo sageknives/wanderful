@@ -18,7 +18,7 @@ public class SearchPage extends Schedule{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_page);
 		
-		
+		/**
 		 view = (ListView)findViewById(R.id.listview);
 		 
 		 adapter = new SearchAdapter(this, R.layout.activity_list_row, FilteredPerformancesBySearch(3));
@@ -51,6 +51,7 @@ public class SearchPage extends Schedule{
 					
 				}
 		    	
-		    });
+		    });**/
 }
+
 	}

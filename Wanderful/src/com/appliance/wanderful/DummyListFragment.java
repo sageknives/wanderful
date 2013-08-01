@@ -25,7 +25,7 @@ public class DummyListFragment extends ListFragment {
 	private int mActivatedPosition = ListView.INVALID_POSITION;
 	private ListFragmentItemClickListener mCallbacks = sDummyCallbacks;
 	int layout;
-	SearchAdapter adapter;
+	ListAdapter adapter;
 	EditText filterText;
 	
 	private static final String TAG="layout";
@@ -53,7 +53,8 @@ public DummyListFragment(List<Performance> performanceList) {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		adapter=new SearchAdapter(getActivity(),R.layout.activity_listview_layout, performanceList);
+		adapter=new ListAdapter(getActivity(),R.layout.activity_listview_layout, performanceList);
+		 
 		setListAdapter(adapter);
 		
 
@@ -97,6 +98,7 @@ public void onActivityCreated(Bundle savedInstanceState) {
 		
 	
 		ListView ls = getListView();
+		ls.requestFocus();
 		 ls.setTextFilterEnabled(true);
 		 filterText = (EditText)getActivity().findViewById(R.id.searchfiltertext);
 		 filterText.addTextChangedListener(new TextWatcher(){
@@ -118,7 +120,7 @@ public void onActivityCreated(Bundle savedInstanceState) {
 				public void onTextChanged(CharSequence s, int arg1, int arg2,
 						int arg3) {
 					
-					adapter.getFilter().filter(s.toString());
+					DummyListFragment.this.adapter.getFilter().filter(s.toString());
 					adapter.notifyDataSetChanged();
 					
 				}

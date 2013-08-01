@@ -1,36 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    android:background="@drawable/wanderfulbackground"
+    android:orientation="vertical"
+    tools:context=".SearchPage" >
 
-         <EditText
-             android:id="@+id/searchfiltertext"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignLeft="@+id/listview"
-             android:layout_alignRight="@+id/listview"
-             android:layout_marginBottom="50dip"
-             android:hint="let me search!!!"
-                android:layout_weight="1"
-             android:ems="10" >
+    <EditText
+        android:id="@+id/searchfiltertext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center"
+        android:hint="let me search!!!" />
 
-        <requestFocus />
-    </EditText>
-    
-    
     <ListView
-        android:id="@+id/listview"
+        android:id="@+id/searchlistview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-          android:layout_weight="1"
-        android:layout_below="@+id/searchfiltertext" >
+        android:layout_below="@+id/searchfiltertext"
+        android:layout_weight="1" >
     </ListView>
 
+</LinearLayout>
 
-</RelativeLayout>
