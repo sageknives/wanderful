@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 	// Contacts Table Columns names
@@ -17,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	//public static final String KEY_SHOWNAME = "name";
 	//public static final String KEY_SHOWSTAGE = "stage";
 	public static final String KEY_SHOWID = "performanceId";
-	//private static final String TAG = "DBAdapter";
+	private static final String TAG = "DBAdapter";
 	 // Database Name
 	private static final String DATABASE_NAME = "Wanderful";
 	//  table name
@@ -62,7 +63,9 @@ public class DBHelper extends SQLiteOpenHelper {
         long eventId=getWritableDatabase().insert(DATABASE_TABLE, null, initialValues);
         
         Schedule.performances.get(Integer.parseInt(scheduleItem.getPerformanceId())).setPerformanceAttending(true);
+        Log.d(TAG,  scheduleItem.getPerformanceId());	
         return eventId;
+        
 	}
 	
 	
@@ -122,7 +125,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		    }
 		 
 		    // return  list
-			//Log.d("MyTag", showinfo.toString());	
+			Log.d(TAG, showinfo.toString());	
 			return showinfo;
 	  }
 }

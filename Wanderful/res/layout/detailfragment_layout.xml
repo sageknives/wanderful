@@ -32,15 +32,17 @@
                 android:text="@string/name"
                 android:textSize="@dimen/detail_name" />
 
-            <Button
+            <ToggleButton
                 android:id="@+id/addbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:focusable="false"
                 android:minHeight="0dp"
-                android:textSize="@dimen/detail_description"
-                android:text="@string/addButton" />
+                android:background="@drawable/button_selector"
+                android:text=""
+                android:textOff=""
+                android:textOn=""/>
         </LinearLayout>
 
         <TextView

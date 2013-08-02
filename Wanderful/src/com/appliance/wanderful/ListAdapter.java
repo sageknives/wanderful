@@ -31,6 +31,7 @@ Filterable {
 	private scheduleFilter filter;
    List<Performance> iTEMS;
    private List<Performance> newiTEMS;
+   //private boolean[] onOff;
     public ListAdapter(Context context,  int resourceId, List<Performance> iTEMS)  {
         super(context,resourceId,iTEMS);
         
@@ -39,7 +40,7 @@ Filterable {
     	this.iTEMS.addAll(iTEMS);
     	this.newiTEMS = new ArrayList<Performance>();
     	this.newiTEMS.addAll(iTEMS);
-        
+    	
     }
     @Override
 	public Filter getFilter() {
@@ -93,7 +94,7 @@ Filterable {
 
         viewHolder.performanceArtistName.setText(rowItem.getPerformanceArtistName());
         
-        //if(rowItem.isPerformanceAttending() == true)  	viewHolder.addButton.setText("Remove");
+        if(rowItem.isPerformanceAttending() == true)  	viewHolder.addButton.setChecked(true);
       
        
         viewHolder.addButton.setOnClickListener(new OnClickListener() {

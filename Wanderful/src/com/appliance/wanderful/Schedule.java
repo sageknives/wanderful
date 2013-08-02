@@ -127,11 +127,12 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 	{
 		for(int i = 0;i < savedSchedule.size();i++)
 		{
+			Log.d("MyTag", "savedschedule" + savedSchedule.get(i).getPerformanceId());
 			for(int j = 0;j < performances.size();j++)
 			{
 				if(performances.get(j).getPerformanceID() == Integer.parseInt(savedSchedule.get(i).getPerformanceId()))
 				{
-					//Log.d("MyTag", "in update schedule" + performances.get(j).getPerformanceID());
+					Log.d("MyTag", "in update schedule" + performances.get(j).getPerformanceID());
 					performances.get(j).setPerformanceAttending(true);
 					break;
 				}
@@ -295,7 +296,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 			//rests the baseactivity attendence on redownload.
 			DBHelper db = new DBHelper(Schedule.this);
 			ArrayList<ScheduleItem> savedSchedule = db.getPerformances();
-;
+			Log.d("MyTag", "get performance from db" + savedSchedule.toString());
 			updateSchedule(savedSchedule);
 			db.close();
 			init();
