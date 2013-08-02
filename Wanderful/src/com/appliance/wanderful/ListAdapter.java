@@ -25,7 +25,7 @@ import android.widget.ToggleButton;
 
 public class ListAdapter extends ArrayAdapter<Performance> implements
 Filterable {
-   String smallImgUrl ="http://sagegatzke.com/scout/imagessmall/";
+   String smallImgUrl ="http://sagegatzke.com/scout/imagesbig/";
 	Context context;
    public long id;
 	private scheduleFilter filter;
