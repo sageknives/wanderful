@@ -20,6 +20,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 
 public class ListAdapter extends ArrayAdapter<Performance> implements
@@ -77,7 +78,7 @@ Filterable {
             viewHolder = new ViewHolder();
             viewHolder.performanceImage= (ImageView) view.findViewById(R.id.performerimagesm);
             viewHolder.performanceArtistName= (TextView) view.findViewById(R.id.artistname);
-            viewHolder.addButton=(Button)view.findViewById(R.id.addbutton);
+            viewHolder.addButton=(ToggleButton)view.findViewById(R.id.addbutton);
             viewHolder.performanceTime=(TextView) view.findViewById(R.id.peformancetime);
             viewHolder.performanceStage=(TextView) view.findViewById(R.id.performancestage);
             
@@ -92,8 +93,8 @@ Filterable {
 
         viewHolder.performanceArtistName.setText(rowItem.getPerformanceArtistName());
         
-        if(rowItem.isPerformanceAttending() == true)  	viewHolder.addButton.setText("Remove");
-        viewHolder.addButton.setBackgroundResource(R.drawable.button_selector);//does not change background colors permanently 
+        //if(rowItem.isPerformanceAttending() == true)  	viewHolder.addButton.setText("Remove");
+      
        
         viewHolder.addButton.setOnClickListener(new OnClickListener() {
 
@@ -135,7 +136,7 @@ Filterable {
       		TextView performanceTime;
       		TextView performanceStage;
       		ImageView performanceImage;
-        	 Button addButton;
+        	 ToggleButton addButton;
     		}
 	private class scheduleFilter extends Filter {
 

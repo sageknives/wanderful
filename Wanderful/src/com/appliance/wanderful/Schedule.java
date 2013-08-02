@@ -140,14 +140,14 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		if(sortBy == 1)
 		{
 			for (int i = 0; i < stageNames.length; i++) {
-				tabs.add(new DummyListFragment(FilteredPerformancesByStage(i) ));
+				tabs.add(new DummyListFragment(FilteredPerformancesByStage(i),false));
 				title = stageNames[i];
 				titles.add(i, title);
 			}
 		}else if(sortBy == 2)
 		{
 			for (int i = 0; i < searchNames.length; i++) {
-				tabs.add(new DummyListFragment(FilteredPerformancesBySearch(i) ));
+				tabs.add(new DummyListFragment(FilteredPerformancesBySearch(i),true));
 				title = searchNames[i];
 				titles.add(i, title);
 			}
@@ -155,12 +155,12 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		{
 			tabs = new ArrayList<DummyListFragment>();
 			titles = new ArrayList<String>();
-			tabs.add(new DummyListFragment(FilteredPerformancesByAttending() ));
+			tabs.add(new DummyListFragment(FilteredPerformancesByAttending(),false));
 			titles.add(0, "MySchedule");
 		}
 		else{
 			for (int i = 0; i < dayNames.length; i++) {
-				tabs.add(new DummyListFragment(FilteredPerformancesByDay(i)));
+				tabs.add(new DummyListFragment(FilteredPerformancesByDay(i),false));
 				title = dayNames[i];
 				titles.add(i, title);
 			}

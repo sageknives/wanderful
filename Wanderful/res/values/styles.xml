@@ -19,7 +19,7 @@
 <style name="dividedListStyle" parent="@android:style/Widget.ListView">
     <item name="android:cacheColorHint">@android:color/transparent</item>
     <item name="android:divider">@drawable/list_divider</item>
-    <item name="android:dividerHeight">5dp</item>
+    <item name="android:dividerHeight">10dp</item>
 </style>
     
 

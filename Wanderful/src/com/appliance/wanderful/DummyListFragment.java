@@ -2,7 +2,6 @@ package com.appliance.wanderful;
 
 import java.util.List;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
@@ -24,15 +23,16 @@ public class DummyListFragment extends ListFragment {
 	private static final String STATE_ACTIVATED_POSITION = "activated_position";
 	private int mActivatedPosition = ListView.INVALID_POSITION;
 	private ListFragmentItemClickListener mCallbacks = sDummyCallbacks;
-	int layout;
+	boolean search = false;
 	ListAdapter adapter;
 	EditText filterText;
-	
-	private static final String TAG="layout";
-public DummyListFragment(List<Performance> performanceList) {
-		this.performanceList = performanceList;
-		
 
+	private static final String TAG = "search function";
+
+	public DummyListFragment(List<Performance> performanceList, boolean search) {
+		this.performanceList = performanceList;
+
+		this.search = search;
 	}
 
 	public interface ListFragmentItemClickListener {
@@ -53,16 +53,13 @@ public DummyListFragment(List<Performance> performanceList) {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		adapter=new ListAdapter(getActivity(),R.layout.activity_listview_layout, performanceList);
-		 
+		adapter = new ListAdapter(getActivity(),
+				R.layout.activity_listview_layout, performanceList);
+
 		setListAdapter(adapter);
-		
 
 	}
 
-	
-	
-	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Restore the previously serialized activated item position.
@@ -74,7 +71,7 @@ public DummyListFragment(List<Performance> performanceList) {
 
 		View v = inflater.inflate(R.layout.activity_listview_layout, container,
 				false);
-		
+
 		return v;
 	}
 
@@ -93,39 +90,58 @@ public DummyListFragment(List<Performance> performanceList) {
 		mCallbacks = (ListFragmentItemClickListener) activity;
 	}
 
-public void onActivityCreated(Bundle savedInstanceState) {
+	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
+
+		if (search == true) {
+			getFilter();
+
+		} else{
+			hidefilter();	
+		}	
+
+	}
+
+	private void hidefilter() {
 	
+		filterText = (EditText) getActivity().findViewById(
+				R.id.searchfiltertext);
+		filterText.setVisibility(View.GONE);
+	}
+
+	private void getFilter() {
+
+		Log.d("search", "true");
 		ListView ls = getListView();
 		ls.requestFocus();
-		 ls.setTextFilterEnabled(true);
-		 filterText = (EditText)getActivity().findViewById(R.id.searchfiltertext);
-		 filterText.addTextChangedListener(new TextWatcher(){
+		ls.setTextFilterEnabled(true);
+		filterText = (EditText) getActivity().findViewById(
+				R.id.searchfiltertext);
+		filterText.addTextChangedListener(new TextWatcher() {
 
-				@Override
-				public void afterTextChanged(Editable s) {
-					// TODO Auto-generated method stub
-					
-				}
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
 
-				@Override
-				public void beforeTextChanged(CharSequence s, int arg1,
-						int arg2, int arg3) {
-					// TODO Auto-generated method stub
-					
-				}
+			}
 
-				@Override
-				public void onTextChanged(CharSequence s, int arg1, int arg2,
-						int arg3) {
-					
-					DummyListFragment.this.adapter.getFilter().filter(s.toString());
-					adapter.notifyDataSetChanged();
-					
-				}
-		    	
-		    });	
+			@Override
+			public void beforeTextChanged(CharSequence s, int arg1, int arg2,
+					int arg3) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int arg1, int arg2,
+					int arg3) {
+
+				DummyListFragment.this.adapter.getFilter().filter(s.toString());
+				adapter.notifyDataSetChanged();
+
+			}
+
+		});
 
 	}
 
@@ -155,6 +171,7 @@ public void onActivityCreated(Bundle savedInstanceState) {
 			outState.putInt(STATE_ACTIVATED_POSITION, mActivatedPosition);
 		}
 	}
+
 	@Override
 	public void onDetach() {
 		super.onDetach();
@@ -162,10 +179,12 @@ public void onActivityCreated(Bundle savedInstanceState) {
 		// Reset the active callbacks interface to the dummy implementation.
 		mCallbacks = sDummyCallbacks;
 	}
+
 	public void onListItemClick(ListView l, View v, int position, long id) {
 
-		mCallbacks.onItemSelected(performanceList.get(position).getPerformanceID() + "");
-		//Toast.makeText(getActivity(),performanceList.get(position).getPerformanceID()+"",Toast.LENGTH_LONG).show(); 
+		mCallbacks.onItemSelected(performanceList.get(position)
+				.getPerformanceID() + "");
+		// Toast.makeText(getActivity(),performanceList.get(position).getPerformanceID()+"",Toast.LENGTH_LONG).show();
 		/**
 		 * String time = ((TextView) v.findViewById(R.id.eventtime)).getText()
 		 * .toString(); String name = ((TextView)
