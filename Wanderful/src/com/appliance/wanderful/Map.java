@@ -22,7 +22,7 @@ public class Map extends BaseActivity {
 		if(currentMapImage == null)
 		{
 			new DownloadMapImageTask(this, (ScaleImageView) findViewById(R.id.map_image))
-	        .execute(mapUrlLocation + events.get(currentEventID).getEventMap());
+	        .execute(mapUrlLocation + events.get(currentEventID-1).getEventMap());
 		}else{
 			displayMap();
 		}
