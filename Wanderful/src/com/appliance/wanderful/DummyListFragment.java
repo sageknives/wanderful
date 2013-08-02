@@ -23,7 +23,7 @@ public class DummyListFragment extends ListFragment {
 	private static final String STATE_ACTIVATED_POSITION = "activated_position";
 	private int mActivatedPosition = ListView.INVALID_POSITION;
 	private ListFragmentItemClickListener mCallbacks = sDummyCallbacks;
-	boolean search = false;
+	boolean search;
 	ListAdapter adapter;
 	EditText filterText;
 
@@ -32,7 +32,9 @@ public class DummyListFragment extends ListFragment {
 	public DummyListFragment(List<Performance> performanceList, boolean search) {
 		this.performanceList = performanceList;
 
-		this.search = search;
+		this.search = false;
+		this.search=search;
+		
 	}
 
 	public interface ListFragmentItemClickListener {
@@ -55,7 +57,7 @@ public class DummyListFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 		adapter = new ListAdapter(getActivity(),
 				R.layout.activity_listview_layout, performanceList);
-
+		Log.d("search on create", String.valueOf(search));
 		setListAdapter(adapter);
 
 	}
@@ -71,7 +73,10 @@ public class DummyListFragment extends ListFragment {
 
 		View v = inflater.inflate(R.layout.activity_listview_layout, container,
 				false);
-
+		filterText = (EditText)v.findViewById(
+				R.id.searchfiltertext);
+		filterText.setVisibility(View.GONE);
+		Log.d("search on view", String.valueOf(search));
 		return v;
 	}
 
@@ -92,31 +97,25 @@ public class DummyListFragment extends ListFragment {
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
+		
 		if (search == true) {
+			
 			getFilter();
+			
 
-		} else{
-			hidefilter();	
-		}	
+		} 
 
 	}
 
-	private void hidefilter() {
-	
-		filterText = (EditText) getActivity().findViewById(
-				R.id.searchfiltertext);
-		filterText.setVisibility(View.GONE);
-	}
+
 
 	private void getFilter() {
-
-		Log.d("search", "true");
+		Log.d("if search is true", String.valueOf(search));
+		//Log.d("getfilter", "true");
 		ListView ls = getListView();
 		ls.requestFocus();
 		ls.setTextFilterEnabled(true);
-		filterText = (EditText) getActivity().findViewById(
-				R.id.searchfiltertext);
+		filterText.setVisibility(View.VISIBLE);
 		filterText.addTextChangedListener(new TextWatcher() {
 
 			@Override

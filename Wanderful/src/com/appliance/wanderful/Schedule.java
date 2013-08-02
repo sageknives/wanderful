@@ -32,7 +32,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 	static FragmentManager fragManager;
 	private boolean mTwoPane;
 	private static final String TAG = "schedule";
-	
+	static boolean search =false;
 	public void savePerformancesInfo(JSONArray jsonArray,int eventID)
 	{
 		/*sets performances to null before adding new list of performances 
@@ -152,12 +152,13 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		
 		if(sortBy == 1)
 		{
-			Log.d("Tag", 0 + ": " + stageNames.get(0) + " stage.");
+			
 
 			for (int i = 0; i < stageNames.size(); i++) {
+				Log.d("Tag", i + ": " + String.valueOf(search) + " add. stage");
 				tabs.add(new DummyListFragment(FilteredPerformancesByStage(i),false));
 				title = stageNames.get(i).toString();
-				Log.d("Tag", i + ": " + stageNames.get(i).toString() + " add.");
+				//Log.d("Tag", i + ": " + stageNames.get(i).toString() + " add.");
 				titles.add(i, title);
 			}
 		}else if(sortBy == 2)
@@ -176,7 +177,9 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		}
 		else{
 			for (int i = 0; i < dayNames.length; i++) {
-				tabs.add(new DummyListFragment(FilteredPerformancesByDay(i),false));
+				Log.d("Tag", i + ": " + String.valueOf(search) + " add.");
+				tabs.add(new DummyListFragment(FilteredPerformancesByDay(i),search));
+				
 				title = dayNames[i];
 				titles.add(i, title);
 			}
