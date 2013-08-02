@@ -27,7 +27,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@color/black"
-            android:src="@drawable/wanderfulhome"
+            android:src="@drawable/home"
             android:text="@string/home"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />
@@ -38,7 +38,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@color/black"
-            android:src="@drawable/wanderfulschedule"
+            android:src="@drawable/schedule"
             android:text="@string/main_schedule"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />
@@ -49,7 +49,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@color/black"
-            android:src="@drawable/wanderfulbookmarksselected"
+            android:src="@drawable/bookmarkselect"
             android:text="@string/my_schedule"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />
@@ -60,7 +60,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@color/black"
-            android:src="@drawable/wanderfulhash"
+            android:src="@drawable/social"
             android:text="@string/hash_feed"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />
@@ -71,7 +71,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@color/black"
-            android:src="@drawable/wanderfulmap"
+            android:src="@drawable/map"
             android:text="@string/map"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />

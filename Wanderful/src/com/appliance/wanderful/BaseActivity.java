@@ -1,9 +1,10 @@
 package com.appliance.wanderful;
 
 import java.util.ArrayList;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,7 +36,8 @@ public class BaseActivity extends FragmentActivity{
 	public static int currentEventID;
 	public static Bitmap currentMapImage;
 	public String[] dayNames = {"Friday","Saturday","Sunday"};
-	public String[] stageNames = {"Main Stage","Vera Stage","ChaCha Stage"};
+	public static ArrayList<String> stageNames = new ArrayList<String>();
+	
 	public String[] searchNames = {"Search"};
 	
 	public void createNav(Activity activity, View view)
@@ -76,32 +79,39 @@ public class BaseActivity extends FragmentActivity{
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 	
-	public void saveEventInfo(JSONObject jsonObject)
+	public void saveEventInfo(JSONArray jsonArray)
 	{
-		for(int i = 1; i<jsonObject.length() + 1;i++)
-		{
 			try 
         	{
-	        	for (int j = 0; j < 1; j++) 
+	        	for (int i = 0; i < jsonArray.length(); i++) 
 	        	{
-	        		int eventID = 0;
-					String name = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("EventName");
-					String startDate = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("EventStartDate");
-	            	String length = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("EventNumDays");
-	            	String lastUpdated = "2013-10-23";
-	            	String logo = "logo";
-	            	String location = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("EventLocation");
-	            	String map = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("MapLink");
-					events.add(new Event(eventID,name,startDate,length,lastUpdated,logo,location,map));
+	        		int EventKey = Integer.parseInt(jsonArray.getJSONObject(i).getString("EventKey"));
+					String name = jsonArray.getJSONObject(i).getString("EventName");
+					String startDate = jsonArray.getJSONObject(i).getString("EventStartDate");
+	            	String length = jsonArray.getJSONObject(i).getString("EventDuration");
+	            	String lastUpdated = jsonArray.getJSONObject(i).getString("DateUpdated");
+	            	String logo = jsonArray.getJSONObject(i).getString("EventLogo");
+	            	String locationName = jsonArray.getJSONObject(i).getString("LocationName");
+	            	String LocationAddress = jsonArray.getJSONObject(i).getString("LocationAddress");
+	            	String LocationCity = jsonArray.getJSONObject(i).getString("LocationCity");
+	            	String LocationState = jsonArray.getJSONObject(i).getString("LocationState");
+	            	String LocationZip = jsonArray.getJSONObject(i).getString("LocationZip");
+	            	String map = jsonArray.getJSONObject(i).getString("EventMap");
+					events.add(new Event(EventKey,name,startDate,length,lastUpdated,logo,locationName,LocationAddress,LocationCity,LocationState,LocationZip,map));
+					Log.d("TAG", "event name 1: " + events.get(i).getEventName());
+
 	        	}
         	} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-		}
+		
 	}
-	
+	public List<Event> GetEventList()
+	{
+		return events;
+	}
 	
 	public void checkCacheRedirect(Activity pastActivity)
 	{

@@ -10,13 +10,13 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class JSONGetClient extends AsyncTask<String, Void, JSONObject> {
+public class JSONGetClient extends AsyncTask<String, Void, JSONArray> {
 	ProgressDialog progressDialog;
 	JSONClientListener JSONClientListener;
 	Context curContext;
@@ -54,7 +54,7 @@ public class JSONGetClient extends AsyncTask<String, Void, JSONObject> {
 		return sb.toString();
 	}
 
-	public static JSONObject connect(String url) {
+	public static JSONArray connect(String url) {
 		HttpClient httpclient = new DefaultHttpClient();
 
 		// Prepare a request object
@@ -74,12 +74,12 @@ public class JSONGetClient extends AsyncTask<String, Void, JSONObject> {
 				InputStream instream = entity.getContent();
 				String result = convertStreamToString(instream);
 
-				JSONObject mJsonObject = new JSONObject(result);
+				JSONArray mJsonArray = new JSONArray(result);
 
 				// Closing the input stream will trigger connection release
 				instream.close();
 				//myAdapter.scheduleFragment.publishProgress();
-				return mJsonObject;
+				return mJsonArray;
 			}
 
 		} catch (ClientProtocolException e) {
@@ -106,12 +106,12 @@ public class JSONGetClient extends AsyncTask<String, Void, JSONObject> {
 	}
 
 	@Override
-	protected JSONObject doInBackground(String... urls) {
+	protected JSONArray doInBackground(String... urls) {
 		return connect(urls[0]);
 	}
 
 	@Override
-	protected void onPostExecute(JSONObject json) {
+	protected void onPostExecute(JSONArray json) {
 		try {
 			JSONClientListener.onRemoteCallComplete(json);
 		} catch (JSONException e) {

@@ -3,6 +3,7 @@ package com.appliance.wanderful;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,8 +31,9 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 	static ArrayList<String> titles;
 	static FragmentManager fragManager;
 	private boolean mTwoPane;
+	private static final String TAG = "schedule";
 	
-	public void savePerformancesInfo(JSONObject jsonObject,int eventID)
+	public void savePerformancesInfo(JSONArray jsonArray,int eventID)
 	{
 		/*sets performances to null before adding new list of performances 
 		 * for current event. This way only one set of performances is in memory
@@ -39,30 +41,41 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		 */
 		performances = null;
 		performances= new ArrayList<Performance>();
-		int performancesNum = 0;
-		for(int i = 1; i<jsonObject.length() + 1;i++)
-		{
-			try 
+		stageNames = null;
+		stageNames= new ArrayList<String>();
+		
+		try 
+    	{
+        	for (int i = 0; i < jsonArray.length(); i++) 
         	{
-				
-	        	for (int j = 0; j < jsonObject.getJSONArray("Day" + (i)).length(); j++) 
-	        	{
-					String name = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventName");
-	            	String time = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventStartTime");
-	            	String stage = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventLocation");
-	            	String day = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventDay");
-	            	String description = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventDescription");
-	            	String image = jsonObject.getJSONArray("Day" + (i)).getJSONObject(j).getString("SubEventImage");
-	            	String media = "media";
-					performances.add(new Performance(eventID,performancesNum++,name,time,stage,day,description,image,media));
-	        	}
-        	} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        		int PerformancesKey = Integer.parseInt(jsonArray.getJSONObject(i).getString("PerformancesKey"));
+				String name = jsonArray.getJSONObject(i).getString("PerformerName");
+            	String time = jsonArray.getJSONObject(i).getString("PerformanceTime");
+            	String stage = jsonArray.getJSONObject(i).getString("StageName");
+            	//adds stages to string array for tab labeling.
+            	if(stageNames.size() == 0) stageNames.add(stage);
+            	
+            	for(int j = 0; j < stageNames.size();j++)
+            	{
+            		if(stageNames.get(j).toString().equals(stage))break;
+            		else if(j+1 == stageNames.size()){
+            			stageNames.add(stage);
+            			break;
+            		}
+            	}
+            	String day = jsonArray.getJSONObject(i).getString("PerformanceDateNumber");
+            	String description = jsonArray.getJSONObject(i).getString("PerformerDescription");
+            	String image = jsonArray.getJSONObject(i).getString("PerformerImage");
+            	String media = jsonArray.getJSONObject(i).getString("PerformerMedia");
+				performances.add(new Performance(i,PerformancesKey,name,time,stage,day,description,image,media));
+        	}
+    	} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 	}
+
+	
 	
 	public List<Performance> FilteredPerformancesByDay(int tabNum)
 	{
@@ -82,7 +95,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		List<Performance> performanceList = new ArrayList<Performance>();
 		for(int i = 0;i < performances.size();i++)
 		{
-			if(performances.get(i).getPerformanceStage().equals(stageNames[tabNum]))
+			if(performances.get(i).getPerformanceStage().equals(stageNames.get(tabNum).toString()))
 			{
             	performanceList.add(performances.get(i));
 			}
@@ -139,9 +152,12 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		
 		if(sortBy == 1)
 		{
-			for (int i = 0; i < stageNames.length; i++) {
+			Log.d("Tag", 0 + ": " + stageNames.get(0) + " stage.");
+
+			for (int i = 0; i < stageNames.size(); i++) {
 				tabs.add(new DummyListFragment(FilteredPerformancesByStage(i),false));
-				title = stageNames[i];
+				title = stageNames.get(i).toString();
+				Log.d("Tag", i + ": " + stageNames.get(i).toString() + " add.");
 				titles.add(i, title);
 			}
 		}else if(sortBy == 2)
@@ -258,20 +274,19 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 
 	}
 
-	public void requestWebInfo() {
+	public void requestPerformanceInfo(int EventID) {
 		JSONGetClient client = new JSONGetClient(this, jsonGet);
-		String ourl = "http://54.218.117.137/scoutservices/jsonobjectcommand.php?user=scoutreader&pass=readscout";
+		String ourl = "http://54.218.117.137/scoutservices/eventlist.php?user=scoutreader&pass=readscout&command=performances&eventID=" + EventID;
 		client.execute(ourl);
 	}
 
 	JSONClientListener jsonGet = new JSONClientListener() {
 
 		@Override
-		public void onRemoteCallComplete(JSONObject jsonObjectFromNet)
+		public void onRemoteCallComplete(JSONArray jsonArrayFromNet)
 				throws JSONException {
 			int eventID = 1;
-			savePerformancesInfo(jsonObjectFromNet, eventID);
-			saveEventInfo(jsonObjectFromNet);
+			savePerformancesInfo(jsonArrayFromNet, eventID);
 			// gets all buttons and sets them to nav click listeners
 
 			//rests the baseactivity attendence on redownload.

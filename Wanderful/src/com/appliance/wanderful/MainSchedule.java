@@ -15,13 +15,14 @@ public class MainSchedule extends Schedule{
 				this.findViewById(R.layout.activity_main_schedule));
 		checkCacheRedirect(MainSchedule.this);
 		sortBy = getIntent().getIntExtra("sortby", 0);
+		
 		// checks to see if base activity has a list of performances and if it
 		// is the performances for this event
 		if (performances.size() == 0) {
-			requestWebInfo();
+			requestPerformanceInfo(currentEventID);
 		} else if (performances.get(1).getEventID() != currentEventID) {
 			currentMapImage = null;
-			requestWebInfo();
+			requestPerformanceInfo(currentEventID);
 		} else {
 			init();
 		}

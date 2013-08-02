@@ -1,8 +1,10 @@
 package com.appliance.wanderful;
 
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -11,14 +13,16 @@ public class SearchPage extends Schedule{
 	EditText filterText;
 	SearchAdapter adapter;
 	ListView view;
-	
+	private static final String TAG = "schedule";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_page);
 		
-		/**
+		
+		
+		/***
 		 view = (ListView)findViewById(R.id.listview);
 		 
 		 adapter = new SearchAdapter(this, R.layout.activity_list_row, FilteredPerformancesBySearch(3));
@@ -51,7 +55,8 @@ public class SearchPage extends Schedule{
 					
 				}
 		    	
-		    });**/
-}
-
+		    });***/
+		
 	}
+	
+}
