@@ -61,7 +61,8 @@ Filterable {
     /**
      * Populate new items in the list.
      */
-    @Override public View getView(int position, View view, ViewGroup parent) {
+    @Override 
+    public View getView(int position, View view, ViewGroup parent) {
     	 
     	 ViewHolder viewHolder = null;// to reference the child views for later actions
     	 
@@ -110,7 +111,7 @@ Filterable {
             		
                 	Toast.makeText(context,rowItem.getPerformanceArtistName()+" has been deleted from your bookmarks!", Toast.LENGTH_LONG).show();
             		db.deleteEventt(new ScheduleItem(rowItem.getPerformanceID() + ""));
-            		Schedule.performances.get(rowItem.getPerformanceID()).setPerformanceAttending(false);
+            		Schedule.performances.get(rowItem.getPerformanceID()-1).setPerformanceAttending(false);
                 	
             	}else{
                 	Toast.makeText(context,rowItem.getPerformanceArtistName()+" has been added to your bookmarks!", Toast.LENGTH_LONG).show();
@@ -124,7 +125,11 @@ Filterable {
         viewHolder.performanceStage.setText(rowItem.getPerformanceStage());
        // viewHolder.eventID.setText(rowItem.getEventID());
         viewHolder.performanceID=rowItem.getPerformanceID() + "";
-        new DownloadImageTask(this.getContext(), viewHolder.performanceImage).execute(smallImgUrl+rowItem.getPerformanceImage());
+        if(rowItem.getImage() == null){
+        	new DownloadImageTask(this.getContext(), viewHolder.performanceImage,rowItem.getPerformanceID()).execute(smallImgUrl+rowItem.getPerformanceImage());
+        }else{
+        	viewHolder.performanceImage.setImageBitmap(rowItem.getImage());
+        }
       
         return view;
     } 
@@ -138,6 +143,7 @@ Filterable {
       		TextView performanceStage;
       		ImageView performanceImage;
         	 ToggleButton addButton;
+        	 
     		}
 	private class scheduleFilter extends Filter {
 
@@ -187,5 +193,6 @@ Filterable {
 			
 		}
 	}
+	
 }
 

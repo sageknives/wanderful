@@ -13,7 +13,6 @@ public class HashFeed extends Schedule {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_hash_feed);
-		checkCacheRedirect(HashFeed.this);
 
 		// gets all buttons and sets them to nav click listeners
 		createNav(HashFeed.this, this.findViewById(R.layout.activity_hash_feed));
@@ -32,4 +31,5 @@ public class HashFeed extends Schedule {
 		// Inflate the menu; this adds items to the action bar if it is present.
 	    return super.onCreateOptionsMenu(menu);
 	}
+
 }

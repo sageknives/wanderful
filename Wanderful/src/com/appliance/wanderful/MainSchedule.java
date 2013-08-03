@@ -13,7 +13,6 @@ public class MainSchedule extends Schedule{
 		setContentView(R.layout.activity_main_schedule);
 		createNav(MainSchedule.this,
 				this.findViewById(R.layout.activity_main_schedule));
-		checkCacheRedirect(MainSchedule.this);
 		sortBy = getIntent().getIntExtra("sortby", 0);
 		
 		// checks to see if base activity has a list of performances and if it
@@ -35,5 +34,11 @@ public class MainSchedule extends Schedule{
 	    return super.onCreateOptionsMenu(menu);
 	}
 
+	@Override
+	public void onPause() {
+	    super.onPause();
+	    
+	    
+	}
 	
 }

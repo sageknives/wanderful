@@ -62,7 +62,7 @@ public class DBHelper extends SQLiteOpenHelper {
       
         long eventId=getWritableDatabase().insert(DATABASE_TABLE, null, initialValues);
         
-        Schedule.performances.get(Integer.parseInt(scheduleItem.getPerformanceId())).setPerformanceAttending(true);
+        Schedule.performances.get(Integer.parseInt(scheduleItem.getPerformanceId())-1).setPerformanceAttending(true);
         Log.d(TAG,  scheduleItem.getPerformanceId());	
         return eventId;
         
@@ -76,7 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.delete(DATABASE_TABLE, KEY_SHOWID + " = ?",
                 new String[] { String.valueOf(scheduleItem.performanceID) });
         db.close();
-        Schedule.performances.get(Integer.parseInt(scheduleItem.getPerformanceId())).setPerformanceAttending(false);
+        Schedule.performances.get(Integer.parseInt(scheduleItem.getPerformanceId())-1).setPerformanceAttending(false);
 
     }
         

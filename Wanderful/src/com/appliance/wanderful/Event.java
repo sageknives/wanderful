@@ -6,6 +6,7 @@ public class Event {
 	private String EventName;
 	private String EventStartDate;
 	private String EventLength;
+	private String StartDay;
 	private String EventLastUpdate;
 	private String EventLogo;
 	private String LocationName;
@@ -15,12 +16,13 @@ public class Event {
 	private String LocationZip;
 	private String EventMap;
 
-	public Event(int EventID,String EventName, String EventStartDate,String EventLength,
+	public Event(int EventID,String EventName, String EventStartDate,String EventLength,String StartDay,
 			String EventLastUpdate,String EventLogo,String locationName,String LocationAddress,String LocationCity,String LocationState,String LocationZip,String EventMap) {
 		this.EventID = EventID;
 		this.EventName = EventName;
 		this.EventStartDate = EventStartDate;
 		this.EventLength = EventLength;
+		this.StartDay = StartDay;
 		this.EventLastUpdate = EventLastUpdate;
 		this.EventLogo = EventLogo;
 		this.LocationName = locationName;
@@ -42,6 +44,9 @@ public class Event {
 	}
 	public String getEventLength() {
 		return EventLength;
+	}
+	public String getStartDay() {
+		return StartDay;
 	}
 	public String getEventLastUpdate() {
 		return EventLastUpdate;

@@ -36,7 +36,7 @@ public class DetailFragment extends Fragment {
 			// Load the dummy content specified by the fragment
 			// arguments. In a real-world scenario, use a Loader
 			// to load content from a content provider.
-			mItem = Schedule.performances.get(Integer.parseInt((String) getArguments().get(ARG_ITEM_ID)));
+			mItem = Schedule.performances.get(Integer.parseInt((String) getArguments().get(ARG_ITEM_ID))-1);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class DetailFragment extends Fragment {
 		View v = inflater.inflate(R.layout.detailfragment_layout, container,
 				false);
 		if (mItem != null) {
-			new DownloadImageTask(getActivity(),((ImageView) v.findViewById(R.id.performerimagebig))).execute(bigImgUrl+mItem.getPerformanceImage());
+			new DownloadImageTask(getActivity(),((ImageView) v.findViewById(R.id.performerimagebig)), mItem.getPerformanceID()).execute(bigImgUrl+mItem.getPerformanceImage());
 			((TextView) v.findViewById(R.id.time)).setText(mItem
 					.getPerformanceTime());
 			((TextView) v.findViewById(R.id.name)).setText(mItem
@@ -79,7 +79,7 @@ public class DetailFragment extends Fragment {
 	            	if(mItem.isPerformanceAttending() == true)
 	            	{
 	            		db.deleteEventt(new ScheduleItem(mItem.getPerformanceID() + ""));
-	            		Schedule.performances.get(mItem.getPerformanceID()).setPerformanceAttending(false);
+	            		Schedule.performances.get(mItem.getPerformanceID()-1).setPerformanceAttending(false);
 	                	
 	            	}else{
 	            long id = db.insertShow(new ScheduleItem(mItem.getPerformanceID() + ""));

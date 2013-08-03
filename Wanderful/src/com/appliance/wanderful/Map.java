@@ -18,7 +18,6 @@ public class Map extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
-		checkCacheRedirect(Map.this);
 		if(currentMapImage == null)
 		{
 			new DownloadMapImageTask(this, (ScaleImageView) findViewById(R.id.map_image))
@@ -80,4 +79,6 @@ public class Map extends BaseActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 	    return super.onCreateOptionsMenu(menu);
 	}
+	
+
 }

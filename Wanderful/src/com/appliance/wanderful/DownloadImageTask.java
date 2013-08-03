@@ -14,10 +14,12 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
     ImageView myImage;
     //ProgressDialog progressDialog;
     Context currentContext;
-
-    public DownloadImageTask(Context context, ImageView bmImage) {
+    int performanceID;
+    
+    public DownloadImageTask(Context context, ImageView bmImage, int performanceID) {
     	this.myImage = bmImage;
     	this.currentContext = context;
+    	this.performanceID = performanceID;
     }
 
     protected Bitmap doInBackground(String... urls) {
@@ -42,6 +44,8 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
 		progressDialog.show();*/
 	}
     protected void onPostExecute(Bitmap result) {
+    	Schedule.performances.get(performanceID -1).setImage(result);
+
     	myImage.setImageBitmap(result);
     	//progressDialog.dismiss();
 	}

@@ -1,5 +1,7 @@
 package com.appliance.wanderful;
 
+import android.graphics.Bitmap;
+
 public class Performance {
 
 	private int eventID;
@@ -12,6 +14,7 @@ public class Performance {
 	private String performanceImage;
 	private String performanceMedia;
 	private boolean performanceAttending = false;
+	private Bitmap image = null;
 
 	public Performance(int eventID,int performanceID,String performanceArtistName, String performanceTime,String performanceStage,
 			String performanceDay,String performanceDescription,String performanceImage,String performanceMedia) {
@@ -61,6 +64,13 @@ public class Performance {
 
 	public void setPerformanceAttending(boolean performanceAttending) {
 		this.performanceAttending = performanceAttending;
+	}
+	public Bitmap getImage() {
+		return this.image;
+	}
+
+	public void setImage(Bitmap image) {
+		this.image = image;
 	}
 
 	@Override

@@ -35,11 +35,22 @@ public class BaseActivity extends FragmentActivity{
 	public static String mapUrlLocation = "http://sagegatzke.com/scout/maps/";
 	public static int currentEventID;
 	public static Bitmap currentMapImage;
-	public String[] dayNames = {"Friday","Saturday","Sunday"};
+	public String[] dayNames = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 	public static ArrayList<String> stageNames = new ArrayList<String>();
-	
 	public String[] searchNames = {"Search"};
+	String logoImgUrl ="http://sagegatzke.com/scout/imageslogo/";
+	@Override
+	public void onResume() {
+	    super.onResume();
+		checkCacheRedirect(this);
+	}
 	
+	@Override
+	public void onPause() {
+	    super.onPause();
+	    
+	    
+	}
 	public void createNav(Activity activity, View view)
 	{
 		this.curActivity = activity;
@@ -89,6 +100,7 @@ public class BaseActivity extends FragmentActivity{
 					String name = jsonArray.getJSONObject(i).getString("EventName");
 					String startDate = jsonArray.getJSONObject(i).getString("EventStartDate");
 	            	String length = jsonArray.getJSONObject(i).getString("EventDuration");
+	            	String startDay = jsonArray.getJSONObject(i).getString("DayNamesKey");
 	            	String lastUpdated = jsonArray.getJSONObject(i).getString("DateUpdated");
 	            	String logo = jsonArray.getJSONObject(i).getString("EventLogo");
 	            	String locationName = jsonArray.getJSONObject(i).getString("LocationName");
@@ -97,7 +109,7 @@ public class BaseActivity extends FragmentActivity{
 	            	String LocationState = jsonArray.getJSONObject(i).getString("LocationState");
 	            	String LocationZip = jsonArray.getJSONObject(i).getString("LocationZip");
 	            	String map = jsonArray.getJSONObject(i).getString("EventMap");
-					events.add(new Event(EventKey,name,startDate,length,lastUpdated,logo,locationName,LocationAddress,LocationCity,LocationState,LocationZip,map));
+					events.add(new Event(EventKey,name,startDate,length,startDay,lastUpdated,logo,locationName,LocationAddress,LocationCity,LocationState,LocationZip,map));
 					Log.d("TAG", "event name 1: " + events.get(i).getEventName());
 
 	        	}
@@ -115,8 +127,10 @@ public class BaseActivity extends FragmentActivity{
 	
 	public void checkCacheRedirect(Activity pastActivity)
 	{
+		Log.d("TAG","should I redirect?");
 		if(events == null)
 		{
+			Log.d("TAG","Redirecting");
 			startActivity(new Intent(pastActivity, SearchEvent.class));
 		}
 	}
