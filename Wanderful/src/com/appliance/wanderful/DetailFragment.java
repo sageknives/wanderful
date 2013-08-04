@@ -3,6 +3,7 @@ package com.appliance.wanderful;
 
 import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class DetailFragment extends Fragment {
 	public static final String ARG_ITEM_ID = "item_id";
@@ -65,7 +68,8 @@ public class DetailFragment extends Fragment {
 					.getPerformanceDescription());
 			if(mItem.isPerformanceAttending() == true) 
 				{
-					((Button) v.findViewById(R.id.addbutton)).setText("Remove");
+				((ToggleButton) v.findViewById(R.id.addbutton)).setChecked(true);
+					
 				}
 			((Button) v.findViewById(R.id.addbutton)).setOnClickListener(new OnClickListener() {
 
@@ -78,10 +82,11 @@ public class DetailFragment extends Fragment {
 	            	
 	            	if(mItem.isPerformanceAttending() == true)
 	            	{
+	                	Toast.makeText(getActivity(),mItem.getPerformanceArtistName()+" has been deleted from your bookmarks!", Toast.LENGTH_SHORT).show();
 	            		db.deleteEventt(new ScheduleItem(mItem.getPerformanceID() + ""));
-	            		Schedule.performances.get(mItem.getPerformanceID()-1).setPerformanceAttending(false);
 	                	
 	            	}else{
+	                	Toast.makeText(getActivity(),mItem.getPerformanceArtistName()+" has been added to your bookmarks!", Toast.LENGTH_SHORT).show();
 	            long id = db.insertShow(new ScheduleItem(mItem.getPerformanceID() + ""));
 	            //Log.d("MyTag", mItem.getPerformanceID() + "test");
 	            db.close();
