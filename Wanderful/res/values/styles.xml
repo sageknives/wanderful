@@ -22,9 +22,12 @@
     <item name="android:dividerHeight">10dp</item>
 </style>
     
-<style name="ActionButtonStyle" parent="@android:style/Theme.DeviceDefault.Light.DarkActionBar">
-    <item name="android:minWidth">0dip</item>
-    <item name="android:paddingLeft">0dip</item>
-    <item name="android:paddingRight">0dip</item>                  
+<style name="AppTheme" parent="AppBaseTheme">
+    <item name="android:actionButtonStyle">@style/MyActionButtonStyle</item>
+</style>
+
+<style name="MyActionButtonStyle" parent="AppBaseTheme">
+    <item name="android:minWidth">20dip</item>
+    <item name="android:padding">10dip</item>
 </style>
 </resources>
