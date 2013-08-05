@@ -14,27 +14,29 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SearchAdapter extends ArrayAdapter<Performance> implements
+
+public class SearchAdapter extends ArrayAdapter<Event> implements
 		Filterable {
 
 	Context context;
 	public long id;
 	private scheduleFilter filter;
-	private List<Performance> newiTEMS;
-	public List<Performance> iTEMS;
-
-	public SearchAdapter(Context context, int resourceId, List<Performance> iTEMS) {
+	private List<Event> newiTEMS;
+	public List<Event> iTEMS;
+	String logoImgUrl ="http://sagegatzke.com/scout/imagesbig/";
+	public SearchAdapter(Context context, int resourceId, List<Event> iTEMS) {
 		super(context, resourceId, iTEMS);
 		
 		this.context = context;
 		
 		
-	this.iTEMS = new ArrayList<Performance>();
+	this.iTEMS = new ArrayList<Event>();
 	this.iTEMS.addAll(iTEMS);
-	this.newiTEMS = new ArrayList<Performance>();
+	this.newiTEMS = new ArrayList<Event>();
 	this.newiTEMS.addAll(iTEMS);
 	}
 
@@ -45,16 +47,24 @@ public class SearchAdapter extends ArrayAdapter<Performance> implements
 		}
 		return filter;
 	}
-
+	@Override
+    public int getCount() {
+        return iTEMS.size();
+    }
+    
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    } 
 	static class ViewHolder {
-		// testing DummyItem item class
-		String eventID;
-		String performanceID;
-		TextView performanceArtistName;
-		TextView performanceTime;
-		TextView performanceStage;
+		
+		int eventID;
+		TextView eventName;
+		TextView eventDate;
+		TextView eventAddress;
+		ImageView eventLogo;
 
-		Button addButton;
+		
 	}
 
 	/**
@@ -67,25 +77,25 @@ public class SearchAdapter extends ArrayAdapter<Performance> implements
 										// actions
 
 		// DummyItem rowItem= (DummyItem)getItem(position);
-		final Performance rowItem = (iTEMS).get(position);
+		final Event rowItem = (iTEMS).get(position);
 
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		if (view == null) {
-			view = inflater.inflate(R.layout.activity_list_row, null);
+			view = inflater.inflate(R.layout.activity_searchpage_list_row, null);
 
 			// cache view fields into the holder
 			viewHolder = new ViewHolder();
 
-			viewHolder.performanceArtistName = (TextView) view
-					.findViewById(R.id.artistname);
-			viewHolder.performanceTime = (TextView) view
-					.findViewById(R.id.peformancetime);
-			viewHolder.performanceStage = (TextView) view
-					.findViewById(R.id.performancestage);
-
-			viewHolder.addButton = (Button) view.findViewById(R.id.addbutton);
+			viewHolder.eventName = (TextView) view
+					.findViewById(R.id.eventName);
+			viewHolder.eventDate = (TextView) view
+					.findViewById(R.id.eventDate);
+			viewHolder.eventAddress = (TextView) view
+					.findViewById(R.id.eventAddress);
+			viewHolder.eventLogo=(ImageView)view.findViewById(R.id.eventLogo);
+		
 
 			// associate the holder with the view for later lookup
 			view.setTag(viewHolder);
@@ -94,41 +104,17 @@ public class SearchAdapter extends ArrayAdapter<Performance> implements
 			// view already exists, get the holder instance from the view
 			viewHolder = (ViewHolder) view.getTag();
 
-		viewHolder.performanceArtistName.setText(rowItem.getPerformanceArtistName());
-		viewHolder.performanceTime.setText(rowItem.getPerformanceTime());
-		 viewHolder.performanceStage.setText(rowItem.getPerformanceStage());
-		// viewHolder.eventID.setText(rowItem.getEventID());
-		// viewHolder.performanceID = rowItem.getPerformanceID() + "";
-		// if (rowItem.isPerformanceAttending() == true)
-		// ** viewHolder.addButton.setText("Remove");
-		/**
-		 * viewHolder.addButton.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { Toast.makeText( context,
-		 *           rowItem.getPerformanceTime() + "time" +
-		 *           rowItem.getPerformanceArtistName() + "artist" +
-		 *           rowItem.getPerformanceStage() + "stage" +
-		 *           rowItem.getPerformanceID(), Toast.LENGTH_LONG) .show();
-		 *           DBHelper db = new DBHelper(context);
-		 * 
-		 *           sets the performance to attending in the base class. //
-		 *           BaseActivity
-		 *           .performances.get(Integer.parseInt(rowItem.getId
-		 *           ())).setPerformanceAttending(true);
-		 * 
-		 *           if (rowItem.isPerformanceAttending() == true) {
-		 *           db.deleteEventt(new ScheduleItem(rowItem
-		 *           .getPerformanceArtistName(), rowItem
-		 *           .getPerformanceStage(), rowItem .getPerformanceTime(),
-		 *           rowItem.getPerformanceID() + ""));
-		 *           Schedule.performances.get(rowItem.getPerformanceID())
-		 *           .setPerformanceAttending(false);
-		 * 
-		 *           } else { id = db.insertShow(new ScheduleItem(rowItem
-		 *           .getPerformanceArtistName(), rowItem
-		 *           .getPerformanceStage(), rowItem .getPerformanceTime(),
-		 *           rowItem.getPerformanceID() + "")); db.close(); } } });
-		 **/
+		viewHolder.eventName.setText(rowItem.getEventName());
+		viewHolder.eventDate.setText(rowItem.getEventStartDate());
+		 viewHolder.eventAddress.setText(rowItem.getLocationAddress());
+		 viewHolder.eventID=rowItem.getEventID();
+		 
+		 if(rowItem.getEventLogo() == null){
+	        	new DownloadImageTask(context,viewHolder.eventLogo,rowItem.getEventID()).execute(logoImgUrl+rowItem.getEventLogo());
+	        }else{
+	        	viewHolder.eventLogo.setImageBitmap(rowItem.getImage());
+	        }
+		
 		return view;
 	}
 
@@ -139,43 +125,17 @@ public class SearchAdapter extends ArrayAdapter<Performance> implements
 			FilterResults results = new FilterResults();        // Holds the results of a filtering operation in values
 		      //List<Performance> FilteredArrList = new ArrayList<Performance>();
 
-		    /**  if(constraint != null && constraint.toString().length() > 0)
-	            {
-	                ArrayList<Performance> filt = new ArrayList<Performance>();
-	                ArrayList<Performance> lItems = new ArrayList<Performance>();
-	                synchronized (this)
-	                {
-	                    lItems.addAll(iTEMS);
-	                }
-	                for(int i = 0, l = lItems.size(); i < l; i++)
-	                {
-	                	Performance m = lItems.get(i);
-	                    if(m.getArtist().toString().toLowerCase().contains(constraint))
-	                        filt.add(m);
-	                }
-	                results.count = filt.size();
-	                results.values = filt;
-	            }
-	            else
-	            {
-	                synchronized(this)
-	                {
-	                	results.values = iTEMS;
-	                	results.count = iTEMS.size();
-	                }
-	            }
-	            return results;
-**/
+		  
 			
 			if(constraint != null && constraint.toString().length() > 0)
 		    {
-		    ArrayList<Performance> filteredItems = new ArrayList<Performance>();
+		    ArrayList<Event> filteredItems = new ArrayList<Event>();
 		 
 		    for(int i = 0, l = newiTEMS.size(); i < l; i++)
 		    {
-		    	Performance peformance = newiTEMS.get(i);
-		     if(peformance.toString().toLowerCase().contains(constraint))
-		      filteredItems.add(peformance);
+		    	Event events = newiTEMS.get(i);
+		     if(events.toString().toLowerCase().contains(constraint))
+		      filteredItems.add(events);
 		    }
 		    results.count = filteredItems.size();
 		    results.values = filteredItems;
@@ -196,17 +156,15 @@ public class SearchAdapter extends ArrayAdapter<Performance> implements
 		@Override
 		protected void publishResults(CharSequence constraint,
 				FilterResults results) {
-			iTEMS = (List<Performance>)results.values;// has the filtered values
-			notifyDataSetChanged();
-            clear();
-            for(int i = 0, l = iTEMS.size(); i < l; i++)
-                add(iTEMS.get(i));
-            notifyDataSetInvalidated();
+			iTEMS = (List<Event>)results.values;// has the filtered values
+			 if (results.count > 0) {
+	                notifyDataSetChanged();
+	            } else {
+	                notifyDataSetInvalidated();
+	            }
 
 			
 		}
-
-		
 	}
 	
 

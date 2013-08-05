@@ -14,6 +14,7 @@ public class MainSchedule extends Schedule{
 		createNav(MainSchedule.this,
 				this.findViewById(R.layout.activity_main_schedule));
 		sortBy = getIntent().getIntExtra("sortby", 0);
+		//int EventID= getIntent().getExtras() .getInt("eventId");
 		
 		// checks to see if base activity has a list of performances and if it
 		// is the performances for this event

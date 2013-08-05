@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 @SuppressLint("ValidFragment")
 public class DummyListFragment extends ListFragment {
@@ -33,8 +34,8 @@ public class DummyListFragment extends ListFragment {
 		this.performanceList = performanceList;
 
 		this.search = false;
-		this.search=search;
-		
+		this.search = search;
+
 	}
 
 	public interface ListFragmentItemClickListener {
@@ -73,8 +74,7 @@ public class DummyListFragment extends ListFragment {
 
 		View v = inflater.inflate(R.layout.activity_listview_layout, container,
 				false);
-		filterText = (EditText)v.findViewById(
-				R.id.searchfiltertext);
+		filterText = (EditText) v.findViewById(R.id.searchfiltertext);
 		filterText.setVisibility(View.GONE);
 		Log.d("search on view", String.valueOf(search));
 		return v;
@@ -97,21 +97,18 @@ public class DummyListFragment extends ListFragment {
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
-		if (search == true) {
-			
-			getFilter();
-			
 
-		} 
+		if (search == true) {
+
+			getFilter();
+
+		}
 
 	}
 
-
-
 	private void getFilter() {
 		Log.d("if search is true", String.valueOf(search));
-		//Log.d("getfilter", "true");
+		// Log.d("getfilter", "true");
 		ListView ls = getListView();
 		ls.requestFocus();
 		ls.setTextFilterEnabled(true);
@@ -181,10 +178,14 @@ public class DummyListFragment extends ListFragment {
 
 	public void onListItemClick(ListView l, View v, int position, long id) {
 
-		
-		mCallbacks.onItemSelected(performanceList.get(position)
-				.getPerformanceID() + "");
-		// Toast.makeText(getActivity(),performanceList.get(position).getPerformanceID()+"",Toast.LENGTH_LONG).show();
+		// get item position from adapter instead of the list
+		Performance rowItem = (Performance) adapter.getItem(position);
+
+		mCallbacks.onItemSelected(rowItem.getPerformanceID() + "");
+		Toast.makeText(
+				getActivity(),
+				performanceList.get(position).getPerformanceID() + ""
+						+ rowItem.getPerformanceID(), Toast.LENGTH_LONG).show();
 		/**
 		 * String time = ((TextView) v.findViewById(R.id.eventtime)).getText()
 		 * .toString(); String name = ((TextView)

@@ -15,9 +15,10 @@
         android:hint="let me search!!!" />
 
     <ListView
+        style="@style/dividedListStyle"
         android:id="@+id/searchlistview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/searchfiltertext"
         android:layout_weight="1" >

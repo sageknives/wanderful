@@ -1,5 +1,7 @@
 package com.appliance.wanderful;
 
+import android.graphics.Bitmap;
+
 public class Event {
 
 	private int EventID;
@@ -15,7 +17,7 @@ public class Event {
 	private String LocationState;
 	private String LocationZip;
 	private String EventMap;
-
+	private Bitmap image = null;
 	public Event(int EventID,String EventName, String EventStartDate,String EventLength,String StartDay,
 			String EventLastUpdate,String EventLogo,String locationName,String LocationAddress,String LocationCity,String LocationState,String LocationZip,String EventMap) {
 		this.EventID = EventID;
@@ -71,6 +73,26 @@ public class Event {
 	}
 	public String getEventMap() {
 		return EventMap;
+	}
+
+	@Override
+	public String toString() {
+		return "Event [EventID=" + EventID + ", EventName=" + EventName
+				+ ", EventStartDate=" + EventStartDate + ", EventLength="
+				+ EventLength + ", StartDay=" + StartDay + ", EventLastUpdate="
+				+ EventLastUpdate + ", EventLogo=" + EventLogo
+				+ ", LocationName=" + LocationName + ", LocationAddress="
+				+ LocationAddress + ", LocationCity=" + LocationCity
+				+ ", LocationState=" + LocationState + ", LocationZip="
+				+ LocationZip + ", EventMap=" + EventMap + "]";
+	}
+
+	public Bitmap getImage() {
+		return image;
+	}
+
+	public void setImage(Bitmap image) {
+		this.image = image;
 	}
 
 }

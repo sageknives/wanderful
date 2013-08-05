@@ -34,8 +34,8 @@ public class SearchEvent extends BaseActivity {
 			// Gets the button Id and sends to new activity
 
 			if (enterBtn.getId() == v.getId())
-				currentEventID = 1;
-				startActivity(new Intent(SearchEvent.this, MainSchedule.class));
+				//currentEventID = 1;
+				startActivity(new Intent(SearchEvent.this, SearchPage.class));
 		}
 	}
 	@Override

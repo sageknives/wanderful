@@ -30,16 +30,15 @@ Filterable {
    public long id;
 	private scheduleFilter filter;
    List<Performance> iTEMS;
-   private List<Performance> newiTEMS;
+   private List<Performance> originaliTEMS;
    //private boolean[] onOff;
     public ListAdapter(Context context,  int resourceId, List<Performance> iTEMS)  {
         super(context,resourceId,iTEMS);
         
         this.context = context;
-        this.iTEMS = new ArrayList<Performance>();
-    	this.iTEMS.addAll(iTEMS);
-    	this.newiTEMS = new ArrayList<Performance>();
-    	this.newiTEMS.addAll(iTEMS);
+        this.iTEMS = iTEMS;
+    	
+    	
     	
     }
     @Override
@@ -55,8 +54,8 @@ Filterable {
     }
     
     @Override
-    public long getItemId(int position) {
-        return 0;
+    public Performance getItem(int position) {
+        return iTEMS.get(position);
     }
     /**
      * Populate new items in the list.
@@ -150,31 +149,31 @@ Filterable {
 		@Override
 		protected FilterResults performFiltering(CharSequence constraint) {
 			FilterResults results = new FilterResults();        // Holds the results of a filtering operation in values
-		      //List<Performance> FilteredArrList = new ArrayList<Performance>();
+            List<Performance> FilteredArrList = new ArrayList<Performance>();
 
-		  
-			
-			if(constraint != null && constraint.toString().length() > 0)
-		    {
-		    ArrayList<Performance> filteredItems = new ArrayList<Performance>();
-		 
-		    for(int i = 0, l = newiTEMS.size(); i < l; i++)
-		    {
-		    	Performance peformance = newiTEMS.get(i);
-		     if(peformance.toString().toLowerCase().contains(constraint))
-		      filteredItems.add(peformance);
+            if (originaliTEMS == null) {
+            	originaliTEMS = new ArrayList<Performance>(iTEMS); // saves the original data in Original
+            }
+
+            if (constraint == null || constraint.length() == 0) {
+
+                // set the Original result to return  
+                results.count = originaliTEMS.size();
+                results.values = originaliTEMS;
+            } else {
+                constraint = constraint.toString().toLowerCase();
+                for (int i = 0; i < originaliTEMS.size(); i++) {
+                	Performance data = originaliTEMS.get(i);
+                	if(data.toString().toLowerCase().contains(constraint)) {
+                        FilteredArrList.add(data);
+                    }
+                }
+                // set the Filtered result to return
+                results.count = FilteredArrList.size();
+                results.values = FilteredArrList;
 		    }
-		    results.count = filteredItems.size();
-		    results.values = filteredItems;
-		    }
-		    else
-		    {
-		     synchronized(this)
-		     {
-		    	 results.values = newiTEMS;
-		    	 results.count = newiTEMS.size();
-		     }
-		    }
+		   
+		    
 		    return results;
 		   
 		}
