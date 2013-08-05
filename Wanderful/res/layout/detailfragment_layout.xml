@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wanderfulbackground"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -13,72 +14,92 @@
             android:id="@+id/performerimagebig"
             android:layout_width="fill_parent"
             android:layout_height="200dp"
+            android:layout_marginLeft="@dimen/bookmark_padding"
+            android:layout_marginRight="@dimen/bookmark_padding"
+            android:layout_marginTop="@dimen/bookmark_padding"
+            android:background="@color/white"
             android:contentDescription="@string/map"
             android:padding="@dimen/detail_padding"
+            android:paddingBottom="0dp"
             android:scaleType="fitXY" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bookmark_padding"
+            android:layout_marginRight="@dimen/bookmark_padding"
+            android:background="@color/white"
             android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="266dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="@dimen/detail_padding"
-                android:paddingTop="@dimen/detail_padding"
-                android:text="@string/name"
-                android:textSize="@dimen/detail_name" />
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/detail_padding"
+                    android:paddingTop="@dimen/detail_padding"
+                    android:text="@string/name"
+                    android:textSize="@dimen/detail_name" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/detail_padding"
+                    android:text="@string/time"
+                    android:textSize="@dimen/detail_information" />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/detail_padding"
+                    android:text="@string/location"
+                    android:textSize="@dimen/detail_information" />
+
+                <TextView
+                    android:id="@+id/genre"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:paddingLeft="@dimen/detail_padding"
+                    android:text="@string/genre"
+                    android:textSize="@dimen/detail_information" />
+
+            </LinearLayout>
 
             <ToggleButton
                 android:id="@+id/addbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_width="40dp"
+                android:layout_height="55dp"
+                android:background="@drawable/button_selector"
                 android:focusable="false"
                 android:minHeight="0dp"
-                android:background="@drawable/button_selector"
+                android:minWidth="0dp"
                 android:text=""
                 android:textOff=""
-                android:textOn=""/>
+                android:textOn="" />
+
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="@dimen/detail_padding"
-            android:text="@string/time"
-            android:textSize="@dimen/detail_information" />
-
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="@dimen/detail_padding"
-            android:text="@string/location"
-            android:textSize="@dimen/detail_information" />
-
-        <TextView
-            android:id="@+id/genre"
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:paddingLeft="@dimen/detail_padding"
-            android:text="@string/genre"
-            android:textSize="@dimen/detail_information" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/bookmark_padding"
+            android:layout_marginRight="@dimen/bookmark_padding"
             android:layout_weight="1"
+            android:background="@color/white"
             android:paddingLeft="@dimen/detail_padding"
             android:text="@string/description"
             android:textSize="@dimen/detail_description" />
+
     </LinearLayout>
 
 </ScrollView>
