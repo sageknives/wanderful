@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,6 +65,8 @@ public class BaseActivity extends FragmentActivity{
 		hashFeedBtn.setOnClickListener(new navClickListeners());
 		mapBtn = (ImageButton) findViewById(R.id.map_btn);
 		mapBtn.setOnClickListener(new navClickListeners());
+		
+		
 	}
 	
 	class navClickListeners implements View.OnClickListener {
@@ -156,6 +159,9 @@ public class BaseActivity extends FragmentActivity{
 	            return true;
 	        case R.id.sort_search:
 	            startActivity(new Intent(curActivity, MainSchedule.class).putExtra("sortby", 2));
+	            return true;
+	        case R.id.preferences:
+	            startActivity(new Intent(curActivity, SearchPage.class).putExtra("sortby", 0));
 	            return true;
 	        default:
 	        	return false;
