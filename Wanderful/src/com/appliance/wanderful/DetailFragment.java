@@ -56,6 +56,8 @@ public class DetailFragment extends Fragment {
 				false);
 		if (mItem != null) {
 			new DownloadImageTask(getActivity(),((ImageView) v.findViewById(R.id.performerimagebig)), mItem.getPerformanceID()).execute(bigImgUrl+mItem.getPerformanceImage());
+			getActivity().getActionBar().setTitle(mItem
+					.getPerformanceArtistName());
 			((TextView) v.findViewById(R.id.time)).setText(mItem
 					.getPerformanceTime());
 			((TextView) v.findViewById(R.id.name)).setText(mItem

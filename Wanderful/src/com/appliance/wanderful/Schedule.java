@@ -177,6 +177,9 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 			titles = new ArrayList<String>();
 			tabs.add(new DummyListFragment(FilteredPerformancesByAttending(),false));
 			titles.add(0, "MySchedule");
+			//removes the tab since its not needed in myschedule
+			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+			
 		}
 		else{
 			int dayNumber = Integer.parseInt(events.get(currentEventID-1).getStartDay());
@@ -211,11 +214,12 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		// For each day of the schedule, add a tab to the action bar.
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
 			// Create a tab with text corresponding to the page title defined by
-
+			
 			actionBar.addTab(actionBar.newTab()
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+
 	}
 	
 	@Override

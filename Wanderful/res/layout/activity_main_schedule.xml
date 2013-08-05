@@ -6,12 +6,6 @@
     android:orientation="vertical"
     tools:context=".MainSchedule" >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/main_schedule"
-        android:textSize="@dimen/header" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
