@@ -2,71 +2,81 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="horizontal" >
-
-    <ImageView
-        android:id="@+id/performerimagesm"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:background="@color/white"
-        android:contentDescription="@string/map"
-        android:scaleType="fitXY" />
+    android:background="@color/grey"
+    android:orientation="horizontal"
+    android:baselineAligned="false"
+    android:padding="@dimen/listborder" >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@color/white"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/performerimagesm"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@color/white"
+            android:contentDescription="@string/map"
+            android:scaleType="fitXY" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/artistname"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:paddingLeft="@dimen/bookmark_padding"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <ToggleButton
-                android:id="@+id/addbutton"
-                android:layout_width="30dp"
-                android:layout_height="45dp"
-                android:layout_gravity="right"
-                android:background="@drawable/button_selector"
-                android:focusable="false"
-                android:minHeight="0dp"
-        
-                android:text=""
-                android:textOff=""
-                android:textOn=""
-                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/peformancetime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/bookmark_padding"
+                    android:paddingRight="@dimen/bookmark_padding"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/performancestage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/bookmark_padding"
+                    android:paddingRight="@dimen/bookmark_padding"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/peformancetime"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/performancestage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="1"
-                android:textSize="16sp" />
-        </LinearLayout>
+        <ToggleButton
+            android:id="@+id/addbutton"
+            android:layout_width="30dp"
+            android:layout_height="45dp"
+            android:layout_gravity="right|center_vertical"
+            android:background="@drawable/button_selector"
+            android:focusable="false"
+            android:minHeight="0dp"
+            android:paddingRight="@dimen/bookmark_padding"
+            android:paddingTop="@dimen/bookmark_padding"
+            android:text=""
+            android:textOff=""
+            android:textOn="" />
     </LinearLayout>
 
 </LinearLayout>

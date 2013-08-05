@@ -11,13 +11,14 @@ public class Performance {
 	private String performanceStage;
 	private String performanceDay;
 	private String performanceDescription;
+	private String performanceType;
 	private String performanceImage;
 	private String performanceMedia;
 	private boolean performanceAttending = false;
 	private Bitmap image = null;
 
 	public Performance(int eventID,int performanceID,String performanceArtistName, String performanceTime,String performanceStage,
-			String performanceDay,String performanceDescription,String performanceImage,String performanceMedia) {
+			String performanceDay,String performanceDescription,String performanceType,String performanceImage,String performanceMedia) {
 		this.eventID = eventID;
 		this.performanceID = performanceID;
 		this.performanceArtistName = performanceArtistName;
@@ -25,6 +26,7 @@ public class Performance {
 		this.performanceStage = performanceStage;
 		this.performanceDay = performanceDay;
 		this.performanceDescription = performanceDescription;
+		this.performanceType = performanceType;
 		this.performanceImage = performanceImage;
 		this.performanceMedia = performanceMedia;
 	}
@@ -46,6 +48,9 @@ public class Performance {
 	}
 	public String getPerformanceDescription() {
 		return performanceDescription;
+	}
+	public String getPerformanceType() {
+		return performanceType;
 	}
 	public String getPerformanceImage() {
 		return performanceImage;

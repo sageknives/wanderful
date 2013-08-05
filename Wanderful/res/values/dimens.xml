@@ -9,5 +9,7 @@
     <dimen name="detail_information">16sp</dimen>
     <dimen name="detail_description">12sp</dimen>
     <dimen name="detail_padding">5sp</dimen>
+    <dimen name="listborder">1dp</dimen>
+    <dimen name="bookmark_padding">4dp</dimen>
 
 </resources>

@@ -66,9 +66,10 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
             	}
             	String day = jsonArray.getJSONObject(i).getString("PerformanceDateNumber");
             	String description = jsonArray.getJSONObject(i).getString("PerformerDescription");
+            	String kind = jsonArray.getJSONObject(i).getString("PerformerType");
             	String image = jsonArray.getJSONObject(i).getString("PerformerImage");
             	String media = jsonArray.getJSONObject(i).getString("PerformerMedia");
-				performances.add(new Performance(i,PerformancesKey,name,time,stage,day,description,image,media));
+				performances.add(new Performance(i,PerformancesKey,name,time,stage,day,description,kind,image,media));
         	}
     	} catch (JSONException e) {
 			// TODO Auto-generated catch block

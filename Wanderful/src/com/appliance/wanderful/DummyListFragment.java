@@ -181,6 +181,7 @@ public class DummyListFragment extends ListFragment {
 
 	public void onListItemClick(ListView l, View v, int position, long id) {
 
+		
 		mCallbacks.onItemSelected(performanceList.get(position)
 				.getPerformanceID() + "");
 		// Toast.makeText(getActivity(),performanceList.get(position).getPerformanceID()+"",Toast.LENGTH_LONG).show();

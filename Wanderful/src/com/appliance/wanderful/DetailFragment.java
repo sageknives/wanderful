@@ -60,8 +60,8 @@ public class DetailFragment extends Fragment {
 					.getPerformanceTime());
 			((TextView) v.findViewById(R.id.name)).setText(mItem
 					.getPerformanceArtistName());
-			//((TextView) v.findViewById(R.id.genre)).setText(mItem
-					//.getPerformanceGenre());
+			((TextView) v.findViewById(R.id.genre)).setText(mItem
+					.getPerformanceType());
 			((TextView) v.findViewById(R.id.location)).setText(mItem
 					.getPerformanceStage());
 			((TextView) v.findViewById(R.id.description)).setText(mItem
