@@ -99,7 +99,7 @@ public class JSONGetClient extends AsyncTask<String, Void, JSONArray> {
 	@Override
 	public void onPreExecute() {
 		progressDialog = new ProgressDialog(curContext);
-		progressDialog.setMessage("Loading..Please wait..");
+		progressDialog.setMessage("Loading..");
 		progressDialog.setCancelable(false);
 		progressDialog.setIndeterminate(true);
 		progressDialog.show();

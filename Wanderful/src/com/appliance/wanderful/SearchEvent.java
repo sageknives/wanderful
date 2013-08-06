@@ -25,17 +25,16 @@ public class SearchEvent extends BaseActivity {
 		client.execute(ourl);
 		
 		// gets all buttons and sets them to nav click listeners
-		enterBtn = (Button) findViewById(R.id.enter_btn);
-		enterBtn.setOnClickListener(new enterClickListeners());
+		//enterBtn = (Button) findViewById(R.id.enter_btn);
+		//enterBtn.setOnClickListener(new enterClickListeners());
 	}
 	public class enterClickListeners implements View.OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// Gets the button Id and sends to new activity
 
-			if (enterBtn.getId() == v.getId())
+			//if (enterBtn.getId() == v.getId())
 				//currentEventID = 1;
-				startActivity(new Intent(SearchEvent.this, SearchPage.class));
 		}
 	}
 	@Override
@@ -51,10 +50,8 @@ public class SearchEvent extends BaseActivity {
 				throws JSONException {
 			saveEventInfo(jsonArrayFromNet);
 			List<Event> eventList = GetEventList();
-			for(int i = 0; i< events.size();i++)
-			{
-				Log.d("TAG", "event name: " + eventList.get(i).getEventName());
-			}
+			startActivity(new Intent(SearchEvent.this, SearchPage.class));
+
 			//init();
 		}
 	};

@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -29,8 +30,7 @@ public class SearchPage extends Schedule {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_page);
-		createNav(SearchPage.this,
-				this.findViewById(R.layout.activity_search_page));
+
 
 		view = (ListView) findViewById(R.id.searchlistview);
 		eventList = GetEventList();
@@ -93,6 +93,10 @@ public class SearchPage extends Schedule {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		return super.onCreateOptionsMenu(menu);
+		getMenuInflater().inflate(R.menu.search_event, menu);
+		return true;
 	}
+	    
+	
 }
+

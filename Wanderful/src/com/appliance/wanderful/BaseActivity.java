@@ -74,7 +74,7 @@ public class BaseActivity extends FragmentActivity{
 		public void onClick(View v) {
 			// Gets the button Id and sends to new activity
 			if (homeBtn.getId() == v.getId())
-				startActivity(new Intent(curActivity, SearchEvent.class));
+				startActivity(new Intent(curActivity, SearchPage.class));
 			if (mainScheduleBtn.getId() == v.getId())
 				startActivity(new Intent(curActivity, MainSchedule.class));
 			if (myScheduleBtn.getId() == v.getId())
@@ -162,7 +162,7 @@ public class BaseActivity extends FragmentActivity{
 	            startActivity(new Intent(curActivity, MainSchedule.class).putExtra("sortby", 2));
 	            return true;
 	        case R.id.preferences:
-	            startActivity(new Intent(curActivity, SearchPage.class).putExtra("sortby", 0));
+	            startActivity(new Intent(curActivity, SearchEvent.class).putExtra("sortby", 0));
 	            return true;
 	        default:
 	        	return false;
