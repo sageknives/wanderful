@@ -71,21 +71,38 @@
                     android:paddingLeft="@dimen/detail_padding"
                     android:text="@string/genre"
                     android:textSize="@dimen/detail_information" />
-
             </LinearLayout>
 
-            <ToggleButton
-                android:id="@+id/addbutton"
-                android:layout_width="40dp"
-                android:layout_height="55dp"
-                android:background="@drawable/button_selector"
-                android:focusable="false"
-                android:minHeight="0dp"
-                android:minWidth="0dp"
-                android:text=""
-                android:textOff=""
-                android:textOn="" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/bookmark_padding"
+                android:layout_marginRight="@dimen/bookmark_padding"
+                android:background="@color/white"
+                android:orientation="vertical" >
 
+                <ToggleButton
+                    android:id="@+id/addbutton"
+                    android:layout_width="40dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/button_selector"
+                    android:focusable="false"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:paddingBottom="@dimen/bookmark_padding"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+
+                <ImageButton
+                    android:id="@+id/youtube"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@color/white"
+                    android:contentDescription="@string/title_activity_youtube"
+                    android:paddingTop="@dimen/bookmark_padding"
+                    android:src="@drawable/youtube" />
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
@@ -99,7 +116,6 @@
             android:paddingLeft="@dimen/detail_padding"
             android:text="@string/description"
             android:textSize="@dimen/detail_description" />
-
     </LinearLayout>
 
 </ScrollView>

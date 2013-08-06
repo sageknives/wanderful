@@ -4,6 +4,7 @@ package com.appliance.wanderful;
 import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,6 +70,13 @@ public class DetailFragment extends Fragment {
 					.getPerformanceStage());
 			((TextView) v.findViewById(R.id.description)).setText(mItem
 					.getPerformanceDescription());
+			((ImageButton) v.findViewById(R.id.youtube)).setOnClickListener(new OnClickListener() {
+
+	            @Override
+	            public void onClick(View v) {
+	            	startActivity(new Intent(getActivity(), YoutubeActivity.class));
+	            }
+	        });
 			if(mItem.isPerformanceAttending() == true) 
 				{
 				((ToggleButton) v.findViewById(R.id.addbutton)).setChecked(true);
