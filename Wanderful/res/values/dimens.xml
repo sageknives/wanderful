@@ -11,5 +11,5 @@
     <dimen name="detail_padding">5sp</dimen>
     <dimen name="listborder">1dp</dimen>
     <dimen name="bookmark_padding">4dp</dimen>
-
+<dimen name="settings_padding">16dp</dimen>
 </resources>
