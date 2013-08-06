@@ -6,6 +6,7 @@ import java.util.List;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,7 +28,10 @@ public class SearchAdapter extends ArrayAdapter<Event> implements
 	private scheduleFilter filter;
 	private List<Event> newiTEMS;
 	public List<Event> iTEMS;
-	String logoImgUrl ="http://sagegatzke.com/scout/imagesbig/";
+	String logoImgUrl ="http://sagegatzke.com/scout/imageslogo/";
+	private static final String TAG = "schedule";
+
+	
 	public SearchAdapter(Context context, int resourceId, List<Event> iTEMS) {
 		super(context, resourceId, iTEMS);
 		
@@ -62,7 +66,7 @@ public class SearchAdapter extends ArrayAdapter<Event> implements
 		TextView eventName;
 		TextView eventDate;
 		TextView eventAddress;
-		ImageView eventLogo;
+		ImageView EventImage;
 
 		
 	}
@@ -94,7 +98,7 @@ public class SearchAdapter extends ArrayAdapter<Event> implements
 					.findViewById(R.id.eventDate);
 			viewHolder.eventAddress = (TextView) view
 					.findViewById(R.id.eventAddress);
-			viewHolder.eventLogo=(ImageView)view.findViewById(R.id.eventLogo);
+			viewHolder.EventImage=(ImageView)view.findViewById(R.id.eventLogo);
 		
 
 			// associate the holder with the view for later lookup
@@ -109,10 +113,12 @@ public class SearchAdapter extends ArrayAdapter<Event> implements
 		 viewHolder.eventAddress.setText(rowItem.getLocationAddress());
 		 viewHolder.eventID=rowItem.getEventID();
 		 
-		 if(rowItem.getEventLogo() == null){
-	        	new DownloadImageTask(context,viewHolder.eventLogo,rowItem.getEventID()).execute(logoImgUrl+rowItem.getEventLogo());
+		 if(rowItem.getImage() == null){
+	        	new DownloadImageTask(this.getContext(),viewHolder.EventImage,rowItem.getEventID(),0).execute(logoImgUrl+rowItem.getEventLogo());
+	        	Log.d("Tag", "in get image");
 	        }else{
-	        	viewHolder.eventLogo.setImageBitmap(rowItem.getImage());
+	        	viewHolder.EventImage.setImageBitmap(rowItem.getImage());
+	        	Log.d("Tag", "in got image");
 	        }
 		
 		return view;

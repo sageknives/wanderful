@@ -55,7 +55,7 @@ public class DetailFragment extends Fragment {
 		View v = inflater.inflate(R.layout.detailfragment_layout, container,
 				false);
 		if (mItem != null) {
-			new DownloadImageTask(getActivity(),((ImageView) v.findViewById(R.id.performerimagebig)), mItem.getPerformanceID()).execute(bigImgUrl+mItem.getPerformanceImage());
+			new DownloadImageTask(getActivity(),((ImageView) v.findViewById(R.id.performerimagebig)), mItem.getPerformanceID(),1).execute(bigImgUrl+mItem.getPerformanceImage());
 			getActivity().getActionBar().setTitle(mItem
 					.getPerformanceArtistName());
 			((TextView) v.findViewById(R.id.time)).setText(mItem

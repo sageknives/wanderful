@@ -125,7 +125,7 @@ Filterable {
        // viewHolder.eventID.setText(rowItem.getEventID());
         viewHolder.performanceID=rowItem.getPerformanceID() + "";
         if(rowItem.getImage() == null){
-        	new DownloadImageTask(this.getContext(), viewHolder.performanceImage,rowItem.getPerformanceID()).execute(smallImgUrl+rowItem.getPerformanceImage());
+        	new DownloadImageTask(this.getContext(), viewHolder.performanceImage,rowItem.getPerformanceID(),1).execute(smallImgUrl+rowItem.getPerformanceImage());
         }else{
         	viewHolder.performanceImage.setImageBitmap(rowItem.getImage());
         }

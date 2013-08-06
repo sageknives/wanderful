@@ -10,7 +10,7 @@ public class Event {
 	private String EventLength;
 	private String StartDay;
 	private String EventLastUpdate;
-	private String EventLogo;
+	private String EventImage;
 	private String LocationName;
 	private String LocationAddress;
 	private String LocationCity;
@@ -18,15 +18,16 @@ public class Event {
 	private String LocationZip;
 	private String EventMap;
 	private Bitmap image = null;
+	
 	public Event(int EventID,String EventName, String EventStartDate,String EventLength,String StartDay,
-			String EventLastUpdate,String EventLogo,String locationName,String LocationAddress,String LocationCity,String LocationState,String LocationZip,String EventMap) {
+			String EventLastUpdate,String EventImage,String locationName,String LocationAddress,String LocationCity,String LocationState,String LocationZip,String EventMap) {
 		this.EventID = EventID;
 		this.EventName = EventName;
 		this.EventStartDate = EventStartDate;
 		this.EventLength = EventLength;
 		this.StartDay = StartDay;
 		this.EventLastUpdate = EventLastUpdate;
-		this.EventLogo = EventLogo;
+		this.EventImage = EventImage;
 		this.LocationName = locationName;
 		this.LocationAddress = LocationAddress;
 		this.LocationCity = LocationCity;
@@ -54,7 +55,7 @@ public class Event {
 		return EventLastUpdate;
 	}
 	public String getEventLogo() {
-		return EventLogo;
+		return EventImage;
 	}
 	public String getLocationName() {
 		return LocationName;
@@ -80,7 +81,7 @@ public class Event {
 		return "Event [EventID=" + EventID + ", EventName=" + EventName
 				+ ", EventStartDate=" + EventStartDate + ", EventLength="
 				+ EventLength + ", StartDay=" + StartDay + ", EventLastUpdate="
-				+ EventLastUpdate + ", EventLogo=" + EventLogo
+				+ EventLastUpdate + ", EventImage=" + EventImage
 				+ ", LocationName=" + LocationName + ", LocationAddress="
 				+ LocationAddress + ", LocationCity=" + LocationCity
 				+ ", LocationState=" + LocationState + ", LocationZip="
