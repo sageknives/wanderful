@@ -5,13 +5,15 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14" 
+        android:minSdkVersion="14"
         android:targetSdkVersion="17" />
- 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher" 
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -36,20 +38,20 @@
         </activity>
         <activity
             android:name="com.appliance.wanderful.Map"
-            android:label="@string/title_activity_map" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_map"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.appliance.wanderful.HashFeed"
-            android:label="@string/title_activity_hash_feed" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_hash_feed"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.appliance.wanderful.DetailActivity"
-            android:label="@string/title_activity_detail" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_detail"
+            android:screenOrientation="portrait" >
         </activity>
-         <activity
+        <activity
             android:name="com.appliance.wanderful.SearchPage"
             android:label="@string/title_event_list"
             android:screenOrientation="portrait" >
@@ -62,12 +64,20 @@
         <activity
             android:name="com.appliance.wanderful.EventDetailActivity"
             android:label="@string/title_event_detail"
-            android:parentActivityName=".EventListActivity" 
-            android:screenOrientation="portrait">
+            android:parentActivityName=".EventListActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".EventListActivity"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="portrait"
+                android:value=".EventListActivity" />
+        </activity>
+        <activity
+            android:name="com.appliance.wanderful.YoutubeActivity"
+            android:label="@string/title_activity_youtube" >
+        </activity>
+        <activity
+            android:name="com.appliance.wanderful.SettingsActivity"
+            android:label="@string/title_activity_settings" >
         </activity>
     </application>
 

@@ -161,8 +161,11 @@ public class BaseActivity extends FragmentActivity{
 	        case R.id.sort_search:
 	            startActivity(new Intent(curActivity, MainSchedule.class).putExtra("sortby", 2));
 	            return true;
-	        case R.id.preferences:
+	        case R.id.home:
 	            startActivity(new Intent(curActivity, SearchEvent.class).putExtra("sortby", 0));
+	            return true;
+	        case R.id.settings:
+	            startActivity(new Intent(curActivity, SettingsActivity.class).putExtra("sortby", 0));
 	            return true;
 	        default:
 	        	return false;

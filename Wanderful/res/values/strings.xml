@@ -48,4 +48,8 @@
         <item>Sunday</item>
     </string-array>
 
+    <string name="title_activity_youtube">YoutubeActivity</string>
+
+    <string name="settings">Settings</string>
+
 </resources>

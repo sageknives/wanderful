@@ -9,5 +9,8 @@
             <item android:id="@+id/sort_search" android:title="@string/search"/>
         </menu>
     </item>
-    <item android:id="@+id/preferences" android:title="@string/action_settings" android:icon="@drawable/actionsettings" android:showAsAction="always"></item>
+    <item android:id="@+id/preferences" android:title="@string/action_settings" android:icon="@drawable/actionsettings" android:showAsAction="always"><menu>
+            <item android:id="@+id/home" android:title="@string/home"/>
+            <item android:id="@+id/settings" android:title="@string/settings"/>
+        </menu></item>
 </menu>
