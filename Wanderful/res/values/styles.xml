@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -16,19 +16,19 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-<style name="dividedListStyle" parent="@android:style/Widget.ListView">
-    <item name="android:cacheColorHint">@android:color/transparent</item>
-    <item name="android:divider">@drawable/list_divider</item>
-    <item name="android:dividerHeight">10dp</item>
-</style>
-    
-<style name="AppTheme" parent="AppBaseTheme">
-    <item name="android:actionButtonStyle">@style/MyActionButtonStyle</item>
-</style>
 
+    <style name="dividedListStyle" parent="@android:style/Widget.ListView">
+        <item name="android:divider">@drawable/transparency</item>
+        <item name="android:dividerHeight">10dp</item>
+    </style>
 
-<style name="MyActionButtonStyle" parent="AppBaseTheme">
-    <item name="android:minWidth">20dip</item>
-    <item name="android:padding">2dip</item>
-</style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:actionButtonStyle">@style/MyActionButtonStyle</item>
+    </style>
+
+    <style name="MyActionButtonStyle" parent="AppBaseTheme">
+        <item name="android:minWidth">20dip</item>
+        <item name="android:padding">2dip</item>
+    </style>
+
 </resources>

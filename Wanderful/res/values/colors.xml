@@ -5,5 +5,6 @@
     <color name="white">#FFFFFF</color>
     <color name="grey">#C0C0C0</color>
     <color name="red">#FF0000</color>
+    <color name="transparent">#FF000000</color>
 
-</resources> 
+</resources>
