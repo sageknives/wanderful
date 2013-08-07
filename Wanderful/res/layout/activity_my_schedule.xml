@@ -6,6 +6,21 @@
     android:orientation="vertical"
     tools:context=".MySchedule" >
 
+    <LinearLayout
+        android:id="@+id/no_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="invisible" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Nothing Bookmarked Yet..." />
+
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"

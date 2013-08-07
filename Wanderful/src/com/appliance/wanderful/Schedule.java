@@ -19,6 +19,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.TextView;
 
 
 public class Schedule extends BaseActivity implements TabListener, DummyListFragment.ListFragmentItemClickListener{
@@ -33,6 +34,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 	private boolean mTwoPane;
 	private static final String TAG = "schedule";
 	static boolean search =false;
+	boolean emptylist = false;
 	
 	public void savePerformancesInfo(JSONArray jsonArray,int eventID)
 	{
@@ -127,6 +129,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
             	performanceList.add(performances.get(i));
 			}
 		}
+		if(performanceList.size() == 0) emptylist = true;
 		return performanceList;
 	}
 	

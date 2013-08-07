@@ -3,6 +3,10 @@ package com.appliance.wanderful;
 import android.app.ActionBar.TabListener;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 
@@ -12,6 +16,7 @@ public class MySchedule extends Schedule implements TabListener, DummyListFragme
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my_schedule);
 		checkCacheRedirect(this);
+		getActionBar().setTitle("BookMarks");
 
 		createNav(MySchedule.this,
 				this.findViewById(R.layout.activity_my_schedule));
@@ -19,15 +24,11 @@ public class MySchedule extends Schedule implements TabListener, DummyListFragme
 		// checks to see if base activity has a list of performances and if it
 		// is the performances for this event.
 		sortBy = 3;
-		if (performances.size() == 0) {
-			requestPerformanceInfo(currentEventID);
-		} else if (performances.get(1).getEventID() != currentEventID) {
-			currentMapImage = null;
-			requestPerformanceInfo(currentEventID);
-		} else {
-			init();
+		init();
+		if(emptylist)
+		{
+			((LinearLayout)findViewById(R.id.no_result)).setVisibility(0);
 		}
-
 	}
 
 	@Override

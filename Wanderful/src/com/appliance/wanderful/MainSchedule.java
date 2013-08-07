@@ -15,6 +15,8 @@ public class MainSchedule extends Schedule{
 		checkCacheRedirect(this);
 		createNav(MainSchedule.this,
 				this.findViewById(R.layout.activity_main_schedule));
+		getActionBar().setTitle(events.get(currentEventID-1).getEventName());
+
 		sortBy = getIntent().getIntExtra("sortby", 0);
 		sortBy = getIntent().getIntExtra("sortby", 0);
 		//int EventID= getIntent().getExtras() .getInt("eventId");
