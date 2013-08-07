@@ -67,7 +67,8 @@ Filterable {
     	 
     	// DummyItem rowItem= (DummyItem)getItem(position);
     	  final Performance rowItem= (iTEMS).get(position);
-    	 
+			Log.d("MyTag", position + ": in get view list adapter");
+
     	 LayoutInflater inflater = 
     		     (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	 
@@ -125,6 +126,8 @@ Filterable {
        // viewHolder.eventID.setText(rowItem.getEventID());
         viewHolder.performanceID=rowItem.getPerformanceID() + "";
         if(rowItem.getImage() == null){
+			Log.d("MyTag", position + ": in get image");
+
         	new DownloadImageTask(this.getContext(), viewHolder.performanceImage,rowItem.getPerformanceID(),1).execute(smallImgUrl+rowItem.getPerformanceImage());
         }else{
         	viewHolder.performanceImage.setImageBitmap(rowItem.getImage());

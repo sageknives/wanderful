@@ -95,6 +95,8 @@ public class BaseActivity extends FragmentActivity{
 	
 	public void saveEventInfo(JSONArray jsonArray)
 	{
+		events = null;
+        events = new ArrayList<Event>();
 			try 
         	{
 	        	for (int i = 0; i < jsonArray.length(); i++) 

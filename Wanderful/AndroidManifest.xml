@@ -73,11 +73,13 @@
         </activity>
         <activity
             android:name="com.appliance.wanderful.YoutubeActivity"
-            android:label="@string/title_activity_youtube" >
+            android:label="@string/title_activity_youtube"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.appliance.wanderful.SettingsActivity"
-            android:label="@string/title_activity_settings" >
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

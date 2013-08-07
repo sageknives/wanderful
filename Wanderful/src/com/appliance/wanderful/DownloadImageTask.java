@@ -14,13 +14,13 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
     ImageView myImage;
     //ProgressDialog progressDialog;
     Context currentContext;
-    int locationID;
+    int ID;
     int page;
     
-    public DownloadImageTask(Context context, ImageView bmImage, int locationID,int page) {
+    public DownloadImageTask(Context context, ImageView bmImage, int ID,int page) {
     	this.myImage = bmImage;
     	this.currentContext = context;
-    	this.locationID = locationID;
+    	this.ID = ID;
     	this.page = page;
     }
 
@@ -47,9 +47,9 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
 	}
     protected void onPostExecute(Bitmap result) {
     	if(page == 1){
-        	Schedule.performances.get(locationID -1).setImage(result);
+        	Schedule.performances.get(ID -1).setImage(result);
     	}else{
-    		BaseActivity.events.get(locationID-1).setImage(result);
+    		BaseActivity.events.get(ID-1).setImage(result);
     	}
 
     	myImage.setImageBitmap(result);

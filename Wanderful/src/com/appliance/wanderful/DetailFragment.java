@@ -74,7 +74,7 @@ public class DetailFragment extends Fragment {
 
 	            @Override
 	            public void onClick(View v) {
-	            	startActivity(new Intent(getActivity(), YoutubeActivity.class));
+	            	startActivity(new Intent(getActivity(), YoutubeActivity.class).putExtra("link", mItem.getPerformanceMedia()));
 	            }
 	        });
 			if(mItem.isPerformanceAttending() == true) 

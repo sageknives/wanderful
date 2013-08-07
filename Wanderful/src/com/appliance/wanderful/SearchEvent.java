@@ -49,7 +49,6 @@ public class SearchEvent extends BaseActivity {
 		public void onRemoteCallComplete(JSONArray jsonArrayFromNet)
 				throws JSONException {
 			saveEventInfo(jsonArrayFromNet);
-			List<Event> eventList = GetEventList();
 			startActivity(new Intent(SearchEvent.this, SearchPage.class));
 
 			//init();

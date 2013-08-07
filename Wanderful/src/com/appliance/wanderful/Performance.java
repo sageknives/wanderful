@@ -6,6 +6,7 @@ public class Performance {
 
 	private int eventID;
 	private int performanceID;
+	private int performanceKey;
 	private String performanceArtistName;
 	private String performanceTime;
 	private String performanceStage;
@@ -17,10 +18,11 @@ public class Performance {
 	private boolean performanceAttending = false;
 	private Bitmap image = null;
 
-	public Performance(int eventID,int performanceID,String performanceArtistName, String performanceTime,String performanceStage,
+	public Performance(int eventID,int performanceID,int performanceKey,String performanceArtistName, String performanceTime,String performanceStage,
 			String performanceDay,String performanceDescription,String performanceType,String performanceImage,String performanceMedia) {
 		this.eventID = eventID;
 		this.performanceID = performanceID;
+		this.performanceKey = performanceKey;
 		this.performanceArtistName = performanceArtistName;
 		this.performanceTime = performanceTime;
 		this.performanceStage = performanceStage;
@@ -33,6 +35,9 @@ public class Performance {
 
 	public int getPerformanceID() {
 		return performanceID;
+	}
+	public int getPerformanceKey() {
+		return performanceKey;
 	}
 	public String getPerformanceArtistName() {
 		return performanceArtistName;

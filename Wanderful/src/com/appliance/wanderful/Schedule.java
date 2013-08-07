@@ -55,7 +55,8 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
             	String stage = jsonArray.getJSONObject(i).getString("StageName");
             	//adds stages to string array for tab labeling.
             	if(stageNames.size() == 0) stageNames.add(stage);
-            	
+				Log.d("MyTag", i + ": in save performance artist name: ");
+
             	for(int j = 0; j < stageNames.size();j++)
             	{
             		if(stageNames.get(j).toString().equals(stage))break;
@@ -69,7 +70,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
             	String kind = jsonArray.getJSONObject(i).getString("PerformerType");
             	String image = jsonArray.getJSONObject(i).getString("PerformerImage");
             	String media = jsonArray.getJSONObject(i).getString("PerformerMedia");
-				performances.add(new Performance(i,PerformancesKey,name,time,stage,day,description,kind,image,media));
+				performances.add(new Performance(eventID,i+1,PerformancesKey,name,time,stage,day,description,kind,image,media));
         	}
     	} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -84,6 +85,8 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		List<Performance> performanceList = new ArrayList<Performance>();
 		for(int i = 0;i < performances.size();i++)
 		{
+			Log.d("MyTag", i + ": in FilteredPerformancesByDay");
+
 			if(performances.get(i).getPerformanceDay().equals((tabNum+1) + ""))
 			{
             	performanceList.add(performances.get(i));
@@ -97,6 +100,8 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		List<Performance> performanceList = new ArrayList<Performance>();
 		for(int i = 0;i < performances.size();i++)
 		{
+			Log.d("MyTag", i + ": in FilteredPerformancesByStage");
+
 			if(performances.get(i).getPerformanceStage().equals(stageNames.get(tabNum).toString()))
 			{
             	performanceList.add(performances.get(i));
@@ -115,6 +120,8 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		List<Performance> performanceList = new ArrayList<Performance>();
 		for(int i = 0;i < performances.size();i++)
 		{
+			Log.d("MyTag", i + ": in FilteredPerformancesByAttending");
+
 			if(performances.get(i).isPerformanceAttending() == true)
 			{
             	performanceList.add(performances.get(i));
@@ -132,6 +139,8 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 			Log.d("MyTag", "savedschedule" + savedSchedule.get(i).getPerformanceId());
 			for(int j = 0;j < performances.size();j++)
 			{
+				Log.d("MyTag", i + ": in updateSchedule");
+
 				if(performances.get(j).getPerformanceID() == Integer.parseInt(savedSchedule.get(i).getPerformanceId()))
 				{
 					Log.d("MyTag", "in update schedule" + performances.get(j).getPerformanceID());
@@ -161,7 +170,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 				Log.d("Tag", i + ": " + String.valueOf(search) + " add. stage");
 				tabs.add(new DummyListFragment(FilteredPerformancesByStage(i),false));
 				title = stageNames.get(i).toString();
-				//Log.d("Tag", i + ": " + stageNames.get(i).toString() + " add.");
+				Log.d("Tag", i + ": " + stageNames.get(i).toString() + " add.");
 				titles.add(i, title);
 			}
 		}else if(sortBy == 2)
@@ -308,8 +317,12 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 			ArrayList<ScheduleItem> savedSchedule = db.getPerformances();
 			Log.d("MyTag", "get performance from db" + savedSchedule.toString());
 			updateSchedule(savedSchedule);
+			Log.d("MyTag", "i have updated the schedule" + savedSchedule.toString());
+
 			db.close();
 			init();
+			Log.d("MyTag", "i have made it throught init" + savedSchedule.toString());
+
 		}
 	};
 	@Override
