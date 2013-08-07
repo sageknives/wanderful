@@ -36,6 +36,8 @@
     <string name="author">Author</string>
     <string name="authors">Gang of Four</string>
     <string name="savedEvents">Saved Events</string>
+    <string name="festival">Festival Name</string>
+    <string name="numofperformances"># of Saved Performances</string>
 
     <string-array name="time">
         <item>9:00</item>

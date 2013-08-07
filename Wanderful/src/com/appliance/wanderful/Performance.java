@@ -23,7 +23,7 @@ public class Performance {
 			String performanceDay,String performanceDescription,String performanceType,String performanceImage,String performanceMedia) {
 		this.eventID = eventID;
 		this.performanceID = performanceID;
-		this.eventName = eventName;
+		this.setEventName(eventName);
 		this.performanceKey = performanceKey;
 		this.performanceArtistName = performanceArtistName;
 		this.performanceTime = performanceTime;
@@ -96,6 +96,14 @@ public class Performance {
 				+ ", performanceImage=" + performanceImage
 				+ ", performanceMedia=" + performanceMedia
 				+ ", performanceAttending=" + performanceAttending + "]";
+	}
+
+	public String getEventName() {
+		return eventName;
+	}
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
 	}
 
 

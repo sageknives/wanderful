@@ -23,7 +23,7 @@ public class SearchPage extends Schedule {
 	EditText filterText;
 	
 	ListView view;
-	private List<Event> eventList = new ArrayList<Event>();;
+	private List<Event> eventList = new ArrayList<Event>();
 	private static final String TAG = "schedule";
 
 	@Override

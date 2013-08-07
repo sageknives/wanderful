@@ -10,12 +10,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 public class DBHelper extends SQLiteOpenHelper {
 	// Contacts Table Columns names
 	public static final String KEY_ROWID = "id";
 	//public static final String KEY_SHOWTIME = "time";
-	//public static final String KEY_SHOWNAME = "name";
+	public static final String KEY_EVENTNAME = "eventname";
 	//public static final String KEY_SHOWSTAGE = "stage";
 	public static final String KEY_EVENTID = "eventId";
 	public static final String KEY_SHOWID = "performanceId";
@@ -39,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		 String CREATE_CONTACTS_TABLE = "CREATE TABLE " + DATABASE_TABLE + "("
-	                + KEY_ROWID + " INTEGER PRIMARY KEY,"+ KEY_SHOWID + " TEXT,"+ KEY_EVENTID + " TEXT"+")";
+	                + KEY_ROWID + " INTEGER PRIMARY KEY,"+ KEY_SHOWID + " TEXT,"+ KEY_EVENTID + " TEXT,"+KEY_EVENTNAME+" TEXT"+")";
 	        db.execSQL(CREATE_CONTACTS_TABLE);
 	}
 
@@ -58,7 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		
 		initialValues.put(KEY_SHOWID, scheduleItem.getPerformanceKey());
 		initialValues.put(KEY_EVENTID, scheduleItem.getEventId());
-		
+		initialValues.put(KEY_EVENTNAME, scheduleItem.getEventName());
 		//initialValues.put(KEY_SHOWID, dummyItem.getId());
 		 // Inserting Row
       
@@ -72,7 +73,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 	
  
-    // Deleting single event
+    // Deleting single performance
     public void deleteEventt(ScheduleItem scheduleItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DATABASE_TABLE, KEY_SHOWID + " = ?",
@@ -120,7 +121,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		    // looping through all rows and adding to list
 		    if (cursor.moveToFirst()) {
 		        do {
-		        	ScheduleItem results = new ScheduleItem(null,cursor.getString(1),null);
+		        	ScheduleItem results = new ScheduleItem(null,cursor.getString(1),null,null);
 					Log.d("MyTag",  cursor.getString(1) + " returned performance from event ");	
 
 		            // Adding to list
@@ -132,4 +133,40 @@ public class DBHelper extends SQLiteOpenHelper {
 			Log.d(TAG, showinfo.toString());	
 			return showinfo;
 	  }
+	  
+	  public ArrayList<SavedEvents> getSavedEvents()
+	  {
+		  ArrayList<SavedEvents> savedInfo = new ArrayList<SavedEvents>();
+		  
+		  String selectQuery = "SELECT COUNT("+KEY_ROWID +"),("+KEY_EVENTNAME+"),("+KEY_EVENTID+")"+ " FROM " + DATABASE_TABLE + " group by "+KEY_EVENTID;
+		  
+		  SQLiteDatabase db = this.getWritableDatabase();
+		    
+		    Cursor cursor = db.rawQuery(selectQuery, null);
+		 
+		    // looping through all rows and adding to list
+		    if (cursor.moveToFirst()) {
+		        do {
+		        	SavedEvents results = new SavedEvents(cursor.getInt(0),cursor.getString(1),cursor.getString(2));
+		        	
+					Log.d("MyTag",cursor.getInt(0) + " returned events from event ");	
+
+		            // Adding to list
+					savedInfo.add(results);
+		        } while (cursor.moveToNext());
+		    }
+		 
+		    // return  list
+			Log.d(TAG, savedInfo.toString());	
+		return savedInfo;
+		  
+	  }
+	  //delete all performances per Event
+	  public void deleteEvent(String eventId) {
+		  SQLiteDatabase db = this.getWritableDatabase();
+	        db.delete(DATABASE_TABLE, KEY_EVENTID + " = ?",
+	                new String[] { eventId});
+	        db.close();
+
+	    }
 }

@@ -110,12 +110,12 @@ Filterable {
             	{
             		
                 	Toast.makeText(context,rowItem.getPerformanceArtistName()+" has been deleted from your bookmarks!", Toast.LENGTH_SHORT).show();
-            		db.deleteEventt(new ScheduleItem(rowItem.getEventID()+ "",rowItem.getPerformanceKey() + "",rowItem.getPerformanceID() + ""));
+            		db.deleteEventt(new ScheduleItem(rowItem.getEventID()+ "",rowItem.getPerformanceKey() + "",rowItem.getPerformanceID() + "",rowItem.getEventName() + ""));
             		Schedule.performances.get(rowItem.getPerformanceID()-1).setPerformanceAttending(false);
                 	
             	}else{
                 	Toast.makeText(context,rowItem.getPerformanceArtistName()+" has been added to your bookmarks!", Toast.LENGTH_SHORT).show();
-            id = db.insertShow(new ScheduleItem(rowItem.getEventID()+ "",rowItem.getPerformanceKey() + "",rowItem.getPerformanceID() + ""));
+            id = db.insertShow(new ScheduleItem(rowItem.getEventID()+ "",rowItem.getPerformanceKey() + "",rowItem.getPerformanceID() + "",rowItem.getEventName() + ""));
             Log.d("MyTag", rowItem.getPerformanceID() + "test");
             db.close();
             	}  

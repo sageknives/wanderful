@@ -5,10 +5,6 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry exported="true" kind="lib" path="/Users/sagegatzke/Downloads/YouTubeAndroidPlayerApi-1.0.0/sample/libs/YouTubeAndroidPlayerApi.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/Users/sagegatzke/Downloads/YouTubeAndroidPlayerApi-1.0.0/sample/libs/../../docs/reference/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Ramon/Downloads/libs/YouTubeAndroidPlayerApi.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
