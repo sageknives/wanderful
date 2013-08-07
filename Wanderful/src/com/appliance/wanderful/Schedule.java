@@ -72,7 +72,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
             	String kind = jsonArray.getJSONObject(i).getString("PerformerType");
             	String image = jsonArray.getJSONObject(i).getString("PerformerImage");
             	String media = jsonArray.getJSONObject(i).getString("PerformerMedia");
-				performances.add(new Performance(eventID,i+1,PerformancesKey,name,time,stage,day,description,kind,image,media));
+				performances.add(new Performance(eventID,events.get(currentEventID-1).getEventName(),i+1,PerformancesKey,name,time,stage,day,description,kind,image,media));
         	}
     	} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -144,7 +144,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 			{
 				Log.d("MyTag", i + ": in updateSchedule");
 
-				if(performances.get(j).getPerformanceID() == Integer.parseInt(savedSchedule.get(i).getPerformanceId()))
+				if(performances.get(j).getPerformanceKey() == Integer.parseInt(savedSchedule.get(i).getPerformanceKey()))
 				{
 					Log.d("MyTag", "in update schedule" + performances.get(j).getPerformanceID());
 					performances.get(j).setPerformanceAttending(true);
@@ -317,7 +317,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 
 			//rests the baseactivity attendence on redownload.
 			DBHelper db = new DBHelper(Schedule.this);
-			ArrayList<ScheduleItem> savedSchedule = db.getPerformances();
+			ArrayList<ScheduleItem> savedSchedule = db.getPerformances(currentEventID-1);
 			Log.d("MyTag", "get performance from db" + savedSchedule.toString());
 			updateSchedule(savedSchedule);
 			Log.d("MyTag", "i have updated the schedule" + savedSchedule.toString());

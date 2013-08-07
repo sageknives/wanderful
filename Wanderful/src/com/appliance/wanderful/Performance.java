@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 public class Performance {
 
 	private int eventID;
+	private String eventName;
 	private int performanceID;
 	private int performanceKey;
 	private String performanceArtistName;
@@ -18,10 +19,11 @@ public class Performance {
 	private boolean performanceAttending = false;
 	private Bitmap image = null;
 
-	public Performance(int eventID,int performanceID,int performanceKey,String performanceArtistName, String performanceTime,String performanceStage,
+	public Performance(int eventID,String eventName, int performanceID,int performanceKey,String performanceArtistName, String performanceTime,String performanceStage,
 			String performanceDay,String performanceDescription,String performanceType,String performanceImage,String performanceMedia) {
 		this.eventID = eventID;
 		this.performanceID = performanceID;
+		this.eventName = eventName;
 		this.performanceKey = performanceKey;
 		this.performanceArtistName = performanceArtistName;
 		this.performanceTime = performanceTime;

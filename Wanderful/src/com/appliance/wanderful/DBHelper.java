@@ -17,6 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	//public static final String KEY_SHOWTIME = "time";
 	//public static final String KEY_SHOWNAME = "name";
 	//public static final String KEY_SHOWSTAGE = "stage";
+	public static final String KEY_EVENTID = "eventId";
 	public static final String KEY_SHOWID = "performanceId";
 	private static final String TAG = "DBAdapter";
 	 // Database Name
@@ -38,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		 String CREATE_CONTACTS_TABLE = "CREATE TABLE " + DATABASE_TABLE + "("
-	                + KEY_ROWID + " INTEGER PRIMARY KEY,"+ KEY_SHOWID + " TEXT"+")";
+	                + KEY_ROWID + " INTEGER PRIMARY KEY,"+ KEY_SHOWID + " TEXT,"+ KEY_EVENTID + " TEXT"+")";
 	        db.execSQL(CREATE_CONTACTS_TABLE);
 	}
 
@@ -54,8 +55,9 @@ public class DBHelper extends SQLiteOpenHelper {
 		
 		//initialValues.put(KEY_SHOWNAME, scheduleItem.getContent());
 		//initialValues.put(KEY_SHOWSTAGE, scheduleItem.getStage());
-		//initialValues.put(KEY_SHOWTIME, scheduleItem.getTime());
-		initialValues.put(KEY_SHOWID, scheduleItem.getPerformanceId());
+		
+		initialValues.put(KEY_SHOWID, scheduleItem.getPerformanceKey());
+		initialValues.put(KEY_EVENTID, scheduleItem.getEventId());
 		
 		//initialValues.put(KEY_SHOWID, dummyItem.getId());
 		 // Inserting Row
@@ -74,7 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void deleteEventt(ScheduleItem scheduleItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DATABASE_TABLE, KEY_SHOWID + " = ?",
-                new String[] { String.valueOf(scheduleItem.performanceID) });
+                new String[] { String.valueOf(scheduleItem.performanceKey) });
         db.close();
         Schedule.performances.get(Integer.parseInt(scheduleItem.getPerformanceId())-1).setPerformanceAttending(false);
 
@@ -104,12 +106,13 @@ public class DBHelper extends SQLiteOpenHelper {
 			Log.d("MyTag", showinfo.toString() + "test");	
 			return showinfo;
 	  }*/
-	  public  ArrayList<ScheduleItem> getPerformances() {
+	  public  ArrayList<ScheduleItem> getPerformances(int thisEvent) {
 		  
 		  ArrayList<ScheduleItem> showinfo = new ArrayList<ScheduleItem>();
-		  
+			Log.d("MyTag", "attempting to get saved bookmarks for event " + thisEvent);	
+
 		 
-		    String selectQuery = "SELECT  * FROM " + DATABASE_TABLE;
+		    String selectQuery = "SELECT " + KEY_SHOWID +" FROM " + DATABASE_TABLE + " where " + KEY_EVENTID + "=" + thisEvent;
 		    SQLiteDatabase db = this.getWritableDatabase();
 		    
 		    Cursor cursor = db.rawQuery(selectQuery, null);
@@ -117,8 +120,9 @@ public class DBHelper extends SQLiteOpenHelper {
 		    // looping through all rows and adding to list
 		    if (cursor.moveToFirst()) {
 		        do {
-		        	ScheduleItem results = new ScheduleItem(cursor.getString(1));
-		        
+		        	ScheduleItem results = new ScheduleItem(null,cursor.getString(1),null);
+					Log.d("MyTag",  cursor.getString(1) + " returned performance from event ");	
+
 		            // Adding to list
 		        	showinfo.add(results);
 		        } while (cursor.moveToNext());

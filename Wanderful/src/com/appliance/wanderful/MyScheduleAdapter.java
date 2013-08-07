@@ -63,7 +63,7 @@ public class MyScheduleAdapter extends ArrayAdapter<ScheduleItem> {
             public void onClick(View v) {
             	Toast.makeText(context,rowItem.getContent()+rowItem.getTime()+rowItem.getStage()+rowItem.getPerformanceId(), Toast.LENGTH_SHORT).show();
             	DBHelper db = new DBHelper(context);
-            	db.deleteEventt(new ScheduleItem(rowItem.getPerformanceId()));
+            	db.deleteEventt(new ScheduleItem(rowItem.getEventId()+ "",rowItem.getPerformanceKey() + "",rowItem.getPerformanceId()));
             	Schedule.performances.get(Integer.parseInt(rowItem.getPerformanceId())).setPerformanceAttending(false);
             }
         });

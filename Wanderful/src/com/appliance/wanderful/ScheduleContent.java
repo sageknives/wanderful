@@ -24,7 +24,7 @@ public class ScheduleContent extends Schedule {
 
 	static {
 		for (int i = 0; i < performances.size(); i++) {
-			addItem(new ScheduleItem( performances.get(i).getPerformanceID() + ""));
+			addItem(new ScheduleItem(currentEventID-1+ "", performances.get(i).getPerformanceKey() + "", performances.get(i).getPerformanceID() + ""));
 					
 			System.out.println("in dummy: "
 					+ performances.get(i).getPerformanceArtistName()
@@ -46,14 +46,17 @@ public class ScheduleContent extends Schedule {
 	 */
 	public static class ScheduleItem {
 		public String id;
+		public String performanceKey;
+		public String eventID;
 		public String performanceID;
 		public String stage;
 
 		public String content;
 		public String time;
 
-		public ScheduleItem( String performanceID) {
-			//this.id = id;
+		public ScheduleItem( String eventID,String performanceKey,String performanceID) {
+			this.eventID = eventID;
+			this.performanceKey = performanceKey;
 			this.performanceID = performanceID;
 			//this.content = content;
 			//this.time = time;
@@ -69,10 +72,15 @@ public class ScheduleContent extends Schedule {
 			return content;
 		}
 
+		public String getPerformanceKey() {
+			return performanceKey;
+		}
+		public String getEventId() {
+			return eventID;
+		}
 		public String getPerformanceId() {
 			return performanceID;
 		}
-
 		public void setPerformanceId(String performanceID) {
 			this.performanceID = performanceID;
 		}

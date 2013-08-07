@@ -94,11 +94,11 @@ public class DetailFragment extends Fragment {
 	            	if(mItem.isPerformanceAttending() == true)
 	            	{
 	                	Toast.makeText(getActivity(),mItem.getPerformanceArtistName()+" has been deleted from your bookmarks!", Toast.LENGTH_SHORT).show();
-	            		db.deleteEventt(new ScheduleItem(mItem.getPerformanceID() + ""));
+	            		db.deleteEventt(new ScheduleItem(mItem.getEventID()+ "",mItem.getPerformanceKey() + "",mItem.getPerformanceID() + ""));
 	                	
 	            	}else{
 	                	Toast.makeText(getActivity(),mItem.getPerformanceArtistName()+" has been added to your bookmarks!", Toast.LENGTH_SHORT).show();
-	            long id = db.insertShow(new ScheduleItem(mItem.getPerformanceID() + ""));
+	            long id = db.insertShow(new ScheduleItem(mItem.getEventID()+ "",mItem.getPerformanceKey() + "",mItem.getPerformanceID() + ""));
 	            //Log.d("MyTag", mItem.getPerformanceID() + "test");
 	            db.close();
 	            	}  
