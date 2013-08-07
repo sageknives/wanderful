@@ -11,6 +11,8 @@ public class MySchedule extends Schedule implements TabListener, DummyListFragme
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my_schedule);
+		checkCacheRedirect(this);
+
 		createNav(MySchedule.this,
 				this.findViewById(R.layout.activity_my_schedule));
 

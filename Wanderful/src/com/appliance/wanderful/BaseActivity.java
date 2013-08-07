@@ -132,12 +132,14 @@ public class BaseActivity extends FragmentActivity{
 	
 	public void checkCacheRedirect(Activity pastActivity)
 	{
-		Log.d("TAG","should I redirect?");
-		if(events == null)
+		//Log.d("TAG","should I redirect?" + events.size());
+		if(events.size() == 0)
 		{
-			Log.d("TAG","Redirecting");
+			//Log.d("TAG","Redirecting");
 			startActivity(new Intent(pastActivity, SearchEvent.class));
+			//return false;
 		}
+		//return true;
 	}
 	
 

@@ -12,6 +12,7 @@ public class MainSchedule extends Schedule{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_schedule);
+		checkCacheRedirect(this);
 		createNav(MainSchedule.this,
 				this.findViewById(R.layout.activity_main_schedule));
 		sortBy = getIntent().getIntExtra("sortby", 0);

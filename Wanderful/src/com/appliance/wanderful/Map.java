@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Map extends BaseActivity {
 
@@ -18,6 +19,8 @@ public class Map extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
+		checkCacheRedirect(this);
+		
 		if(currentMapImage == null)
 		{
 			new DownloadMapImageTask(this, (ScaleImageView) findViewById(R.id.map_image))
@@ -27,6 +30,7 @@ public class Map extends BaseActivity {
 		}
 		// gets all buttons and sets them to nav click listeners
 		createNav(Map.this,this.findViewById(R.layout.activity_hash_feed));
+		
 	}
 
 	public void displayMap()

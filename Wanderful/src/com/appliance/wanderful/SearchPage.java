@@ -31,7 +31,7 @@ public class SearchPage extends Schedule {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_page);
 		curActivity = this;
-
+		checkCacheRedirect(this);
 		view = (ListView) findViewById(R.id.searchlistview);
 		eventList = GetEventList();
 		final SearchAdapter adapter = new SearchAdapter(this, R.layout.activity_list_row, eventList);
@@ -78,6 +78,7 @@ public class SearchPage extends Schedule {
 
 				// get eventId from adapter and set the currentEventId in
 				// baseActivity
+				performances.clear();
 				currentEventID = eventList.get(position).getEventID();
 				// Start an Intent to MainSchedule
 				Intent intent = new Intent(SearchPage.this, MainSchedule.class);

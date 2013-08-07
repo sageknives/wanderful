@@ -19,6 +19,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_youtube);
+
 		VIDEO = getIntent().getStringExtra("link");
 		getActionBar().hide();
 		YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
