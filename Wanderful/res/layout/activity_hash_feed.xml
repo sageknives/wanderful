@@ -38,12 +38,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/detail_padding"
+        android:paddingTop="@dimen/zero" >
 
         <ImageButton
             android:id="@+id/home_btn"
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/black"
             android:src="@drawable/home"
@@ -89,10 +91,14 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:adjustViewBounds="false"
             android:background="@color/black"
+            android:cropToPadding="false"
+            android:padding="@dimen/zero"
             android:src="@drawable/map"
             android:text="@string/map"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />
+
     </LinearLayout>
 </LinearLayout>

@@ -12,4 +12,5 @@
     <dimen name="listborder">1dp</dimen>
     <dimen name="bookmark_padding">4dp</dimen>
 <dimen name="settings_padding">16dp</dimen>
+    <dimen name="zero">0dip</dimen>
 </resources>
