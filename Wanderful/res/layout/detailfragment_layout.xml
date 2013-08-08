@@ -29,11 +29,13 @@
             android:layout_marginLeft="@dimen/bookmark_padding"
             android:layout_marginRight="@dimen/bookmark_padding"
             android:background="@color/white"
+            android:baselineAligned="false"
             android:orientation="horizontal" >
 
             <LinearLayout
-                android:layout_width="266dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical" >
 
                 <TextView
@@ -49,7 +51,6 @@
                     android:id="@+id/time"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:paddingLeft="@dimen/detail_padding"
                     android:text="@string/time"
                     android:textSize="@dimen/detail_information" />
@@ -58,7 +59,6 @@
                     android:id="@+id/location"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:paddingLeft="@dimen/detail_padding"
                     android:text="@string/location"
                     android:textSize="@dimen/detail_information" />
@@ -74,10 +74,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:layout_marginLeft="@dimen/bookmark_padding"
                 android:layout_marginRight="@dimen/bookmark_padding"
+                android:layout_weight="1"
                 android:background="@color/white"
                 android:orientation="vertical" >
 
@@ -85,11 +87,12 @@
                     android:id="@+id/addbutton"
                     android:layout_width="40dp"
                     android:layout_height="55dp"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="@dimen/settings_padding"
                     android:background="@drawable/button_selector"
                     android:focusable="false"
                     android:minHeight="0dp"
                     android:minWidth="0dp"
-                    android:paddingBottom="@dimen/bookmark_padding"
                     android:text=""
                     android:textOff=""
                     android:textOn="" />
@@ -98,10 +101,11 @@
                     android:id="@+id/youtube"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_gravity="right"
                     android:background="@color/white"
                     android:contentDescription="@string/title_activity_youtube"
-                    android:paddingTop="@dimen/bookmark_padding"
                     android:src="@drawable/youtube" />
+
             </LinearLayout>
         </LinearLayout>
 

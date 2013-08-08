@@ -1,11 +1,15 @@
 package com.appliance.wanderful;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -23,6 +27,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
+@SuppressLint("SimpleDateFormat")
 public class ListAdapter extends ArrayAdapter<Performance> implements
 Filterable {
    String smallImgUrl ="http://sagegatzke.com/scout/imagesbig/";
@@ -62,7 +67,8 @@ Filterable {
     /**
      * Populate new items in the list.
      */
-    @Override 
+    @SuppressLint("SimpleDateFormat")
+	@Override 
     public View getView(int position, View view, ViewGroup parent) {
     	 
     	 ViewHolder viewHolder = null;// to reference the child views for later actions
@@ -128,8 +134,16 @@ Filterable {
             	}  
             }
         });
-
-        viewHolder.performanceTime.setText(rowItem.getPerformanceTime());
+        String originalString = rowItem.getPerformanceTime();
+        Date date = null;
+		try {
+			date = new SimpleDateFormat("HH:mm:ss").parse(originalString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        String Time = new SimpleDateFormat("H:mm \na").format(date);
+        viewHolder.performanceTime.setText(Time);
         viewHolder.performanceStage.setText(rowItem.getPerformanceStage());
        // viewHolder.eventID.setText(rowItem.getEventID());
         viewHolder.performanceID=rowItem.getPerformanceID() + "";

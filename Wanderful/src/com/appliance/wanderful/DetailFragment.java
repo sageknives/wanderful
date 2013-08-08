@@ -1,8 +1,13 @@
 package com.appliance.wanderful;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+@SuppressLint("SimpleDateFormat")
 public class DetailFragment extends Fragment {
 	public static final String ARG_ITEM_ID = "item_id";
 	String bigImgUrl ="http://sagegatzke.com/scout/imagesbig/";
@@ -53,6 +59,7 @@ public class DetailFragment extends Fragment {
 
 	}
 
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -62,8 +69,16 @@ public class DetailFragment extends Fragment {
 			new DownloadImageTask(getActivity(),((ImageView) v.findViewById(R.id.performerimagebig)), mItem.getPerformanceID(),1).execute(bigImgUrl+mItem.getPerformanceImage());
 			getActivity().getActionBar().setTitle(mItem
 					.getPerformanceArtistName());
-			((TextView) v.findViewById(R.id.time)).setText(mItem
-					.getPerformanceTime());
+			String originalString = mItem.getPerformanceTime();
+	        Date date = null;
+			try {
+				date = new SimpleDateFormat("HH:mm:ss").parse(originalString);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        String Time = new SimpleDateFormat("H:mm a").format(date);
+			((TextView) v.findViewById(R.id.time)).setText(Time);
 			((TextView) v.findViewById(R.id.name)).setText(mItem
 					.getPerformanceArtistName());
 			((TextView) v.findViewById(R.id.genre)).setText(mItem
