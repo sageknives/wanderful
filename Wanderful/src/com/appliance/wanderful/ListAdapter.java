@@ -31,12 +31,12 @@ Filterable {
 
    public long id;
 	private scheduleFilter filter;
+	public String[] dayNames = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
    List<Performance> iTEMS;
    private List<Performance> originaliTEMS;
    //private boolean[] onOff;
     public ListAdapter(Context context,  int resourceId, List<Performance> iTEMS)  {
         super(context,resourceId,iTEMS);
-        
         this.context = context;
         this.iTEMS = iTEMS;
     	
@@ -81,6 +81,7 @@ Filterable {
          // cache view fields into the holder
             viewHolder = new ViewHolder();
             viewHolder.performanceImage= (ImageView) view.findViewById(R.id.performerimagesm);
+            viewHolder.performanceDay=(TextView)view.findViewById(R.id.performanceday);
             viewHolder.performanceArtistName= (TextView) view.findViewById(R.id.artistname);
             viewHolder.addButton=(ToggleButton)view.findViewById(R.id.addbutton);
             viewHolder.performanceTime=(TextView) view.findViewById(R.id.peformancetime);
@@ -94,7 +95,9 @@ Filterable {
         } else 
         	// view already exists, get the holder instance from the view
             viewHolder = (ViewHolder)view.getTag();
-
+        int dayNumber = Integer.parseInt(BaseActivity.events.get(BaseActivity.currentEventID-1).getStartDay()) + Integer.parseInt(rowItem.getPerformanceDay())-1;
+        if(dayNumber > dayNames.length-1) dayNumber -= dayNames.length;
+        viewHolder.performanceDay.setText(dayNames[dayNumber]);
         viewHolder.performanceArtistName.setText(rowItem.getPerformanceArtistName());
         
         if(rowItem.isPerformanceAttending() == true)  	viewHolder.addButton.setChecked(true);
@@ -125,6 +128,7 @@ Filterable {
             	}  
             }
         });
+
         viewHolder.performanceTime.setText(rowItem.getPerformanceTime());
         viewHolder.performanceStage.setText(rowItem.getPerformanceStage());
        // viewHolder.eventID.setText(rowItem.getEventID());
@@ -144,6 +148,7 @@ Filterable {
     	//testing DummyItem item class
         	 String eventID;
         	 String performanceID;
+       		TextView performanceDay;
       		TextView performanceArtistName;
       		TextView performanceTime;
       		TextView performanceStage;
