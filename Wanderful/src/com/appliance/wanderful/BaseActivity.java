@@ -12,8 +12,6 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
-import android.text.style.ImageSpan;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -40,18 +38,7 @@ public class BaseActivity extends FragmentActivity{
 	public static ArrayList<String> stageNames = new ArrayList<String>();
 	public String[] searchNames = {"Search"};
 	String logoImgUrl ="http://sagegatzke.com/scout/imageslogo/";
-	@Override
-	public void onResume() {
-	    super.onResume();
-		checkCacheRedirect(this);
-	}
-	
-	@Override
-	public void onPause() {
-	    super.onPause();
-	    
-	    
-	}
+
 	public void createNav(Activity activity, View view)
 	{
 		this.curActivity = activity;
@@ -64,9 +51,7 @@ public class BaseActivity extends FragmentActivity{
 		hashFeedBtn = (ImageButton) findViewById(R.id.hash_feed_btn);
 		hashFeedBtn.setOnClickListener(new navClickListeners());
 		mapBtn = (ImageButton) findViewById(R.id.map_btn);
-		mapBtn.setOnClickListener(new navClickListeners());
-		
-		
+		mapBtn.setOnClickListener(new navClickListeners());	
 	}
 	
 	class navClickListeners implements View.OnClickListener {
@@ -115,8 +100,6 @@ public class BaseActivity extends FragmentActivity{
 	            	String LocationZip = jsonArray.getJSONObject(i).getString("LocationZip");
 	            	String map = jsonArray.getJSONObject(i).getString("EventMap");
 					events.add(new Event(EventKey,name,startDate,length,startDay,lastUpdated,logo,locationName,LocationAddress,LocationCity,LocationState,LocationZip,map));
-					Log.d("TAG", "event name 1: " + events.get(i).getEventName());
-
 	        	}
         	} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -132,14 +115,10 @@ public class BaseActivity extends FragmentActivity{
 	
 	public void checkCacheRedirect(Activity pastActivity)
 	{
-		//Log.d("TAG","should I redirect?" + events.size());
 		if(events.size() == 0)
 		{
-			//Log.d("TAG","Redirecting");
 			startActivity(new Intent(pastActivity, SearchEvent.class));
-			//return false;
 		}
-		//return true;
 	}
 	
 
@@ -174,9 +153,5 @@ public class BaseActivity extends FragmentActivity{
 	        default:
 	        	return false;
 	    }
-	    
-	}
-	
-	
-			
+	}			
 }

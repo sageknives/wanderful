@@ -21,6 +21,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String KEY_EVENTID = "eventId";
 	public static final String KEY_SHOWID = "performanceId";
 	private static final String TAG = "DBAdapter";
+	private static final String DATABASE = "DBinfo";
+
 	 // Database Name
 	private static final String DATABASE_NAME = "Wanderful";
 	//  table name
@@ -64,7 +66,8 @@ public class DBHelper extends SQLiteOpenHelper {
 		 // Inserting Row
       
         long eventId=getWritableDatabase().insert(DATABASE_TABLE, null, initialValues);
-        
+		Log.d("DATABASE","INSERT DBHelper: eventID="+scheduleItem.getEventId()+",performanceKey="+scheduleItem.getPerformanceKey()+",performanceID="+scheduleItem.getPerformanceId()+",EventName=" +scheduleItem.getEventName());
+
         Schedule.performances.get(Integer.parseInt(scheduleItem.getPerformanceId())-1).setPerformanceAttending(true);
         Log.d(TAG,  scheduleItem.getPerformanceId());	
         return eventId;
@@ -76,6 +79,8 @@ public class DBHelper extends SQLiteOpenHelper {
     // Deleting single performance
     public void deleteEventt(ScheduleItem scheduleItem) {
         SQLiteDatabase db = this.getWritableDatabase();
+		Log.d("DATABASE","DELETE DBHelper: eventID="+scheduleItem.getEventId()+",performanceKey="+scheduleItem.getPerformanceKey()+",performanceID="+scheduleItem.getPerformanceId()+",EventName=" +scheduleItem.getEventName());
+
         db.delete(DATABASE_TABLE, KEY_SHOWID + " = ?",
                 new String[] { String.valueOf(scheduleItem.performanceKey) });
         db.close();
@@ -113,7 +118,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			Log.d("MyTag", "attempting to get saved bookmarks for event " + thisEvent);	
 
 		 
-		    String selectQuery = "SELECT " + KEY_SHOWID +" FROM " + DATABASE_TABLE + " where " + KEY_EVENTID + "=" + thisEvent;
+		    String selectQuery = "SELECT * FROM " + DATABASE_TABLE + " where " + KEY_EVENTID + "=" + thisEvent;
 		    SQLiteDatabase db = this.getWritableDatabase();
 		    
 		    Cursor cursor = db.rawQuery(selectQuery, null);
@@ -122,7 +127,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		    if (cursor.moveToFirst()) {
 		        do {
 		        	ScheduleItem results = new ScheduleItem(null,cursor.getString(1),null,null);
-					Log.d("MyTag",  cursor.getString(1) + " returned performance from event ");	
+					Log.d("DATABASE",  cursor.getString(0) + " returned performance from event ");	
 
 		            // Adding to list
 		        	showinfo.add(results);
@@ -155,7 +160,7 @@ public class DBHelper extends SQLiteOpenHelper {
 					savedInfo.add(results);
 		        } while (cursor.moveToNext());
 		    }
-		 
+		 db.close();
 		    // return  list
 			Log.d(TAG, savedInfo.toString());	
 		return savedInfo;

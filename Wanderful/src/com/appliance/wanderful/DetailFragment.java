@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class DetailFragment extends Fragment {
 	 * The dummy content this fragment is presenting.
 	 */
 	private Performance mItem;
+	private static final String DATABASE = "DBinfo";
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -93,10 +95,12 @@ public class DetailFragment extends Fragment {
 	            	
 	            	if(mItem.isPerformanceAttending() == true)
 	            	{
+	            		Log.d("DATABASE","dbinfo:DELETE detailfragment: eventID="+mItem.getEventID()+",performanceKey="+mItem.getPerformanceKey()+",performanceID="+mItem.getPerformanceID()+",EventName=" +mItem.getEventName());
 	                	Toast.makeText(getActivity(),mItem.getPerformanceArtistName()+" has been deleted from your bookmarks!", Toast.LENGTH_SHORT).show();
 	            		db.deleteEventt(new ScheduleItem(mItem.getEventID()+ "",mItem.getPerformanceKey() + "",mItem.getPerformanceID() + "",mItem.getEventName() + ""));
 	                	
 	            	}else{
+	            		Log.d("DATABASE","dbinfo:INSERT detailfragment: eventID="+mItem.getEventID()+",performanceKey="+mItem.getPerformanceKey()+",performanceID="+mItem.getPerformanceID()+",EventName=" +mItem.getEventName());
 	                	Toast.makeText(getActivity(),mItem.getPerformanceArtistName()+" has been added to your bookmarks!", Toast.LENGTH_SHORT).show();
 	            long id = db.insertShow(new ScheduleItem(mItem.getEventID()+ "",mItem.getPerformanceKey() + "",mItem.getPerformanceID() + "",mItem.getEventName() + ""));
 	            //Log.d("MyTag", mItem.getPerformanceID() + "test");

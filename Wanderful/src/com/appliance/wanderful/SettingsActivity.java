@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -12,7 +13,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 
-public class SettingsActivity extends BaseActivity {
+public class SettingsActivity extends Schedule {
 	ListView savedEventListView;
 	SettingsAdapter adapter;
 	private List<SavedEvents> eventList;
@@ -20,7 +21,7 @@ public class SettingsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 		checkCacheRedirect(this);
-
+		curActivity = this;
 	savedEventListView = (ListView)findViewById(R.id.savedlistview);
 	populateList();
 	adapter= new SettingsAdapter(this, R.layout.activity_setting_list_row, eventList);
@@ -56,5 +57,11 @@ public class SettingsActivity extends BaseActivity {
 		DBHelper db = new DBHelper(this);
 		eventList=db.getSavedEvents();
 		
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.settings_menu, menu);
+		return true;
 	}
 }

@@ -311,14 +311,15 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		@Override
 		public void onRemoteCallComplete(JSONArray jsonArrayFromNet)
 				throws JSONException {
-			int eventID = 1;
-			savePerformancesInfo(jsonArrayFromNet, eventID);
+			
+			savePerformancesInfo(jsonArrayFromNet, currentEventID);
 			// gets all buttons and sets them to nav click listeners
 
 			//rests the baseactivity attendence on redownload.
 			DBHelper db = new DBHelper(Schedule.this);
-			ArrayList<ScheduleItem> savedSchedule = db.getPerformances(currentEventID-1);
-			Log.d("MyTag", "get performance from db" + savedSchedule.toString());
+			ArrayList<ScheduleItem> savedSchedule = db.getPerformances(currentEventID);
+    		Log.d("DATABASE","get saved Performances Schedule: eventID=" + (currentEventID));
+    		if(savedSchedule.size() != 0)Log.d("DATABASE",",SavedScheduleEventId= " + savedSchedule.get(0).getEventId() + "saved array size=" + savedSchedule.size());
 			updateSchedule(savedSchedule);
 			Log.d("MyTag", "i have updated the schedule" + savedSchedule.toString());
 

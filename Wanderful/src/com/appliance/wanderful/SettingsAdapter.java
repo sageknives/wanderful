@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,17 +22,12 @@ import android.widget.Toast;
 public class SettingsAdapter extends ArrayAdapter<SavedEvents> {
 
 	Context context;
-
 	private List<SavedEvents> eventList;
-
 	private static final String TAG = "schedule";
-
 	public SettingsAdapter(Context context, int resourceId,
 			List<SavedEvents> eventList) {
 		super(context, resourceId, eventList);
-
 		this.context = context;
-
 		this.eventList = eventList;
 
 	}
@@ -102,7 +99,8 @@ public class SettingsAdapter extends ArrayAdapter<SavedEvents> {
 										// current activity
 										DBHelper db = new DBHelper(context);
 										db.deleteEvent(rowItem.getEventId());
-									}
+										
+										}
 								})
 						.setNegativeButton("No",
 								new DialogInterface.OnClickListener() {
@@ -123,7 +121,6 @@ public class SettingsAdapter extends ArrayAdapter<SavedEvents> {
 			}
 
 		});
-
 		return view;
 	}
 

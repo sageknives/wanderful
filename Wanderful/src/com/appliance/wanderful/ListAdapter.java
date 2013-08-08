@@ -27,6 +27,8 @@ public class ListAdapter extends ArrayAdapter<Performance> implements
 Filterable {
    String smallImgUrl ="http://sagegatzke.com/scout/imagesbig/";
 	Context context;
+	private static final String DATABASE = "DBinfo";
+
    public long id;
 	private scheduleFilter filter;
    List<Performance> iTEMS;
@@ -108,12 +110,14 @@ Filterable {
             	
             	if(rowItem.isPerformanceAttending() == true)
             	{
-            		
+            		Log.d("DATABASE","dbinfo:DELETE ListAdapter: eventID="+rowItem.getEventID()+",performanceKey="+rowItem.getPerformanceKey()+",performanceID="+rowItem.getPerformanceID()+",EventName=" +rowItem.getEventName());
+
                 	Toast.makeText(context,rowItem.getPerformanceArtistName()+" has been deleted from your bookmarks!", Toast.LENGTH_SHORT).show();
             		db.deleteEventt(new ScheduleItem(rowItem.getEventID()+ "",rowItem.getPerformanceKey() + "",rowItem.getPerformanceID() + "",rowItem.getEventName() + ""));
             		Schedule.performances.get(rowItem.getPerformanceID()-1).setPerformanceAttending(false);
                 	
             	}else{
+            		Log.d("DATABASE","INSERT ListAdapter: eventID="+rowItem.getEventID()+",performanceKey="+rowItem.getPerformanceKey()+",performanceID="+rowItem.getPerformanceID()+",EventName=" +rowItem.getEventName());
                 	Toast.makeText(context,rowItem.getPerformanceArtistName()+" has been added to your bookmarks!", Toast.LENGTH_SHORT).show();
             id = db.insertShow(new ScheduleItem(rowItem.getEventID()+ "",rowItem.getPerformanceKey() + "",rowItem.getPerformanceID() + "",rowItem.getEventName() + ""));
             Log.d("MyTag", rowItem.getPerformanceID() + "test");

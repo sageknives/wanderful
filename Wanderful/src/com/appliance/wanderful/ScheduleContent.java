@@ -24,7 +24,7 @@ public class ScheduleContent extends Schedule {
 
 	static {
 		for (int i = 0; i < performances.size(); i++) {
-			addItem(new ScheduleItem(currentEventID-1+ "", performances.get(i).getPerformanceKey() + "", performances.get(i).getPerformanceID() + "",performances.get(i).getEventName() +""));
+			addItem(new ScheduleItem(performances.get(i).getEventID() + "", performances.get(i).getPerformanceKey() + "", performances.get(i).getPerformanceID() + "",performances.get(i).getEventName() +""));
 					
 			System.out.println("in dummy: "
 					+ performances.get(i).getPerformanceArtistName()
