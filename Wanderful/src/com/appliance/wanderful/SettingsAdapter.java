@@ -39,7 +39,10 @@ public class SettingsAdapter extends ArrayAdapter<SavedEvents> {
 		Button deleteButton;
 
 	}
-
+	@Override
+    public int getCount() {
+        return eventList.size();
+    }
 	public View getView(int position, View view, ViewGroup parent) {
 
 		ViewHolder viewHolder = null;// to reference the child views for later
@@ -99,6 +102,8 @@ public class SettingsAdapter extends ArrayAdapter<SavedEvents> {
 										// current activity
 										DBHelper db = new DBHelper(context);
 										db.deleteEvent(rowItem.getEventId());
+										List<SavedEvents> entries =db.getSavedEvents();
+										upDateEntries(entries);
 										
 										}
 								})
@@ -123,5 +128,13 @@ public class SettingsAdapter extends ArrayAdapter<SavedEvents> {
 		});
 		return view;
 	}
-
+	public void upDateEntries(List<SavedEvents> entries) {
+		eventList = entries;
+		 if (entries.size() > 0) {
+             notifyDataSetChanged();
+         } else {
+             notifyDataSetInvalidated();
+         }
+       
+     }
 }

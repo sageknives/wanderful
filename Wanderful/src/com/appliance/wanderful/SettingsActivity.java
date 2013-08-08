@@ -24,7 +24,9 @@ public class SettingsActivity extends Schedule {
 		curActivity = this;
 	savedEventListView = (ListView)findViewById(R.id.savedlistview);
 	populateList();
+	
 	adapter= new SettingsAdapter(this, R.layout.activity_setting_list_row, eventList);
+	adapter.notifyDataSetChanged();
 	savedEventListView.setAdapter(adapter);
 	
 	savedEventListView.setOnItemClickListener(new OnItemClickListener() {
@@ -58,6 +60,8 @@ public class SettingsActivity extends Schedule {
 		eventList=db.getSavedEvents();
 		
 	}
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
