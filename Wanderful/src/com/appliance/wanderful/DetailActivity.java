@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
 import com.appliance.wanderful.R;
 
 
@@ -36,7 +38,8 @@ public class DetailActivity extends BaseActivity {
 			}
 			// gets all buttons and sets them to nav click listeners
 			createNav(this, findViewById(R.layout.acitivity_mainschedule_detail));	
-			
+			ImageView logo = (ImageView) findViewById(android.R.id.home);
+			replaceBitmap(logo, R.drawable.ic_launcher);
 /**
 	  
 	  Bundle extras = getIntent().getExtras();

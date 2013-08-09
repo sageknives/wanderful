@@ -17,6 +17,9 @@ public class MainSchedule extends Schedule{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_schedule);
 		checkCacheRedirect(this);
+		DBHelper db = new DBHelper(MainSchedule.this);
+		db.insertCurrentEvent(events.get(currentEventID-1));
+		db.close();
 		createNav(MainSchedule.this,
 				this.findViewById(R.layout.activity_main_schedule));
 		getActionBar().setTitle(events.get(currentEventID-1).getEventName());

@@ -9,6 +9,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
@@ -17,6 +20,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ToggleButton;
 
 public class BaseActivity extends FragmentActivity{
 
@@ -30,6 +35,8 @@ public class BaseActivity extends FragmentActivity{
 	ImageButton mapBtn;
 	static Activity curActivity;
 	
+	protected static final int COLOR_FILTER = 0;
+	protected static final int COLOR_BM_FILTER = Color.argb(205, 125,11,11);
 	public static ArrayList<Event> events= new ArrayList<Event>();
 	public static String mapUrlLocation = "http://sagegatzke.com/scout/maps/";
 	public static int currentEventID;
@@ -42,17 +49,52 @@ public class BaseActivity extends FragmentActivity{
 	public void createNav(Activity activity, View view)
 	{
 		this.curActivity = activity;
+		ImageView logo = (ImageView) findViewById(android.R.id.home);
+		replaceBitmap(logo, R.drawable.ic_launcher);
 		homeBtn = (ImageButton) findViewById(R.id.home_btn);
 		homeBtn.setOnClickListener(new navClickListeners());
 		mainScheduleBtn = (ImageButton) findViewById(R.id.main_schedule_btn);
+		if(curActivity.toString().contains("MainSchedule") ||curActivity.toString().contains("DetailActivity")) replaceBitmap(mainScheduleBtn, R.drawable.scheduleselect);
 		mainScheduleBtn.setOnClickListener(new navClickListeners());
 		myScheduleBtn = (ImageButton) findViewById(R.id.my_schedule_btn);
+		if(curActivity.toString().contains("MySchedule")) replaceBitmap(myScheduleBtn, R.drawable.bookmarkselect);
 		myScheduleBtn.setOnClickListener(new navClickListeners());
 		hashFeedBtn = (ImageButton) findViewById(R.id.hash_feed_btn);
+		if(curActivity.toString().contains("HashFeed")) replaceBitmap(hashFeedBtn, R.drawable.socialselect);
 		hashFeedBtn.setOnClickListener(new navClickListeners());
 		mapBtn = (ImageButton) findViewById(R.id.map_btn);
+		if(curActivity.toString().contains("Map")) replaceBitmap(mapBtn, R.drawable.mapselect);
 		mapBtn.setOnClickListener(new navClickListeners());	
 	}
+	public void replaceBitmap(ImageButton imageButton,int drawing)
+	{
+		Bitmap bitmap= BitmapFactory.decodeResource(curActivity.getResources(),drawing);
+		imageButton.setImageBitmap(setHue(bitmap,COLOR_FILTER));
+
+	}
+	public void replaceBitmap(ImageView imageView,int drawing)
+	{
+		Bitmap bitmap= BitmapFactory.decodeResource(curActivity.getResources(),drawing);
+		imageView.setImageBitmap(setHue(bitmap,COLOR_FILTER));
+
+	}
+
+	public Bitmap setHue(Bitmap bitmap, float hue){
+        Bitmap newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+        int width = newBitmap.getWidth();
+        int height = newBitmap.getHeight();
+        float [] hvs = new float[3];
+
+        for(int y = 0; y < height; y++){
+            for(int x = 0; x < width; x++){
+                int pixel = newBitmap.getPixel(x,y);
+                Color.colorToHSV(pixel,hvs);
+                hvs[0] = hue;
+                newBitmap.setPixel(x,y,Color.HSVToColor(Color.alpha(pixel),hvs));
+            }
+        }
+        return newBitmap;
+    }
 	
 	class navClickListeners implements View.OnClickListener {
 		@Override
@@ -115,7 +157,7 @@ public class BaseActivity extends FragmentActivity{
 	
 	public void checkCacheRedirect(Activity pastActivity)
 	{
-		if(events.size() == 0)
+		if(currentEventID == -1)
 		{
 			startActivity(new Intent(pastActivity, SearchEvent.class));
 		}

@@ -12,6 +12,7 @@ import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff.Mode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -108,7 +109,8 @@ Filterable {
         
         if(rowItem.isPerformanceAttending() == true)  	viewHolder.addButton.setChecked(true);
       
-       
+		viewHolder.addButton.getBackground().setColorFilter(BaseActivity.COLOR_BM_FILTER, Mode.DARKEN );
+		
         viewHolder.addButton.setOnClickListener(new OnClickListener() {
 
             @Override

@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ public class SearchPage extends Schedule {
 		setContentView(R.layout.activity_search_page);
 		curActivity = this;
 		checkCacheRedirect(this);
+		ImageView logo = (ImageView) findViewById(android.R.id.home);
+		replaceBitmap(logo, R.drawable.ic_launcher);
 		view = (ListView) findViewById(R.id.searchlistview);
 		eventList = GetEventList();
 		final SearchAdapter adapter = new SearchAdapter(this, R.layout.activity_list_row, eventList);
@@ -79,6 +82,7 @@ public class SearchPage extends Schedule {
 				// get eventId from adapter and set the currentEventId in
 				// baseActivity
 				performances.clear();
+				currentMapImage = null;
 				currentEventID = eventList.get(position).getEventID();
 				// Start an Intent to MainSchedule
 				Intent intent = new Intent(SearchPage.this, MainSchedule.class);

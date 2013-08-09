@@ -10,6 +10,12 @@ import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -94,11 +100,14 @@ public class DetailFragment extends Fragment {
 	            	startActivity(new Intent(getActivity(), YoutubeActivity.class).putExtra("link", mItem.getPerformanceMedia()));
 	            }
 	        });
+			ToggleButton toggleButton = ((ToggleButton) v.findViewById(R.id.addbutton));
 			if(mItem.isPerformanceAttending() == true) 
-				{
-				((ToggleButton) v.findViewById(R.id.addbutton)).setChecked(true);
+			{
+				toggleButton.setChecked(true);
+			}
+			toggleButton.getBackground().setColorFilter(BaseActivity.COLOR_BM_FILTER, Mode.SCREEN );
 					
-				}
+				
 			((Button) v.findViewById(R.id.addbutton)).setOnClickListener(new OnClickListener() {
 
 	            @Override
@@ -126,5 +135,7 @@ public class DetailFragment extends Fragment {
 		}
 		return v;
 	}
+	
+	
 
 }

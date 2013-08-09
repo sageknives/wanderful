@@ -27,6 +27,19 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "Wanderful";
 	//  table name
 	private static final String DATABASE_TABLE = "events";
+	private static final String DATABASE_TABLE2 = "curevent";
+	public static final String KEY_EVENT_START_DATE = "eventstartdate";
+	public static final String KEY_EVENT_LENGTH = "eventlength";
+	public static final String KEY_EVENT_DAY = "eventday";
+	public static final String KEY_EVENT_LAST_UPDATED = "eventlastupdated";
+	public static final String KEY_EVENT_IMAGE = "eventimage";
+	public static final String KEY_EVENT_LOCATION_NAME = "eventlocationname";
+	public static final String KEY_EVENT_LOCATION_ADDRESS = "eventlocationaddress";
+	public static final String KEY_EVENT_LOCATION_CITY = "eventlocationcity";
+	public static final String KEY_EVENT_LOCATION_STATE = "eventlocationstate";
+	public static final String KEY_EVENT_LOCATION_ZIP = "eventlocationzip";
+	public static final String KEY_EVENT_MAP = "eventmap";
+
 	private static final int DATABASE_VERSION = 1;
 
 
@@ -43,7 +56,13 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		 String CREATE_CONTACTS_TABLE = "CREATE TABLE " + DATABASE_TABLE + "("
 	                + KEY_ROWID + " INTEGER PRIMARY KEY,"+ KEY_SHOWID + " TEXT,"+ KEY_EVENTID + " TEXT,"+KEY_EVENTNAME+" TEXT"+")";
+	     String CREATE_CONTACTS_TABLE2 =  "CREATE TABLE " + DATABASE_TABLE2 + "("
+			     + KEY_ROWID + " INTEGER PRIMARY KEY,"+ KEY_EVENTID + " TEXT,"+ KEY_EVENTNAME + " TEXT," + KEY_EVENT_START_DATE+" TEXT," 
+				 + KEY_EVENT_LENGTH + " TEXT,"+ KEY_EVENT_DAY + " TEXT," + KEY_EVENT_LAST_UPDATED+" TEXT," + KEY_EVENT_IMAGE + " TEXT,"
+			     + KEY_EVENT_LOCATION_NAME + " TEXT," + KEY_EVENT_LOCATION_ADDRESS+" TEXT," + KEY_EVENT_LOCATION_CITY + " TEXT," 
+				 + KEY_EVENT_LOCATION_STATE +" TEXT," + KEY_EVENT_LOCATION_ZIP +" TEXT," + KEY_EVENT_MAP +" TEXT" + ")";
 	        db.execSQL(CREATE_CONTACTS_TABLE);
+	        db.execSQL(CREATE_CONTACTS_TABLE2);
 	}
 
 	@Override
@@ -51,6 +70,35 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	}
 
+	public  long insertCurrentEvent(Event currentEvent) {
+		
+		ContentValues initialValues = new ContentValues();
+		
+		initialValues.put(KEY_EVENTID, currentEvent.getEventID());
+		initialValues.put(KEY_EVENTNAME, currentEvent.getEventName());
+		initialValues.put(KEY_EVENT_START_DATE, currentEvent.getEventStartDate());
+		initialValues.put(KEY_EVENT_LENGTH, currentEvent.getEventLength());
+		initialValues.put(KEY_EVENT_DAY, currentEvent.getStartDay());
+		initialValues.put(KEY_EVENT_LAST_UPDATED, currentEvent.getEventLastUpdate());
+		initialValues.put(KEY_EVENT_IMAGE, currentEvent.getEventLogo());
+		initialValues.put(KEY_EVENT_LOCATION_NAME, currentEvent.getLocationName());
+		initialValues.put(KEY_EVENT_LOCATION_ADDRESS, currentEvent.getLocationAddress());
+		initialValues.put(KEY_EVENT_LOCATION_CITY, currentEvent.getLocationCity());
+		initialValues.put(KEY_EVENT_LOCATION_STATE, currentEvent.getLocationState());
+		initialValues.put(KEY_EVENT_LOCATION_ZIP, currentEvent.getLocationZip());
+		initialValues.put(KEY_EVENT_MAP, currentEvent.getEventMap());
+
+		try{
+			long eventId1=getWritableDatabase().delete(DATABASE_TABLE2, KEY_ROWID + " = ?",
+	                new String[] { String.valueOf(1) });
+		}catch(Exception e){}
+		
+        long eventId=getWritableDatabase().insert(DATABASE_TABLE2, null, initialValues);
+		Log.d("DATABASE","INSERT DBHelper: eventID="+currentEvent.getEventID()+",eventName="+currentEvent.getEventName());
+
+        return eventId;
+        
+	}
 
 	public  long insertShow(ScheduleItem scheduleItem) {
 	
@@ -64,7 +112,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		initialValues.put(KEY_EVENTNAME, scheduleItem.getEventName());
 		//initialValues.put(KEY_SHOWID, dummyItem.getId());
 		 // Inserting Row
-      
+		
         long eventId=getWritableDatabase().insert(DATABASE_TABLE, null, initialValues);
 		Log.d("DATABASE","INSERT DBHelper: eventID="+scheduleItem.getEventId()+",performanceKey="+scheduleItem.getPerformanceKey()+",performanceID="+scheduleItem.getPerformanceId()+",EventName=" +scheduleItem.getEventName());
 
