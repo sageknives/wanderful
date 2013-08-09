@@ -110,12 +110,12 @@ public class DetailFragment extends Fragment {
 	            	
 	            	if(mItem.isPerformanceAttending() == true)
 	            	{
-	            		Log.d("DATABASE","dbinfo:DELETE detailfragment: eventID="+mItem.getEventID()+",performanceKey="+mItem.getPerformanceKey()+",performanceID="+mItem.getPerformanceID()+",EventName=" +mItem.getEventName());
+	            		//Log.d("DATABASE","dbinfo:DELETE detailfragment: eventID="+mItem.getEventID()+",performanceKey="+mItem.getPerformanceKey()+",performanceID="+mItem.getPerformanceID()+",EventName=" +mItem.getEventName());
 	                	Toast.makeText(getActivity(),mItem.getPerformanceArtistName()+" has been deleted from your bookmarks!", Toast.LENGTH_SHORT).show();
 	            		db.deleteEventt(new ScheduleItem(mItem.getEventID()+ "",mItem.getPerformanceKey() + "",mItem.getPerformanceID() + "",mItem.getEventName() + ""));
 	                	
 	            	}else{
-	            		Log.d("DATABASE","dbinfo:INSERT detailfragment: eventID="+mItem.getEventID()+",performanceKey="+mItem.getPerformanceKey()+",performanceID="+mItem.getPerformanceID()+",EventName=" +mItem.getEventName());
+	            		//Log.d("DATABASE","dbinfo:INSERT detailfragment: eventID="+mItem.getEventID()+",performanceKey="+mItem.getPerformanceKey()+",performanceID="+mItem.getPerformanceID()+",EventName=" +mItem.getEventName());
 	                	Toast.makeText(getActivity(),mItem.getPerformanceArtistName()+" has been added to your bookmarks!", Toast.LENGTH_SHORT).show();
 	            long id = db.insertShow(new ScheduleItem(mItem.getEventID()+ "",mItem.getPerformanceKey() + "",mItem.getPerformanceID() + "",mItem.getEventName() + ""));
 	            //Log.d("MyTag", mItem.getPerformanceID() + "test");

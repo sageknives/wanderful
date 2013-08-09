@@ -182,10 +182,10 @@ public class DummyListFragment extends ListFragment {
 		Performance rowItem = (Performance) adapter.getItem(position);
 
 		mCallbacks.onItemSelected(rowItem.getPerformanceID() + "");
-		Toast.makeText(
-				getActivity(),
-				performanceList.get(position).getPerformanceID() + ""
-						+ rowItem.getPerformanceID(), Toast.LENGTH_LONG).show();
+		//Toast.makeText(
+				//getActivity(),
+				//performanceList.get(position).getPerformanceID() + ""
+						//+ rowItem.getPerformanceID(), Toast.LENGTH_LONG).show();
 		/**
 		 * String time = ((TextView) v.findViewById(R.id.eventtime)).getText()
 		 * .toString(); String name = ((TextView)

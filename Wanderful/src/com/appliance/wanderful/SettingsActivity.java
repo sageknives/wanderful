@@ -36,8 +36,8 @@ public class SettingsActivity extends Schedule {
 				int position, long id) {
 
 			String ids = eventList.get(position).getEventId();
-			Toast.makeText(SettingsActivity.this, ids + "", Toast.LENGTH_LONG)
-					.show();
+			//Toast.makeText(SettingsActivity.this, ids + "", Toast.LENGTH_LONG)
+					//.show();
 
 			// get eventId from adapter and set the currentEventId in
 			// baseActivity

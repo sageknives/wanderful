@@ -73,8 +73,8 @@ public class SearchPage extends Schedule {
 
 				String ids = Integer.toString(eventList.get(position)
 						.getEventID());
-				Toast.makeText(SearchPage.this, ids + "", Toast.LENGTH_LONG)
-						.show();
+				//Toast.makeText(SearchPage.this, ids + "", Toast.LENGTH_LONG)
+						//.show();
 
 				// get eventId from adapter and set the currentEventId in
 				// baseActivity
