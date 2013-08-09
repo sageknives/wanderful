@@ -28,7 +28,7 @@ public class BaseActivity extends FragmentActivity{
 	ImageButton myScheduleBtn;
 	ImageButton hashFeedBtn;
 	ImageButton mapBtn;
-	Activity curActivity;
+	static Activity curActivity;
 	
 	public static ArrayList<Event> events= new ArrayList<Event>();
 	public static String mapUrlLocation = "http://sagegatzke.com/scout/maps/";

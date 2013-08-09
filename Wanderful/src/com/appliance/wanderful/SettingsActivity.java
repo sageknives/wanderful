@@ -3,6 +3,7 @@ package com.appliance.wanderful;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,11 +17,13 @@ import android.widget.AdapterView.OnItemClickListener;
 public class SettingsActivity extends Schedule {
 	ListView savedEventListView;
 	SettingsAdapter adapter;
+	Activity previousActivity;
 	private List<SavedEvents> eventList;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 		checkCacheRedirect(this);
+		previousActivity = curActivity;
 		curActivity = this;
 	savedEventListView = (ListView)findViewById(R.id.savedlistview);
 	populateList();
@@ -61,7 +64,13 @@ public class SettingsActivity extends Schedule {
 		
 	}
 	
-	
+	@Override
+	public void onBackPressed() {
+		
+		//override the back button so the listview can be refreshed
+	   Intent setIntent = new Intent(SettingsActivity.this,previousActivity.getClass());
+	   startActivity(setIntent);
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

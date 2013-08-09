@@ -1,5 +1,9 @@
 package com.appliance.wanderful;
 
+import java.util.ArrayList;
+
+import com.appliance.wanderful.ScheduleContent.ScheduleItem;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;

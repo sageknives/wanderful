@@ -172,6 +172,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	        db.delete(DATABASE_TABLE, KEY_EVENTID + " = ?",
 	                new String[] { eventId});
 	        db.close();
+	        Schedule.updateSchedule(Integer.parseInt(eventId));
 
 	    }
 }

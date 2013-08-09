@@ -154,6 +154,21 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 		}
 	}
 	
+	public static void updateSchedule(int eventId)
+	{
+		if (performances.size()!=0)
+		{
+			if(performances.get(0).getEventID() ==eventId)
+			{
+				for(int i = 0;i < performances.size();i++)
+				{
+					performances.get(i).setPerformanceAttending(false);
+						
+				}
+			} 
+		}
+		
+	}
 	protected void init() {
 		
 		// Set up the action bar.
