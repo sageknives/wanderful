@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 public class Event {
 
 	private int EventID;
+	private int EventKey;
 	private String EventName;
 	private String EventStartDate;
 	private String EventLength;
@@ -19,9 +20,10 @@ public class Event {
 	private String EventMap;
 	private Bitmap image = null;
 	
-	public Event(int EventID,String EventName, String EventStartDate,String EventLength,String StartDay,
+	public Event(int EventID,int EventKey,String EventName, String EventStartDate,String EventLength,String StartDay,
 			String EventLastUpdate,String EventImage,String locationName,String LocationAddress,String LocationCity,String LocationState,String LocationZip,String EventMap) {
 		this.EventID = EventID;
+		this.EventKey = EventKey;
 		this.EventName = EventName;
 		this.EventStartDate = EventStartDate;
 		this.EventLength = EventLength;
@@ -38,6 +40,9 @@ public class Event {
 
 	public int getEventID() {
 		return EventID;
+	}
+	public int getEventKey() {
+		return EventKey;
 	}
 	public String getEventName() {
 		return EventName;
@@ -88,6 +93,17 @@ public class Event {
 				+ LocationZip + ", EventMap=" + EventMap + "]";
 	}
 
+	public String getAll() {
+		return "Event [EventID=" + EventID + ", EventKey=" + EventKey
+				+ ", EventName=" + EventName
+				+ ", EventStartDate=" + EventStartDate + ", EventLength="
+				+ EventLength + ", StartDay=" + StartDay + ", EventLastUpdate="
+				+ EventLastUpdate + ", EventImage=" + EventImage
+				+ ", LocationName=" + LocationName + ", LocationAddress="
+				+ LocationAddress + ", LocationCity=" + LocationCity
+				+ ", LocationState=" + LocationState + ", LocationZip="
+				+ LocationZip + ", EventMap=" + EventMap + "]";
+	}
 	public Bitmap getImage() {
 		return image;
 	}

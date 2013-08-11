@@ -114,7 +114,7 @@ public class SearchAdapter extends ArrayAdapter<Event> implements
 		 viewHolder.eventID=rowItem.getEventID();
 		 
 		 if(rowItem.getImage() == null){
-	        	new DownloadImageTask(this.getContext(),viewHolder.EventImage,rowItem.getEventID(),0).execute(logoImgUrl+rowItem.getEventLogo());
+	        	new DownloadImageTask(this.getContext(),viewHolder.EventImage,rowItem.getEventKey(),0).execute(logoImgUrl+rowItem.getEventLogo());
 	        	Log.d("Tag", "in get image");
 	        }else{
 	        	viewHolder.EventImage.setImageBitmap(rowItem.getImage());

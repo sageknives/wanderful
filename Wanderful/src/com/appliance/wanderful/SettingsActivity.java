@@ -22,7 +22,7 @@ public class SettingsActivity extends Schedule {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
-		checkCacheRedirect(this);
+		checkCacheRedirect(SettingsActivity.this);
 		previousActivity = curActivity;
 		curActivity = this;
 	savedEventListView = (ListView)findViewById(R.id.savedlistview);

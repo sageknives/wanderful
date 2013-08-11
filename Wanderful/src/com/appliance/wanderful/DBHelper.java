@@ -28,6 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	//  table name
 	private static final String DATABASE_TABLE = "events";
 	private static final String DATABASE_TABLE2 = "curevent";
+	public static final String KEY_EVENT_KEY = "eventkey";
 	public static final String KEY_EVENT_START_DATE = "eventstartdate";
 	public static final String KEY_EVENT_LENGTH = "eventlength";
 	public static final String KEY_EVENT_DAY = "eventday";
@@ -57,7 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		 String CREATE_CONTACTS_TABLE = "CREATE TABLE " + DATABASE_TABLE + "("
 	                + KEY_ROWID + " INTEGER PRIMARY KEY,"+ KEY_SHOWID + " TEXT,"+ KEY_EVENTID + " TEXT,"+KEY_EVENTNAME+" TEXT"+")";
 	     String CREATE_CONTACTS_TABLE2 =  "CREATE TABLE " + DATABASE_TABLE2 + "("
-			     + KEY_ROWID + " INTEGER PRIMARY KEY,"+ KEY_EVENTID + " TEXT,"+ KEY_EVENTNAME + " TEXT," + KEY_EVENT_START_DATE+" TEXT," 
+			     + KEY_ROWID + " INTEGER PRIMARY KEY,"+ KEY_EVENTID + " TEXT,"+ KEY_EVENT_KEY + " TEXT,"+ KEY_EVENTNAME + " TEXT," + KEY_EVENT_START_DATE+" TEXT," 
 				 + KEY_EVENT_LENGTH + " TEXT,"+ KEY_EVENT_DAY + " TEXT," + KEY_EVENT_LAST_UPDATED+" TEXT," + KEY_EVENT_IMAGE + " TEXT,"
 			     + KEY_EVENT_LOCATION_NAME + " TEXT," + KEY_EVENT_LOCATION_ADDRESS+" TEXT," + KEY_EVENT_LOCATION_CITY + " TEXT," 
 				 + KEY_EVENT_LOCATION_STATE +" TEXT," + KEY_EVENT_LOCATION_ZIP +" TEXT," + KEY_EVENT_MAP +" TEXT" + ")";
@@ -75,6 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		ContentValues initialValues = new ContentValues();
 		
 		initialValues.put(KEY_EVENTID, currentEvent.getEventID());
+		initialValues.put(KEY_EVENT_KEY, currentEvent.getEventKey());
 		initialValues.put(KEY_EVENTNAME, currentEvent.getEventName());
 		initialValues.put(KEY_EVENT_START_DATE, currentEvent.getEventStartDate());
 		initialValues.put(KEY_EVENT_LENGTH, currentEvent.getEventLength());
@@ -94,10 +96,31 @@ public class DBHelper extends SQLiteOpenHelper {
 		}catch(Exception e){}
 		
         long eventId=getWritableDatabase().insert(DATABASE_TABLE2, null, initialValues);
-		Log.d("DATABASE","INSERT DBHelper: eventID="+currentEvent.getEventID()+",eventName="+currentEvent.getEventName());
+		Log.d("DATABASE","INSERT DBHelper: eventkey="+currentEvent.getEventKey()+",eventName="+currentEvent.getEventName());
 
         return eventId;
         
+	}
+	
+	public Event getCurrentEvent() {
+		
+		 String selectQuery = "SELECT * FROM " + DATABASE_TABLE2;
+		    SQLiteDatabase db = this.getWritableDatabase();
+		    
+		    Cursor cursor = db.rawQuery(selectQuery, null);
+		    Event results = null;
+		    // looping through all rows and adding to list
+		    if (cursor.moveToFirst()) {
+		        do {
+		        	results = new Event(0,Integer.parseInt(cursor.getString(2)),cursor.getString(3),cursor.getString(4),cursor.getString(5)
+		        			,cursor.getString(6),cursor.getString(7),cursor.getString(8),cursor.getString(9),cursor.getString(10)
+		        			,cursor.getString(11),cursor.getString(12),cursor.getString(13),cursor.getString(14));
+					Log.d("DATABASE",  cursor.getString(0) + " returned performance from event ");	
+
+		        } while (cursor.moveToNext());
+		    }
+		    db.close();
+		return results;
 	}
 
 	public  long insertShow(ScheduleItem scheduleItem) {

@@ -32,7 +32,8 @@ public class SearchPage extends Schedule {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_page);
 		curActivity = this;
-		checkCacheRedirect(this);
+		if(events.size() <= 1) startActivity(new Intent(SearchPage.this, SearchEvent.class));
+		//checkCacheRedirect(this);
 		ImageView logo = (ImageView) findViewById(android.R.id.home);
 		replaceBitmap(logo, R.drawable.ic_launcher);
 		view = (ListView) findViewById(R.id.searchlistview);
@@ -74,16 +75,16 @@ public class SearchPage extends Schedule {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 
-				String ids = Integer.toString(eventList.get(position)
-						.getEventID());
+				//String ids = Integer.toString(eventList.get(position)
+					//	.getEventID());
 				//Toast.makeText(SearchPage.this, ids + "", Toast.LENGTH_LONG)
-						//.show();
+					//	.show();
 
 				// get eventId from adapter and set the currentEventId in
 				// baseActivity
 				performances.clear();
 				currentMapImage = null;
-				currentEventID = eventList.get(position).getEventID();
+				currentEventID = eventList.get(position).getEventKey();
 				// Start an Intent to MainSchedule
 				Intent intent = new Intent(SearchPage.this, MainSchedule.class);
 				intent.putExtra("eventId", currentEventID);

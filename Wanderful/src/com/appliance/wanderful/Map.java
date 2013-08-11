@@ -19,10 +19,11 @@ public class Map extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
-		checkCacheRedirect(this);
+		checkCacheRedirect(Map.this);
 		
 		if(currentMapImage == null)
 		{
+			Log.d("event","CurrenEvent: " + events.get(0).getAll());
 			new DownloadMapImageTask(this, (ScaleImageView) findViewById(R.id.map_image))
 	        .execute(mapUrlLocation + events.get(currentEventID-1).getEventMap());
 		}else{

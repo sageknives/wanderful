@@ -16,7 +16,7 @@ public class DetailActivity extends BaseActivity {
 	  protected void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  setContentView(R.layout.acitivity_mainschedule_detail);
-		checkCacheRedirect(this);
+		checkCacheRedirect(DetailActivity.this);
 
 	// Show the Up button in the action bar.
 			getActionBar().setDisplayHomeAsUpEnabled(true);

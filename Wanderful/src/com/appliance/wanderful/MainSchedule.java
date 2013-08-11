@@ -16,7 +16,7 @@ public class MainSchedule extends Schedule{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_schedule);
-		checkCacheRedirect(this);
+		checkCacheRedirect(MainSchedule.this);
 		DBHelper db = new DBHelper(MainSchedule.this);
 		db.insertCurrentEvent(events.get(currentEventID-1));
 		db.close();

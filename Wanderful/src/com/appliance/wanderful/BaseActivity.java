@@ -15,6 +15,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,7 +40,7 @@ public class BaseActivity extends FragmentActivity{
 	protected static final int COLOR_BM_FILTER = Color.argb(205, 125,11,11);
 	public static ArrayList<Event> events= new ArrayList<Event>();
 	public static String mapUrlLocation = "http://sagegatzke.com/scout/maps/";
-	public static int currentEventID;
+	public static int currentEventID = -1;
 	public static Bitmap currentMapImage;
 	public String[] dayNames = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 	public static ArrayList<String> stageNames = new ArrayList<String>();
@@ -141,7 +142,7 @@ public class BaseActivity extends FragmentActivity{
 	            	String LocationState = jsonArray.getJSONObject(i).getString("LocationState");
 	            	String LocationZip = jsonArray.getJSONObject(i).getString("LocationZip");
 	            	String map = jsonArray.getJSONObject(i).getString("EventMap");
-					events.add(new Event(EventKey,name,startDate,length,startDay,lastUpdated,logo,locationName,LocationAddress,LocationCity,LocationState,LocationZip,map));
+					events.add(new Event(i,EventKey,name,startDate,length,startDay,lastUpdated,logo,locationName,LocationAddress,LocationCity,LocationState,LocationZip,map));
 	        	}
         	} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -157,9 +158,24 @@ public class BaseActivity extends FragmentActivity{
 	
 	public void checkCacheRedirect(Activity pastActivity)
 	{
+		Log.d("event", "Checking for redirect, current eventID:" + currentEventID);
+
 		if(currentEventID == -1)
 		{
-			startActivity(new Intent(pastActivity, SearchEvent.class));
+			DBHelper db = new DBHelper(pastActivity);
+			events.add(db.getCurrentEvent());
+			
+			Log.d("event", events.get(0).getEventKey() + ": " + events.get(0).getEventName());
+			currentEventID = 1;
+			//startActivity(new Intent(pastActivity, SearchEvent.class));
+		}
+		if(events.size() == 0)
+		{
+			Log.d("event","event are empty");
+		}
+		if(Schedule.performances.size() == 0)
+		{
+			Log.d("event","performances are empty");
 		}
 	}
 	
