@@ -6,32 +6,23 @@
     android:orientation="vertical"
     tools:context=".HashFeed" >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
         android:stretchColumns="1" >
 
-        <TextView
-            android:id="@+id/header"
+        <LinearLayout
+            android:id="@+id/hash_feed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="@dimen/header" />
+            android:orientation="vertical"
+            android:stretchColumns="1" >
 
-        <TextView
-            android:id="@+id/text1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </TextView>
-    </LinearLayout>
+            
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         style="@android:style/ButtonBar"
@@ -99,6 +90,6 @@
             android:text="@string/map"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text" />
-
     </LinearLayout>
+
 </LinearLayout>

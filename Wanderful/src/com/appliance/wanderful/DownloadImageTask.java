@@ -48,6 +48,8 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap>
     protected void onPostExecute(Bitmap result) {
     	if(page == 1){
         	Schedule.performances.get(ID -1).setImage(result);
+    	}else if(page == 2) {
+    		
     	}else{
     		BaseActivity.events.get(ID-1).setImage(result);
     	}
