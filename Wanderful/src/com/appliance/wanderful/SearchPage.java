@@ -2,23 +2,16 @@ package com.appliance.wanderful;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class SearchPage extends Schedule {
 	EditText filterText;
@@ -34,6 +27,12 @@ public class SearchPage extends Schedule {
 		setContentView(R.layout.activity_search_page);
 
 		curActivity = this;
+		if(!isNetworkAvailable())
+		{
+			restartActivity(SearchPage.class);
+		}else{
+			
+		
 		if (events.size() <= 1)
 			startActivity(new Intent(SearchPage.this, SearchEvent.class));
 		// checkCacheRedirect(this);
@@ -50,8 +49,8 @@ public class SearchPage extends Schedule {
 		 * startActivity(intents); }
 		 **/
 
-		ImageView logo = (ImageView) findViewById(android.R.id.home);
-		replaceBitmap(logo, R.drawable.ic_launcher);
+		//ImageView logo = (ImageView) findViewById(android.R.id.home);
+		//replaceBitmap(logo, R.drawable.ic_launcher);
 		view = (ListView) findViewById(R.id.searchlistview);
 		eventList = GetEventList();
 		final SearchAdapter adapter = new SearchAdapter(this,
@@ -111,7 +110,7 @@ public class SearchPage extends Schedule {
 
 			}
 		});
-
+		}
 	}
 
 	@Override

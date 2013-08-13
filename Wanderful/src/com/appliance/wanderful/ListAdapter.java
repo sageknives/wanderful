@@ -11,15 +11,12 @@ import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff.Mode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -109,7 +106,7 @@ Filterable {
         
         if(rowItem.isPerformanceAttending() == true)  	viewHolder.addButton.setChecked(true);
       
-		viewHolder.addButton.getBackground().setColorFilter(BaseActivity.COLOR_BM_FILTER, Mode.DARKEN );
+		//viewHolder.addButton.getBackground().setColorFilter(BaseActivity.COLOR_BM_FILTER, Mode.DARKEN );
 		
         viewHolder.addButton.setOnClickListener(new OnClickListener() {
 

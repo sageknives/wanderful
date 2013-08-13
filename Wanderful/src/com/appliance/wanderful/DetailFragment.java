@@ -8,17 +8,9 @@ import java.util.Date;
 import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,7 +97,7 @@ public class DetailFragment extends Fragment {
 			{
 				toggleButton.setChecked(true);
 			}
-			toggleButton.getBackground().setColorFilter(BaseActivity.COLOR_BM_FILTER, Mode.SCREEN );
+			//toggleButton.getBackground().setColorFilter(BaseActivity.COLOR_BM_FILTER, Mode.SCREEN );
 					
 				
 			((Button) v.findViewById(R.id.addbutton)).setOnClickListener(new OnClickListener() {

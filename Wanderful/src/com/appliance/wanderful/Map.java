@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class Map extends BaseActivity {
 
@@ -20,17 +19,22 @@ public class Map extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
 		checkCacheRedirect(Map.this);
-		
-		if(currentMapImage == null)
+		createNav(Map.this,this.findViewById(R.layout.activity_hash_feed));
+
+		if(!isNetworkAvailable())
 		{
-			Log.d("event","CurrenEvent: " + events.get(0).getAll());
-			new DownloadMapImageTask(this, (ScaleImageView) findViewById(R.id.map_image))
-	        .execute(mapUrlLocation + events.get(currentEventID-1).getEventMap());
+			restartActivity(Map.class);
 		}else{
-			displayMap();
+			if(currentMapImage == null)
+			{
+				Log.d("event","CurrenEvent: " + events.get(0).getAll());
+				new DownloadMapImageTask(this, (ScaleImageView) findViewById(R.id.map_image))
+		        .execute(mapUrlLocation + events.get(currentEventID-1).getEventMap());
+			}else{
+				displayMap();
+			}
 		}
 		// gets all buttons and sets them to nav click listeners
-		createNav(Map.this,this.findViewById(R.layout.activity_hash_feed));
 		
 	}
 

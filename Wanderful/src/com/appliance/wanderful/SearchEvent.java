@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Button;
-import android.widget.ImageView;
 
 public class SearchEvent extends BaseActivity {
 	Button enterBtn;
@@ -17,11 +16,21 @@ public class SearchEvent extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_event);
 		curActivity = this;
-		ImageView logo = (ImageView) findViewById(android.R.id.home);
-		replaceBitmap(logo, R.drawable.ic_launcher);
-		JSONGetClient client = new JSONGetClient(this, jsonGets);
-		String ourl = "http://54.218.117.137/scoutservices/eventlist.php?user=scoutreader&pass=readscout&command=events";
-		client.execute(ourl);
+		//ImageView logo = (ImageView) findViewById(android.R.id.home);
+		//replaceBitmap(logo, R.drawable.ic_launcher);
+
+			if(isNetworkAvailable())
+			{
+				JSONGetClient client = new JSONGetClient(this, jsonGets);
+				String ourl = "http://54.218.117.137/scoutservices/eventlist.php?user=scoutreader&pass=readscout&command=events";
+				client.execute(ourl);
+				
+			}else{
+				restartActivity(SearchEvent.class);
+			}
+		
+		
+		
 
 	}
 	

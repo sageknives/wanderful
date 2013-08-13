@@ -1,16 +1,11 @@
 package com.appliance.wanderful;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -25,7 +20,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.TextView;
 import android.widget.Toast;
 
 

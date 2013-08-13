@@ -11,18 +11,20 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ToggleButton;
 
 public class BaseActivity extends FragmentActivity{
 
@@ -50,22 +52,26 @@ public class BaseActivity extends FragmentActivity{
 	public void createNav(Activity activity, View view)
 	{
 		this.curActivity = activity;
-		ImageView logo = (ImageView) findViewById(android.R.id.home);
-		replaceBitmap(logo, R.drawable.ic_launcher);
+		
 		homeBtn = (ImageButton) findViewById(R.id.home_btn);
 		homeBtn.setOnClickListener(new navClickListeners());
 		mainScheduleBtn = (ImageButton) findViewById(R.id.main_schedule_btn);
-		if(curActivity.toString().contains("MainSchedule") ||curActivity.toString().contains("DetailActivity")) replaceBitmap(mainScheduleBtn, R.drawable.scheduleselect);
 		mainScheduleBtn.setOnClickListener(new navClickListeners());
 		myScheduleBtn = (ImageButton) findViewById(R.id.my_schedule_btn);
-		if(curActivity.toString().contains("MySchedule")) replaceBitmap(myScheduleBtn, R.drawable.bookmarkselect);
 		myScheduleBtn.setOnClickListener(new navClickListeners());
 		hashFeedBtn = (ImageButton) findViewById(R.id.hash_feed_btn);
-		if(curActivity.toString().contains("HashFeed")) replaceBitmap(hashFeedBtn, R.drawable.socialselect);
 		hashFeedBtn.setOnClickListener(new navClickListeners());
 		mapBtn = (ImageButton) findViewById(R.id.map_btn);
-		if(curActivity.toString().contains("Map")) replaceBitmap(mapBtn, R.drawable.mapselect);
 		mapBtn.setOnClickListener(new navClickListeners());	
+		/*
+		ImageView logo = (ImageView) findViewById(android.R.id.home);
+		replaceBitmap(logo, R.drawable.ic_launcher);
+		if(curActivity.toString().contains("MainSchedule") ||curActivity.toString().contains("DetailActivity")) replaceBitmap(mainScheduleBtn, R.drawable.scheduleselect);
+		if(curActivity.toString().contains("MySchedule")) replaceBitmap(myScheduleBtn, R.drawable.bookmarkselect);
+		if(curActivity.toString().contains("HashFeed")) replaceBitmap(hashFeedBtn, R.drawable.socialselect);
+		if(curActivity.toString().contains("Map")) replaceBitmap(mapBtn, R.drawable.mapselect);
+		*/
+
 	}
 	public void replaceBitmap(ImageButton imageButton,int drawing)
 	{
@@ -114,11 +120,27 @@ public class BaseActivity extends FragmentActivity{
 		}
 	}
 	
-	protected boolean isNetworkAvailable() {
+	public boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager 
 	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
+	
+	public void restartActivity(final Class<?> activity )
+	{
+		Button noInternetBtn = new Button(curActivity);
+		noInternetBtn.setText("No Internet. Try Again?");
+		noInternetBtn.setGravity(Gravity.CENTER_HORIZONTAL);
+		noInternetBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(curActivity, activity));
+			}
+		});
+		addContentView(noInternetBtn, new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 	}
 	
 	public void saveEventInfo(JSONArray jsonArray)
