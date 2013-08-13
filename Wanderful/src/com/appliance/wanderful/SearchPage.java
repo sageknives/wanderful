@@ -22,23 +22,40 @@ import android.widget.Toast;
 
 public class SearchPage extends Schedule {
 	EditText filterText;
-	
+
 	ListView view;
 	private List<Event> eventList = new ArrayList<Event>();
 	private static final String TAG = "schedule";
 
+	// int launchingEvent = getIntent().getExtras() .getInt("SearchPage");
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_page);
+
 		curActivity = this;
-		if(events.size() <= 1) startActivity(new Intent(SearchPage.this, SearchEvent.class));
-		//checkCacheRedirect(this);
+		if (events.size() <= 1)
+			startActivity(new Intent(SearchPage.this, SearchEvent.class));
+		// checkCacheRedirect(this);
+
+		/**
+		 * this code is not working full I am trying to figure out a way to
+		 * bypass the searchpage listview and launch the schedule class if
+		 * (geteventID != null) { currentEventID =
+		 * geteventID.getInt("SearchPage"); Intent intents = new
+		 * Intent(SearchPage.this, MainSchedule.class);
+		 * Toast.makeText(SearchPage.this, currentEventID + "",
+		 * Toast.LENGTH_LONG) .show();
+		 * 
+		 * startActivity(intents); }
+		 **/
+
 		ImageView logo = (ImageView) findViewById(android.R.id.home);
 		replaceBitmap(logo, R.drawable.ic_launcher);
 		view = (ListView) findViewById(R.id.searchlistview);
 		eventList = GetEventList();
-		final SearchAdapter adapter = new SearchAdapter(this, R.layout.activity_list_row, eventList);
+		final SearchAdapter adapter = new SearchAdapter(this,
+				R.layout.activity_list_row, eventList);
 
 		view.setAdapter(adapter);
 
@@ -75,16 +92,17 @@ public class SearchPage extends Schedule {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 
-				//String ids = Integer.toString(eventList.get(position)
-					//	.getEventID());
-				//Toast.makeText(SearchPage.this, ids + "", Toast.LENGTH_LONG)
-					//	.show();
+				// String ids = Integer.toString(eventList.get(position)
+				// .getEventID());
+				// Toast.makeText(SearchPage.this, ids + "", Toast.LENGTH_LONG)
+				// .show();
 
 				// get eventId from adapter and set the currentEventId in
 				// baseActivity
 				performances.clear();
 				currentMapImage = null;
 				currentEventID = eventList.get(position).getEventKey();
+
 				// Start an Intent to MainSchedule
 				Intent intent = new Intent(SearchPage.this, MainSchedule.class);
 				intent.putExtra("eventId", currentEventID);
@@ -102,7 +120,5 @@ public class SearchPage extends Schedule {
 		getMenuInflater().inflate(R.menu.settings_menu, menu);
 		return true;
 	}
-	    
-	
-}
 
+}

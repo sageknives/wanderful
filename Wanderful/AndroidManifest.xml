@@ -82,6 +82,13 @@
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.appliance.wanderful.Alarm"
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait" >
+        </activity>
+        <receiver android:name="com.appliance.wanderful.Alarm" />
+        
     </application>
 
 </manifest>

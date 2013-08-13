@@ -1,6 +1,10 @@
 package com.appliance.wanderful;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -11,6 +15,8 @@ import com.appliance.wanderful.ScheduleContent.ScheduleItem;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +26,7 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Schedule extends BaseActivity implements TabListener, DummyListFragment.ListFragmentItemClickListener{
@@ -153,7 +160,69 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
 			}
 		}
 	}
-	
+	private void ScheduledNotification(ArrayList<ScheduleItem> savedSchedule)
+	{
+		// Get new calendar object and set the date to now
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+
+		for(int i = 0;i < savedSchedule.size();i++)
+		{
+			for(int j = 0;j < performances.size();j++)
+			{
+				if(performances.get(j).getPerformanceKey() == Integer.parseInt(savedSchedule.get(i).getPerformanceKey()))
+				{
+					 // Prepare the intent which artist name and event id which will launched at the date
+
+					 Intent intent = new Intent(Schedule.this,
+			                    Alarm.class);
+					 intent.putExtra("artist_name", performances.get(j).getPerformanceArtistName());
+					 intent.putExtra("performance_key", performances.get(j).getPerformanceKey());
+					 intent.putExtra("event_id", performances.get(j).getEventID());
+					// Prepare the pending intent
+					 PendingIntent AlarmSender;
+					 
+					// Every scheduled intent needs a unique id, else it is just executed once
+
+					 int id = (int) System.currentTimeMillis();
+
+					 AlarmSender = PendingIntent.getBroadcast(
+							 Schedule.this, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+					 /**
+					  * below is the code for the right hour/min
+					  * for testing purposing, i'm setting the time to now
+					 String originalString = performances.get(j).getPerformanceTime();
+				        Date date = null;
+						try {
+							date = new SimpleDateFormat("HH:mm:ss").parse(originalString);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				        String hour = new SimpleDateFormat("H").format(date);
+				        String minute = new SimpleDateFormat("mm").format(date);
+				        calendar.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hour));
+				        calendar.set(Calendar.MINUTE,Integer.parseInt(minute));
+				        **/
+					// Register the alert in the system. device will wake up on the alert 
+
+					 AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+					 alarm.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmSender);
+				
+					 Toast mToast = Toast.makeText(
+							 Schedule.this,
+			                    "Reminders added to the calendar successfully for "
+			                            + android.text.format.DateFormat.format(
+			                                    "MM/dd/yy h:mmaa",
+			                                    calendar.getTime())+(performances.get(j).getPerformanceDay()),
+			                    Toast.LENGTH_LONG);
+			            mToast.show();
+				}
+			}
+			
+		}
+		
+	}
 	public static void updateSchedule(int eventId)
 	{
 		if (performances.size()!=0)
@@ -336,6 +405,7 @@ public class Schedule extends BaseActivity implements TabListener, DummyListFrag
     		Log.d("DATABASE","get saved Performances Schedule: eventID=" + (currentEventID));
     		if(savedSchedule.size() != 0)Log.d("DATABASE",",SavedScheduleEventId= " + savedSchedule.get(0).getEventId() + "saved array size=" + savedSchedule.size());
 			updateSchedule(savedSchedule);
+			ScheduledNotification(savedSchedule);
 			Log.d("MyTag", "i have updated the schedule" + savedSchedule.toString());
 
 			db.close();
